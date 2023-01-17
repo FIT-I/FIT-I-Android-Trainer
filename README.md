@@ -1,1 +1,0 @@
-# FIT-I-Trainer-Android
