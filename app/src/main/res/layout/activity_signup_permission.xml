@@ -36,7 +36,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:button="@null"
-            android:background="@drawable/custom_checkbox"
+            android:background="@drawable/sel_custom_checkbox"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <CheckBox
@@ -44,7 +44,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:button="@null"
-            android:background="@drawable/custom_checkbox"
+            android:background="@drawable/sel_custom_checkbox"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cbAll" />
@@ -53,7 +53,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/custom_checkbox"
+            android:background="@drawable/sel_custom_checkbox"
             android:button="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cb1" />
@@ -62,7 +62,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/custom_checkbox"
+            android:background="@drawable/sel_custom_checkbox"
             android:button="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cb2" />
