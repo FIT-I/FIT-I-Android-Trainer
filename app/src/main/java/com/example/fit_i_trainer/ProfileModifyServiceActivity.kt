@@ -10,16 +10,16 @@ class ProfileModifyServiceActivity :AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_modify_me)
+        setContentView(R.layout.activity_profile_modify_service)
         //완료버튼
-        val done = findViewById<Button>(R.id.button_done)
+        val done = findViewById<Button>(R.id.btn_done)
         done.setOnClickListener{
             val intent = Intent(this,ProfileActivity::class.java)
             startActivity(intent)
             finish()
         }
         //뒤로가기
-        val goBack = findViewById<ImageButton>(R.id.back_arrow)
+        val goBack = findViewById<ImageButton>(R.id.ib_back_arrow)
         goBack.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)

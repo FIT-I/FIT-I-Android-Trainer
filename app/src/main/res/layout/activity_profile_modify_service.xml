@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageButton
-        android:id="@+id/back_arrow"
+        android:id="@+id/ib_back_arrow"
         android:layout_width="12dp"
         android:layout_height="20dp"
         android:layout_marginStart="30dp"
@@ -28,7 +28,7 @@
         android:textColor="#011E5F"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/back_arrow"
+        app:layout_constraintStart_toEndOf="@+id/ib_back_arrow"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -87,7 +87,7 @@
         app:srcCompat="@drawable/ic_longbar" />
 
     <Button
-        android:id="@+id/button_done"
+        android:id="@+id/btn_done"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="30dp"
