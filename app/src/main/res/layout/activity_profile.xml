@@ -28,7 +28,7 @@
 
             <TextView
                 android:id="@+id/tv_about_me"
-                android:layout_width="369dp"
+                android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
@@ -45,7 +45,7 @@
 
             <TextView
                 android:id="@+id/tv_about_service"
-                android:layout_width="369dp"
+                android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
@@ -62,7 +62,7 @@
 
             <TextView
                 android:id="@+id/tv_review1"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="134dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
@@ -298,7 +298,7 @@
 
             <TextView
                 android:id="@+id/tv_manage_cost"
-                android:layout_width="369dp"
+                android:layout_width="match_parent"
                 android:layout_height="86dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
@@ -594,6 +594,19 @@
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <ImageButton
+                android:id="@+id/btn_modify_background"
+                android:layout_width="64dp"
+                android:layout_height="17dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_background_photo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_modify"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <ImageButton
                 android:id="@+id/btn_modify_pic"
                 android:layout_width="64dp"
                 android:layout_height="17dp"
@@ -633,7 +646,7 @@
 
             <TextView
                 android:id="@+id/tv_profile_info"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="111dp"

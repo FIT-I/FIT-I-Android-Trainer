@@ -22,6 +22,7 @@ class ProfileModifyCostActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_modify_cost)
 
+
         checkBtn1 = findViewById(R.id.cb1)
         checkBtn2 = findViewById(R.id.cb2)
         checkBtn3 = findViewById(R.id.cb3)
@@ -45,6 +46,12 @@ class ProfileModifyCostActivity:AppCompatActivity() {
         goBack.setOnClickListener{
             val intent = Intent(this,ProfileActivity::class.java)
             startActivity(intent) //화면전환
+            finish()
+        }
+
+        buttonDone.setOnClickListener{
+            val intent = Intent(this,ProfileActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }

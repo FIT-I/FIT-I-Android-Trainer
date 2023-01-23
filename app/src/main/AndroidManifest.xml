@@ -56,6 +56,8 @@
         <activity android:name=".ProfileModifyCostActivity"></activity>
         <activity android:name=".ProfileModifyMeActivity"></activity>
         <activity android:name=".ProfileModifyServiceActivity"></activity>
+        <activity android:name=".ProfileAboutMeActivity"></activity>
+        <activity android:name=".ProfileAboutServiceActivity"></activity>
     </application>
 
 </manifest>
