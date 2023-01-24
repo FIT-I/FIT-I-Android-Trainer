@@ -7,20 +7,19 @@
     tools:context=".MypageModifyProfileFragment">
 
 
-
     <ImageButton
         android:id="@+id/ib_pre"
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:layout_margin="50dp"
         android:layout_marginStart="10dp"
         android:background="@android:color/transparent"
         android:backgroundTint="@color/main"
         android:scaleType="fitStart"
         android:src="@drawable/ic_pre"
-        android:layout_margin="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck"/>
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/tv_certificate"

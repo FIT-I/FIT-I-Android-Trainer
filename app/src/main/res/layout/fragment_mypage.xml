@@ -24,13 +24,13 @@
         android:id="@+id/ib_setting"
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:layout_marginEnd="20dp"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
         android:src="@drawable/ic_gearshape"
-        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_mypage"
-        tools:ignore="SpeakableTextPresentCheck"/>
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/iv_profileM"
@@ -78,7 +78,6 @@
         android:id="@+id/fl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,13 +95,14 @@
             android:background="@drawable/rectangle" />
 
         <Switch
-        android:id="@+id/swt_my"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|center"
-        android:layout_marginEnd="25dp"
-        android:track="@drawable/switch_my"
-        android:thumb="@drawable/switch_my_one"/>
+            android:id="@+id/swt_my"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="25dp"
+            android:thumb="@drawable/switch_my_one"
+            android:track="@drawable/switch_my"
+            tools:ignore="TouchTargetSizeCheck" />
     </FrameLayout>
     <!--    <FrameLayout-->
     <!--        android:id="@+id/fl"-->

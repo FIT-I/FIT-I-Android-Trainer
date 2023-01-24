@@ -31,16 +31,13 @@ class MypageModifyProfileFragment : Fragment() {
 
         }
         btnphoto.setOnClickListener{
-            showPhotoDialog()
+            val photoDialog = PhotoDialog()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.commit()
         }
         return view
     }
 
-    private fun showPhotoDialog(){
-        PhotoDialog(requireContext()){
-
-        }.show()
-    }
 
 
 
