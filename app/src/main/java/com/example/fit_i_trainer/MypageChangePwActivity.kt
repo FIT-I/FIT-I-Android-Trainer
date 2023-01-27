@@ -78,41 +78,6 @@ class MypageChangePwActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {}
         })
 
-        //비밀번호 눈 아이콘
-//
-//        val ivEye1: ImageView = findViewById(R.id.ib_eye1)
-//        val ivEye2: ImageView = findViewById(R.id.ib_eye2)
-//
-//        ivEye1.setOnClickListener() {
-//            if (ivEye1.tag.equals("0")) {//비밀번호 안 보이고 있던 상황
-//                ivEye1.tag = "1"
-//                ivEye1.setImageResource(R.drawable.ic_eye)
-//                etPw1.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-//            }
-//            if(ivEye1.tag.equals("1")) {//비밀번호 보이고 있던 상황
-//                ivEye1.tag = "0"
-//                ivEye1.setImageResource(R.drawable.ic_eye_slash)
-//                etPw1.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
-//            }            //etPW.setSelection(etPW.text.length)
-//            etPw1.setSelection(etPw1.text.length)
-//        }
-//
-//        ivEye2.setOnClickListener() {
-//            if (ivEye2.tag.equals("0")) {//비밀번호 안 보이고 있던 상황
-//                ivEye2.tag = "1"
-//                ivEye2.setImageResource(R.drawable.ic_eye)
-//                etPw2.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-//            }
-//            if(ivEye2.tag.equals("1")) {//비밀번호 보이고 있던 상황
-//                ivEye2.tag = "0"
-//                ivEye2.setImageResource(R.drawable.ic_eye_slash)
-//                etPw2.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
-//            }
-//            //etPW.setSelection(etPW.text.length)
-//            etPw2.setSelection(etPw2.text.length)
-//        }
-
-
         //비밀번호 변경 끝!
         //버튼 이벤트
         btnFinPwChange.setOnClickListener {  val intent = Intent(this, LoginSplashActivity::class.java)
