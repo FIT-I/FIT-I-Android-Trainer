@@ -101,6 +101,20 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <activity android:name=".ProfileActivity"
+            android:exported="true">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".ProfileModifyCostActivity"></activity>
+        <activity android:name=".ProfileModifyMeActivity"></activity>
+        <activity android:name=".ProfileModifyServiceActivity"></activity>
+        <activity android:name=".ProfileAboutMeActivity"></activity>
+        <activity android:name=".ProfileAboutServiceActivity"></activity>
     </application>
 
 </manifest>
