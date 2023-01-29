@@ -14,7 +14,7 @@ class ProfileActivity: AppCompatActivity() {
         val modifyMe= findViewById<ImageButton>(R.id.btn_modify_me)
         val modifyService= findViewById<ImageButton>(R.id.btn_modify_service)
         val modifyPic= findViewById<ImageButton>(R.id.btn_modify_pic)
-
+        val modifyCategory = findViewById<ImageButton>(R.id.btn_category_pick)
         val moreAboutMe = findViewById<ImageButton>(R.id.btn_about_me)
         fun showAboutMe(){
             val intent = Intent(this,ProfileAboutMeActivity::class.java)
@@ -63,6 +63,12 @@ class ProfileActivity: AppCompatActivity() {
         modifyPic.setOnClickListener{
             changePic()
         }
-
+        fun changeCategory(){
+            val intent = Intent(this,ProfileModifyCategoryPickActivity::class.java)
+            startActivity(intent)
+        }
+        modifyCategory.setOnClickListener{
+            changeCategory()
+        }
     }
 }

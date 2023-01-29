@@ -60,7 +60,7 @@
         <activity android:name=".ProfileModifyPicActivity"></activity>
         <activity android:name=".ProfileAboutMeActivity"></activity>
         <activity android:name=".ProfileAboutServiceActivity"></activity>
-
+        <activity android:name=".ProfileModifyCategoryPickActivity"></activity>
     </application>
 
 </manifest>
