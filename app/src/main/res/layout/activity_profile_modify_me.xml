@@ -17,7 +17,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
+    <ImageView
+        android:id="@+id/iv_me_bar"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_about_me_context"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/img_bar" />
     <TextView
         android:id="@+id/tv_about_me_title"
         android:layout_width="0dp"
@@ -77,7 +85,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_about_me_context" />
 
     <ImageView
-        android:id="@+id/img_bar"
+        android:id="@+id/iv_servie_bar1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"

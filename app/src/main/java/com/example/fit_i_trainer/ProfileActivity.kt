@@ -63,5 +63,6 @@ class ProfileActivity: AppCompatActivity() {
         modifyPic.setOnClickListener{
             changePic()
         }
+
     }
 }
