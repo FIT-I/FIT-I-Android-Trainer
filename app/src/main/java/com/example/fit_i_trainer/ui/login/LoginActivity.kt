@@ -3,11 +3,16 @@ package com.example.fit_i_trainer.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
-import android.widget.ImageButton
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import com.example.fit_i_trainer.App
 import com.example.fit_i_trainer.R
+import com.example.fit_i_trainer.RetrofitImpl.getApiClient
+import com.example.fit_i_trainer.data.model.request.LoginRequest
+import com.example.fit_i_trainer.data.model.response.LoginResponse
+import com.example.fit_i_trainer.data.service.AccountsService
 import com.example.fit_i_trainer.ui.signup.SignupPermissionActivity
 import com.example.fit_i_trainer.databinding.ActivityLoginBinding
 import com.kakao.sdk.auth.LoginClient
@@ -19,36 +24,151 @@ import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
+    val PREFERENCE = "fit-i-trainer"
+
     private val TAG = this.javaClass.simpleName
 
-    private var email: String = ""
-    private var gender: String = ""
-    private var name: String = ""
+//    private var email: String = ""
+//    private var gender: String = ""
+//    private var name: String = ""
+
+    var email : String=""
+    var pw: String=""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         binding = ActivityLoginBinding.inflate(layoutInflater)
 
-        //val keyHash = Utility.getKeyHash(this)
-        //Log.e("해시키", keyHash)
-//
-//        // 로그인 정보 확인
-//        UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
-//            if (error != null) {
-//                Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
-//            } else if (tokenInfo != null) {
-//                Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
-//                val intent = Intent(this, MainActivity::class.java)
-//                startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-//                finish()
-//            }
-//        }
+        val etEmail : EditText = findViewById(R.id.et_emailL)
+        val etPW : EditText = findViewById(R.id.et_pwL)
+
+        val btnLogin : Button = findViewById(R.id.btn_login)
+
+
+        //비밀번호 찾기
+        val findPW = findViewById<TextView>(R.id.tv_go_findPW)
+        findPW.setOnClickListener {
+            val intent = Intent(this, LoginFindPwActivity::class.java)
+            startActivity(intent)  // 화면 전환을 시켜줌
+            finish()
+        }
+
+
+        //버튼 비활성화
+        btnLogin.isEnabled = false
+
+        //EditText 값 있을때만 버튼 활성화
+        etEmail.addTextChangedListener(object: TextWatcher {
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            //값 변경 시 실행되는 함수
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //입력값 담기
+                email = etEmail.text.toString()
+
+                //stroke 색상변경
+                if(email.isNotEmpty())
+                    etEmail.setBackgroundResource(R.drawable.edittext_border)
+                else
+                    etEmail.setBackgroundResource(R.drawable.edittext_border_not)
+
+                //값 유무에 따른 활성화 여부
+                btnLogin.isEnabled = isTrue() //있다면 true 없으면 false
+            }
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+        })
+
+        //EditText 값 있을때만 버튼 활성화
+        etPW.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            //값 변경 시 실행되는 함수
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                //입력값 담기
+                pw = etPW.text.toString()
+
+                //stroke 색상변경
+                if(pw.isNotEmpty())
+                    etPW.setBackgroundResource(R.drawable.edittext_border)
+                else
+                    etPW.setBackgroundResource(R.drawable.edittext_border_not)
+
+                //값 유무에 따른 활성화 여부
+                btnLogin.isEnabled = isTrue() //있다면 true 없으면 false
+            }
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+
+        //SharedPref.openSharedPrep(this)
+
+        //로그인 버튼 -> 메인
+        //회원여부 판단하는 코드 작성 필요
+        btnLogin.setOnClickListener {
+            val intent = Intent(this, LoginSplashActivity::class.java)
+
+            val loginRequest = LoginRequest(email, pw)
+            //val login = Login("fiti@soongsil.ac.kr","fiti123!")
+
+            val service = getApiClient().create(AccountsService::class.java)
+            service.logIn(loginRequest).enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(
+                    call: Call<LoginResponse>,
+                    response: Response<LoginResponse>
+                ) {
+                    when (response.code()) {
+                        200 -> {
+                            val pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
+                            val editor = pref.edit()
+                            editor.putString("email", etEmail.text.toString())
+                            editor.commit()
+                            finish()
+//                            // 토큰 저장하기
+//                            App.prefs.token=token
+//                            // 토큰 가져오기
+//                            val token = App.prefs.token
+                            Log.d("Post", "success ${response.body().toString()}")
+
+                            App.token_prefs.accessToken = response.body()?.result?.accessToken
+                            App.token_prefs.refreshToken = response.body()?.result?.refreshToken
+
+                            Toast.makeText(this@LoginActivity, email + " 로그인", Toast.LENGTH_SHORT)
+                                .show()
+                            startActivity(intent)  // 화면 전환을 시켜줌
+                            finish()
+                        }
+                        405 -> Toast.makeText(
+                            this@LoginActivity,
+                            "로그인 실패 : 아이디나 비번이 올바르지 않습니다",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        500 -> Toast.makeText(
+                            this@LoginActivity,
+                            "로그인 실패 : 서버 오류",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                    Log.d("Post", "fail ${t}")
+                }
+            })
+        }
+
+
 
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
@@ -114,30 +234,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        //비밀번호 찾기
-        val findPW = findViewById<TextView>(R.id.tv_go_findPW)
-        findPW.setOnClickListener {
-            val intent = Intent(this, LoginFindPwActivity::class.java)
-            startActivity(intent)  // 화면 전환을 시켜줌
-            finish()
-        }
-
-        //회원가입하기
-        val signIn = findViewById<TextView>(R.id.tv_go_signIn)
-        signIn.setOnClickListener {
-            val intent = Intent(this, SignupPermissionActivity::class.java)
-            startActivity(intent)  // 화면 전환을 시켜줌
-            finish()
-        }
-
-        //로그인 버튼 -> 메인
-        //회원여부 판단하는 코드 작성 필요
-        val Login = findViewById<TextView>(R.id.btn_login)
-        Login.setOnClickListener {
-            val intent = Intent(this, LoginSplashActivity::class.java)
-            startActivity(intent)  // 화면 전환을 시켜줌
-            finish()
-        }
 
 //        binding.tvNaverLogout.setOnClickListener {
 //            startNaverLogout()
@@ -319,5 +415,8 @@ class LoginActivity : AppCompatActivity() {
 //                NaverIdLoginSDK.authenticate(this@LoginActivity, oAuthLoginCallback)
 //            }
 //        }
+    }
+    private fun isTrue(): Boolean {
+        return email.isNotEmpty()&&pw.isNotEmpty()
     }
 }
