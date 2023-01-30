@@ -47,9 +47,9 @@ class SignupActivity : AppCompatActivity() {
 
                 //stroke 색상변경
                 if (name.isNotEmpty())
-                    etName.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etName.setBackgroundResource(R.drawable.edittext_border)
                 else
-                    etName.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etName.setBackgroundResource(R.drawable.edittext_border)
 
                 //값 유무에 따른 활성화 여부
                 btnFinSignUp.isEnabled = isTrue() //있다면 true 없으면 false
@@ -68,9 +68,9 @@ class SignupActivity : AppCompatActivity() {
 
                 //stroke 색상변경
                 if (email.isNotEmpty())
-                    etEmail.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etEmail.setBackgroundResource(R.drawable.edittext_border)
                 else
-                    etEmail.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etEmail.setBackgroundResource(R.drawable.edittext_border)
 
                 //값 유무에 따른 활성화 여부
                 btnFinSignUp.isEnabled = isTrue() //있다면 true 없으면 false
@@ -89,9 +89,9 @@ class SignupActivity : AppCompatActivity() {
 
                 //stroke 색상변경
                 if (pw.isNotEmpty())
-                    etPW.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etPW.setBackgroundResource(R.drawable.edittext_border)
                 else
-                    etPW.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etPW.setBackgroundResource(R.drawable.edittext_border)
 
                 //값 유무에 따른 활성화 여부
                 btnFinSignUp.isEnabled = isTrue() //있다면 true 없으면 false
@@ -110,9 +110,9 @@ class SignupActivity : AppCompatActivity() {
 
                 //stroke 색상변경
                 if (pw2.isNotEmpty())
-                    etPW2.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etPW2.setBackgroundResource(R.drawable.edittext_border)
                 else
-                    etPW2.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etPW2.setBackgroundResource(R.drawable.edittext_border)
 
                 //값 유무에 따른 활성화 여부
                 btnFinSignUp.isEnabled = isTrue() //있다면 true 없으면 false

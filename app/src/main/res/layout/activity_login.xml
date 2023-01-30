@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
-        android:id="@+id/tv_customerLogin"
+        android:id="@+id/tv_trainerLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
@@ -38,17 +38,17 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_customerLogin">
+        app:layout_constraintTop_toBottomOf="@+id/tv_trainerLogin">
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/et_emailL"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="아이디"
             android:padding="10dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/custom_edittext_border"
+            android:background="@drawable/edittext_border"
             android:textColorHint="#B0BAD1"
             android:textColor="@color/main"
             android:inputType="textEmailAddress"
@@ -56,13 +56,13 @@
 
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/et_pwL"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="비밀번호"
             android:padding="10dp"
-            android:background="@drawable/custom_edittext_border"
+            android:background="@drawable/edittext_border"
             android:textColorHint="#B0BAD1"
             android:textColor="@color/main"
             android:inputType="textPassword" />

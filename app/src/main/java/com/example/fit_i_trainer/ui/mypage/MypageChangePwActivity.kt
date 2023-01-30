@@ -49,9 +49,9 @@ class MypageChangePwActivity : AppCompatActivity() {
 
                 //stroke 색상변경
                 if (pw1.isNotEmpty())
-                    etPw1.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etPw1.setBackgroundResource(R.drawable.edittext_border)
                 else
-                    etPw1.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etPw1.setBackgroundResource(R.drawable.edittext_border)
 
                 //값 유무에 따른 활성화 여부
                 btnFinPwChange.isEnabled = isTrue()
@@ -69,9 +69,9 @@ class MypageChangePwActivity : AppCompatActivity() {
 
                 //stroke 색상변경
                 if (pw2.isNotEmpty())
-                    etPw2.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etPw2.setBackgroundResource(R.drawable.edittext_border)
                 else
-                    etPw2.setBackgroundResource(R.drawable.custom_edittext_border)
+                    etPw2.setBackgroundResource(R.drawable.edittext_border)
 
                 btnFinPwChange.isEnabled = isTrue() //있다면 true 없으면 false
 
