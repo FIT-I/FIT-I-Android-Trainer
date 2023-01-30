@@ -14,4 +14,5 @@
     <string name="kakao_app_key">78fa9b34400ac36c567656199e53f636</string>
     <string name="naver_client_id">phRvMJz5kuIyfkG9Q8Vg</string>
     <string name="naver_client_secret">Bw9YNrOmuD</string>
+    <string name="match_request">매칭 요청</string>
 </resources>
