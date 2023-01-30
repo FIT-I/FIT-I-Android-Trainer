@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Handler
 import android.os.Looper
 import com.example.fit_i_trainer.databinding.ActivitySplashBinding
+import com.example.fit_i_trainer.ui.login.LoginActivity
 
 
 class SplashActivity : AppCompatActivity() {
