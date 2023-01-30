@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MypageChangePwActivity"
+            android:name=".ui.mypage.MypageChangePwActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,21 +28,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignupCerti2Activity"
+            android:name=".ui.signup.SignupCerti2Activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignupCertiActivity"
+            android:name=".ui.signup.SignupCertiActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignupActivity"
+            android:name=".ui.signup.SignupActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,28 +55,28 @@
         </activity>
 
         <activity
-            android:name=".SignupPermissionActivity"
+            android:name=".ui.signup.SignupPermissionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".FindPwActivity"
+            android:name=".ui.login.LoginFindPwActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginSplashActivity"
+            android:name=".ui.login.LoginSplashActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -109,7 +109,7 @@
                 android:value="" />
         </activity>
 
-        <activity android:name=".ProfileActivity"
+        <activity android:name=".ui.profile.ProfileActivity"
             android:exported="true">
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -117,12 +117,12 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".ProfileModifyCostActivity"></activity>
-        <activity android:name=".ProfileModifyMeActivity"></activity>
-        <activity android:name=".ProfileModifyServiceActivity"></activity>
-        <activity android:name=".ProfileModifyPicActivity"></activity>
-        <activity android:name=".ProfileAboutMeActivity"></activity>
-        <activity android:name=".ProfileAboutServiceActivity"></activity>
+        <activity android:name=".ui.profile.ProfileModifyCostActivity"></activity>
+        <activity android:name=".ui.profile.ProfileModifyMeActivity"></activity>
+        <activity android:name=".ui.profile.ProfileModifyServiceActivity"></activity>
+        <activity android:name=".ui.profile.ProfileModifyPicActivity"></activity>
+        <activity android:name=".ui.profile.ProfileAboutMeActivity"></activity>
+        <activity android:name=".ui.profile.ProfileAboutServiceActivity"></activity>
 
     </application>
 

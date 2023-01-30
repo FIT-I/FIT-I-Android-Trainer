@@ -1,27 +1,27 @@
-package com.example.fit_i_trainer
+package com.example.fit_i_trainer.ui.login
 
 import android.os.Bundle
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Handler
 import android.os.Looper
-import com.example.fit_i_trainer.databinding.ActivitySplashBinding
-import com.example.fit_i_trainer.ui.login.LoginActivity
+import com.example.fit_i_trainer.MainActivity
+import com.example.fit_i_trainer.databinding.ActivityLoginSplashBinding
 
 
-class SplashActivity : AppCompatActivity() {
-    private lateinit var viewBinding: ActivitySplashBinding
+class LoginSplashActivity : AppCompatActivity() {
+    private lateinit var viewBinding: ActivityLoginSplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewBinding = ActivitySplashBinding.inflate(layoutInflater)
+        viewBinding = ActivityLoginSplashBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
         // Handler의 postDelayed를 이용하면 일정 시간 후에 안에 있는 함수를 실행할 수 있습니다.
         // Handler를 만들 때에는 () 안에 Looper.getMainLooper()를 넣어주어야 에러가 나지 않습니다!
         Handler(Looper.getMainLooper()).postDelayed({
             // 현재 Activity에서 MainActivity로 이동하기 위한 Intent 변수 만들기
-            val moveActivityIntent = Intent(this, LoginActivity::class.java)
+            val moveActivityIntent = Intent(this, MainActivity::class.java)
 
             // Intent에 정의된대로 MainActivity를 열기
             startActivity(moveActivityIntent)
