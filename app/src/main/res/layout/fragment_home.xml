@@ -7,7 +7,6 @@
     tools:context=".ui.home.HomeFragment">
 
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/tv_slogan"
         android:layout_width="wrap_content"
@@ -95,6 +94,32 @@
         app:layout_constraintStart_toStartOf="@+id/tv_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
+    <ImageView
+        android:id="@+id/iv_category"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:src="@drawable/ic_diet"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_category"
+        app:layout_constraintStart_toEndOf="@+id/tv_category"
+        app:layout_constraintTop_toTopOf="@+id/tv_category" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" / "
+        android:textColor="@color/main"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/tv_category" />
+
+    <ImageView
+        android:id="@+id/iv_rank"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:src="@drawable/img_rank_bronze"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_category"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/tv_category" />
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -103,7 +128,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_category">
 
         <TextView
-            android:id="@+id/tv_pic_title"
+            android:id="@+id/tv_grade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4.3"

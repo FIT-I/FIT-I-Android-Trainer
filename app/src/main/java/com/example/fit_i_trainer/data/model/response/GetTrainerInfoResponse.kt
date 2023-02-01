@@ -8,11 +8,13 @@ data class GetTrainerInfoResponse(
 ){
     data class Result(
         val background: String,
+        val category: String,
         val cost: Int,
         val grade: Double,
         val imageList: String,
         val intro: String,
         val levelName: String,
+        val matching_state: Boolean,
         val name: String,
         val profile: String,
         val reviewDto: String,
