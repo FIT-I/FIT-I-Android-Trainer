@@ -188,7 +188,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_trainer_name" />
 
             <ImageView
-                android:id="@+id/iv_star"
+                android:id="@+id/iv_barrr"
                 android:layout_width="6.57dp"
                 android:layout_height="6.61dp"
                 android:layout_alignParentStart="true"
@@ -227,7 +227,7 @@
                 android:layout_marginTop="2dp"
                 android:text="4.3"
                 android:textSize="10sp"
-                app:layout_constraintStart_toEndOf="@+id/iv_star"
+                app:layout_constraintStart_toEndOf="@+id/iv_barrr"
                 app:layout_constraintTop_toBottomOf="@+id/tv_trainer_name" />
 
             <TextView
