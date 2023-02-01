@@ -1,4 +1,4 @@
-package com.example.fit_i_trainer.ui.mypage
+package com.example.fit_i_trainer.ui.main.mypage
 
 import android.annotation.SuppressLint
 import android.os.Bundle

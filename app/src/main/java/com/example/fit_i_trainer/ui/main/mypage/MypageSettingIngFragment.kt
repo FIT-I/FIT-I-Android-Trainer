@@ -1,4 +1,4 @@
-package com.example.fit_i_trainer.ui.mypage
+package com.example.fit_i_trainer.ui.main.mypage
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

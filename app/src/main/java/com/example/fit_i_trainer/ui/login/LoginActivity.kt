@@ -10,6 +10,7 @@ import android.widget.*
 import com.example.fit_i_trainer.App
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl.getApiClient
+import com.example.fit_i_trainer.RetrofitImpl.getApiClientWithOutToken
 import com.example.fit_i_trainer.data.model.request.LoginRequest
 import com.example.fit_i_trainer.data.model.response.LoginResponse
 import com.example.fit_i_trainer.data.service.AccountsService
@@ -59,6 +60,14 @@ class LoginActivity : AppCompatActivity() {
         val findPW = findViewById<TextView>(R.id.tv_go_findPW)
         findPW.setOnClickListener {
             val intent = Intent(this, LoginFindPwActivity::class.java)
+            startActivity(intent)  // 화면 전환을 시켜줌
+            finish()
+        }
+
+        //회원가입하기
+        val signIn = findViewById<TextView>(R.id.tv_go_signIn)
+        signIn.setOnClickListener {
+            val intent = Intent(this, SignupPermissionActivity::class.java)
             startActivity(intent)  // 화면 전환을 시켜줌
             finish()
         }
@@ -122,7 +131,7 @@ class LoginActivity : AppCompatActivity() {
             val loginRequest = LoginRequest(email, pw)
             //val login = Login("fiti@soongsil.ac.kr","fiti123!")
 
-            val service = getApiClient().create(AccountsService::class.java)
+            val service = getApiClientWithOutToken().create(AccountsService::class.java)
             service.logIn(loginRequest).enqueue(object : Callback<LoginResponse> {
                 override fun onResponse(
                     call: Call<LoginResponse>,

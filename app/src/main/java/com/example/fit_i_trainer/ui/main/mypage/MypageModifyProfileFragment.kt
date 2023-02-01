@@ -1,28 +1,27 @@
-package com.example.fit_i_trainer.ui.mypage
+package com.example.fit_i_trainer.ui.main.mypage
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.fragment.app.FragmentTransaction
+import com.example.fit_i_trainer.PhotoDialog
 import com.example.fit_i_trainer.R
-import com.example.fit_i_trainer.databinding.FragmentMypageNoticeBinding
 
 
-class MypageNoticeFragment : Fragment() {
-    private lateinit var binding: FragmentMypageNoticeBinding
+class MypageModifyProfileFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_mypage_notice,container,false)
-        val ibpre = view.findViewById<View>(R.id.ib_pre) as ImageButton
-        val btnper = view.findViewById<View>(R.id.btn_per)
-        val btnok = view.findViewById<View>(R.id.btn_okok)
+        val view = inflater.inflate(R.layout.fragment_mypage_modify_profile,container,false)
+        val ibpre = view.findViewById<View>(R.id.ib_pre)
+        val btnphoto = view.findViewById<View>(R.id.btn_click_photo)
+
+        //이전
         ibpre.setOnClickListener{
             val mypageFragment = MypageFragment()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
@@ -32,14 +31,15 @@ class MypageNoticeFragment : Fragment() {
             transaction.commit()
 
         }
-        btnper.setOnClickListener{
-            val mypageNoticeIngeFragment = MypageNoticeIngFragment()
+        btnphoto.setOnClickListener{
+            val photoDialog = PhotoDialog()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
-
-            transaction.replace(R.id.fl_container,mypageNoticeIngeFragment)
             transaction.commit()
         }
         return view
     }
+
+
+
 
 }

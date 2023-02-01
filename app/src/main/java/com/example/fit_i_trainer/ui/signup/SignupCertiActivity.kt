@@ -49,6 +49,7 @@ class SignupCertiActivity : AppCompatActivity() {
         //버튼 이벤트
         btnNext.setOnClickListener {
             val intent = Intent(this, SignupCerti2Activity::class.java)
+            intent.putExtra("major",major)
             startActivity(intent)  // 화면 전환을 시켜줌
             finish()
             Toast.makeText(this, major + "signUp", Toast.LENGTH_SHORT).show()

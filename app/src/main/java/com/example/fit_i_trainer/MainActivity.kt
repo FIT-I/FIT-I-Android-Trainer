@@ -3,9 +3,9 @@ package com.example.fit_i_trainer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.fit_i_trainer.databinding.ActivityMainBinding
-import com.example.fit_i_trainer.ui.chat.ChatFragment
-import com.example.fit_i_trainer.ui.home.HomeFragment
-import com.example.fit_i_trainer.ui.mypage.MypageFragment
+import com.example.fit_i_trainer.ui.main.chat.ChatFragment
+import com.example.fit_i_trainer.ui.main.home.HomeFragment
+import com.example.fit_i_trainer.ui.main.mypage.MypageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

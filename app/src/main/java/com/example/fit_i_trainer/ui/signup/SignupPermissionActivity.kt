@@ -36,7 +36,7 @@ class SignupPermissionActivity : AppCompatActivity() {
         thirdCheckBtn.setOnClickListener { onCheckChanged(thirdCheckBtn) }
 
         btnGoSignIn.setOnClickListener(){
-            val intent = Intent(this, SignupActivity::class.java)
+            val intent = Intent(this, SignupCertiActivity::class.java)
             startActivity(intent)  // 화면 전환을 시켜줌
             finish()
         }

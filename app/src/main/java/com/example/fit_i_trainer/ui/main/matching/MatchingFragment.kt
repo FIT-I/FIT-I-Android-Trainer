@@ -1,4 +1,4 @@
-package com.example.fit_i_trainer.ui.matching
+package com.example.fit_i_trainer.ui.main.matching
 
 import android.os.Bundle
 import android.util.Log

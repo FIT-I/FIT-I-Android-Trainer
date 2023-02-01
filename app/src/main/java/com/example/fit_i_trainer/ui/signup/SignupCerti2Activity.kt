@@ -18,10 +18,15 @@ class SignupCerti2Activity : AppCompatActivity() {
 
     var schoolEmail: String=""
     var code:String=""
+    var major:String=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_certi2)
+
+        val intent = Intent(this, SignupCerti2Activity::class.java)  // 인텐트를 생성해줌,
+        major = intent.getStringExtra("major").toString()
+
 
         binding = ActivitySignupCerti2Binding.inflate(layoutInflater)
 
@@ -70,7 +75,8 @@ class SignupCerti2Activity : AppCompatActivity() {
     }
 
     private fun letgo() {
-        val intent = Intent(this, LoginSplashActivity::class.java)
+        val intent = Intent(this, SignupActivity::class.java)
+        intent.putExtra("major",major)
         startActivity(intent)  // 화면 전환을 시켜줌
         finish()
         Toast.makeText(this, schoolEmail + "summit", Toast.LENGTH_SHORT).show()
