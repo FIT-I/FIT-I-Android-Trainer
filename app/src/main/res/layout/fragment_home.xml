@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".ui.home.HomeFragment">
 
 
     <!-- TODO: Update blank fragment layout -->
@@ -185,21 +185,21 @@
         android:layout_marginEnd="10dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_person_viewfinder"
-        app:layout_constraintBottom_toBottomOf="@+id/textView7"
-        app:layout_constraintEnd_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_go_modify"
+        app:layout_constraintEnd_toStartOf="@+id/tv_go_modify"
+        app:layout_constraintTop_toTopOf="@+id/tv_go_modify" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tv_go_modify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="나의 프로필 관리하기"
-        android:textColor="@color/black"
+        android:textColor="@color/main"
         android:textSize="12dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_star"
+        app:layout_constraintTop_toBottomOf="@+id/iv_star"
         tools:ignore="TextSizeCheck" />
         
 </androidx.constraintlayout.widget.ConstraintLayout>
