@@ -1,25 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.main.mypage.MypageNoticeFragment">
+    tools:context=".ui.main.mypage.notice.MypageNoticeFragment">
 
 
     <ImageButton
         android:id="@+id/ib_pre"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_margin="50dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="60dp"
         android:background="@android:color/transparent"
         android:backgroundTint="@color/main"
         android:scaleType="fitStart"
         android:src="@drawable/ic_pre"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_mypage_notice"
@@ -27,9 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="공지사항"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/ib_pre"
+        android:textColor="@color/main"
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ib_pre" />
@@ -42,80 +41,17 @@
         android:layout_marginTop="10dp"
         />
 
-    <TextView
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_bar4"
-        android:id="@+id/tv_ok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="앱 업데이트 안내"
-        android:textColor="@color/main"
-        android:textSize="15sp"
-        android:layout_margin="20dp"/>
-
-    <TextView
-        android:id="@+id/tv_date2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:text="지난 달"
-        android:textColor="@color/main"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_ok" />
-
-    <androidx.constraintlayout.utils.widget.ImageFilterButton
-        android:id="@+id/btn_per"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginTop="5dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_next"
-        app:layout_constraintStart_toEndOf="@+id/tv_date2"
-        app:layout_constraintTop_toTopOf="@+id/tv_date2"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-    <ImageView
-        android:id="@+id/iv_bar5"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#D9D9D9"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ok"
-        android:layout_marginTop="20dp"
-        />
-    <TextView
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_bar5"
-        android:id="@+id/tv_per"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="개인정보 약관 동의관련"
-        android:textColor="@color/main"
-        android:textSize="15sp"
-        android:layout_margin="20dp"/>
-    <TextView
-        android:id="@+id/tv_date1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:text="지난 달"
-        android:textColor="@color/main"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_per" />
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/iv_bar4">
 
-    <androidx.constraintlayout.utils.widget.ImageFilterButton
-        android:id="@+id/btn_okok"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:layout_marginTop="5dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_next"
-        app:layout_constraintStart_toEndOf="@+id/tv_date1"
-        app:layout_constraintTop_toTopOf="@+id/tv_date1"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_notice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_notice"/>
+    </ScrollView>
 
 
 

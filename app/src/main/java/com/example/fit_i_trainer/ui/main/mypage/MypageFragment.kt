@@ -16,6 +16,7 @@ import com.example.fit_i_trainer.data.model.response.GetMypageResponse
 import com.example.fit_i_trainer.data.service.CommunalService
 import com.example.fit_i_trainer.data.service.TrainerService
 import com.example.fit_i_trainer.databinding.FragmentMypageBinding
+import com.example.fit_i_trainer.ui.main.mypage.notice.MypageNoticeFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
