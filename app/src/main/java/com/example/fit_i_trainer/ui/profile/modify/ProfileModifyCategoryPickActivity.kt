@@ -10,7 +10,7 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
-import com.example.fit_i_trainer.data.model.request.selectCategoryRequest
+import com.example.fit_i_trainer.data.model.request.SelectCategoryRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.service.TrainerService
 import com.example.fit_i_trainer.ui.profile.ProfileActivity
@@ -55,7 +55,7 @@ class ProfileModifyCategoryPickActivity:AppCompatActivity() {
         //완료
         buttonDone.setOnClickListener{
             val trainerService = RetrofitImpl.getApiClient().create(TrainerService::class.java)
-            trainerService.selectCategory(selectCategoryRequest(category)).enqueue(object :
+            trainerService.selectCategory(SelectCategoryRequest(category)).enqueue(object :
                 Callback<BaseResponse> {
                 override fun onResponse(
                     call: Call<BaseResponse>,

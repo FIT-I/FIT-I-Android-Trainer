@@ -47,7 +47,7 @@ class ProfileActivity: AppCompatActivity() {
             binding.tvTrainerStar.text = data.grade.toString()
             binding.tvUniversityInfo.text = data.school
             binding.tvAverage.text = data.grade.toString()
-            binding.tvCategoryPick.text = data.category
+            //binding.tvCategoryPick.text = data.category
 
 
             costHour= data.cost.toInt()
@@ -55,15 +55,28 @@ class ProfileActivity: AppCompatActivity() {
             name=data.name
             serviceDetail=data.service
 
-
-
-//            when (data.category) {
-//                "다이어트" -> binding.grade.setImageResource(R.drawable.ic_diet)
-//                "개인 PT" ->binding.ivCategory.setImageResource(R.drawable.ic_pt)
-//                "운동친구" -> binding.ivCategory.setImageResource(R.drawable.ic_friend)
-//                "재활치료" ->binding.ivCategory.setImageResource(R.drawable.ic_medical)
-//                "식단관리" -> binding.ivCategory.setImageResource(R.drawable.ic_eating)
-//            }
+            when (data.category) {
+                "diet" -> {
+                    //binding.ivCategoryPickIc.setImageResource(R.drawable.ic_diet)
+                    binding.tvCategoryPick.text="다이어트"
+                }
+                "pt" -> {
+                    //binding.ivCategoryPickIc.setImageResource(R.drawable.ic_pt)
+                    binding.tvCategoryPick.text="개인PT"
+                }
+                "friend" -> {
+                    //binding.ivCategoryPickIc.setImageResource(R.drawable.ic_friend)
+                    binding.tvCategoryPick.text="운동친구"
+                }
+                "rehab" -> {
+                    //binding.ivCategoryPickIc.setImageResource(R.drawable.ic_medical)
+                    binding.tvCategoryPick.text="재활치료"
+                }
+                "food" -> {
+                    //binding.ivCategoryPickIc.setImageResource(R.drawable.ic_eating)
+                    binding.tvCategoryPick.text="식단관리"
+                }
+            }
 
             when (data.levelName) {
                 "gold" -> binding.ivTrainerGrade.setImageResource(R.drawable.img_rank_gold)

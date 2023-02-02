@@ -2,7 +2,7 @@ package com.example.fit_i_trainer.data.service
 
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerCategoryRequest
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
-import com.example.fit_i_trainer.data.model.request.selectCategoryRequest
+import com.example.fit_i_trainer.data.model.request.SelectCategoryRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
 import com.example.fit_i_trainer.data.model.response.ModifyTrainerInfoResponse
@@ -50,6 +50,6 @@ interface TrainerService {
 
     //트레이너 카테고리 수정
     @PATCH ("api/trainer/category")
-    fun selectCategory(@Body req : selectCategoryRequest) : Call<BaseResponse>
+    fun selectCategory(@Body req : SelectCategoryRequest) : Call<BaseResponse>
 
 }
