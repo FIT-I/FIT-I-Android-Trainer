@@ -321,26 +321,26 @@
                 android:text="20000"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_manage_cost"
-                app:layout_constraintEnd_toStartOf="@+id/tv_won2" />
+                app:layout_constraintEnd_toEndOf="@+id/btn_modify_cost" />
 
-            <TextView
-                android:id="@+id/tv_won2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="원"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_manage_cost"
-                app:layout_constraintEnd_toEndOf="@+id/tv_manage_cost" />
+<!--            <TextView-->
+<!--                android:id="@+id/tv_won2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:text="원"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/tv_manage_cost"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/tv_manage_cost" />-->
 
-            <TextView
-                android:id="@+id/tv_won1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="￦"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_manage_cost"
-                app:layout_constraintEnd_toStartOf="@+id/tv_manage_price" />
+<!--            <TextView-->
+<!--                android:id="@+id/tv_won1"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:text="￦"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/tv_manage_cost"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/tv_manage_price" />-->
 
             <ImageView
                 android:id="@+id/iv_bar3"

@@ -2,6 +2,7 @@ package com.example.fit_i_trainer.ui.profile.modify
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.CompoundButton
@@ -9,7 +10,14 @@ import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fit_i_trainer.R
+import com.example.fit_i_trainer.RetrofitImpl
+import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
+import com.example.fit_i_trainer.data.model.response.ModifyTrainerInfoResponse
+import com.example.fit_i_trainer.data.service.TrainerService
 import com.example.fit_i_trainer.ui.profile.ProfileActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ProfileModifyCostActivity:AppCompatActivity() {
 
@@ -22,13 +30,18 @@ class ProfileModifyCostActivity:AppCompatActivity() {
     private lateinit var checkBtn6 : CheckBox
     private lateinit var etEtc : EditText
 
-    lateinit var cost : String
+    var cost : Int =0
     lateinit var etc : String
+
 
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_modify_cost)
 
+        //val costHour: String = intent.getStringExtra("costHour").toString()
+        val intro: String = intent.getStringExtra("intro").toString()
+        val name: String = intent.getStringExtra("name").toString()
+        val serviceDetail: String = intent.getStringExtra("serviceDetail").toString()
 
         checkBtn1 = findViewById(R.id.cb1)
         checkBtn2 = findViewById(R.id.cb2)
@@ -55,6 +68,30 @@ class ProfileModifyCostActivity:AppCompatActivity() {
         }
 
         buttonDone.setOnClickListener{
+            val trainerService = RetrofitImpl.getApiClient().create(TrainerService::class.java)
+            trainerService.modifyTrainerInfo(ModifyTrainerInfoRequest(cost,intro
+            ,name,serviceDetail)).enqueue(object :
+                Callback<ModifyTrainerInfoResponse> {
+                override fun onResponse(
+                    call: Call<ModifyTrainerInfoResponse>,
+                    response: Response<ModifyTrainerInfoResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        // 정상적으로 통신이 성공된 경우
+                        Log.d("post", "onResponse 성공: " + response.body().toString());
+                        //Toast.makeText(this@ProfileActivity, "비밀번호 찾기 성공!", Toast.LENGTH_SHORT).show()
+
+                    } else {
+                        // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                        Log.d("post", "onResponse 실패"+response.code())
+                    }
+                }
+
+                override fun onFailure(call: Call<ModifyTrainerInfoResponse>, t: Throwable) {
+                    // 통신 실패 (인터넷 끊킴, 예외 발생 등 시스템적인 이유)
+                    Log.d("post", "onFailure 에러: " + t.message.toString());
+                }
+            })
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
             finish()
@@ -64,7 +101,8 @@ class ProfileModifyCostActivity:AppCompatActivity() {
         when(compoundButton.id){
             R.id.cb1 ->{
                 if(checkBtn1.isChecked) {
-                    cost = "₩0원"
+                    //cost = "₩0원"
+                    cost = 0
                     checkBtn1.isChecked = true
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false
@@ -79,7 +117,8 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb2 ->{
                 if(checkBtn2.isChecked) {
-                    cost = "₩10,000원"
+                    //cost = "₩10,000원"
+                    cost = 10000
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = true
                     checkBtn3.isChecked = false
@@ -94,7 +133,8 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb3 ->{
                 if(checkBtn3.isChecked) {
-                    cost = "₩15,000원"
+                    //cost = "₩15,000원"
+                    cost = 15000
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = true
@@ -109,7 +149,8 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb4 ->{
                 if(checkBtn4.isChecked) {
-                    cost = "₩20,000원"
+                    //cost = "₩20,000원"
+                    cost = 20000
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false
@@ -124,7 +165,8 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb5 ->{
                 if(checkBtn5.isChecked) {
-                    cost = "₩25,000원"
+                    //cost = "₩25,000원"
+                    cost = 25000
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false
@@ -140,7 +182,7 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             R.id.cb6 ->{
                 if(checkBtn6.isChecked) {
                     etc = etEtc.text.toString()
-                    cost = etc
+                    cost = etc.toInt()
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false

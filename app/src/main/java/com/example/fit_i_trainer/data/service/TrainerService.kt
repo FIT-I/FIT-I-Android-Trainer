@@ -5,6 +5,7 @@ import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
 import com.example.fit_i_trainer.data.model.request.selectCategoryRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
+import com.example.fit_i_trainer.data.model.response.ModifyTrainerInfoResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -16,7 +17,7 @@ interface TrainerService {
 
     //트레이너 정보수정
     @PUT("api/trainer/information")
-    fun modifyTrainerInfo(@Body req : ModifyTrainerInfoRequest) :Call<BaseResponse>
+    fun modifyTrainerInfo(@Body req : ModifyTrainerInfoRequest) :Call<ModifyTrainerInfoResponse>
 
     //트레이너 사진 및 자격증 추가
     //@Headers("content-type: application/json")

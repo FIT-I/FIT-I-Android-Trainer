@@ -18,6 +18,13 @@ import retrofit2.Response
 class ProfileActivity: AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
 
+    var costHour : Int =0
+    lateinit var intro : String
+    lateinit var name : String
+    lateinit var serviceDetail : String
+
+
+
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
@@ -34,11 +41,20 @@ class ProfileActivity: AppCompatActivity() {
         fun onBind(data: GetTrainerInfoResponse.Result) {
             binding.tvTrainerName.text = data.name
             //binding.tvEmail.text=data.
+            binding.tvManagePrice.text= data.cost.toString()
             binding.tvAboutMe.text = data.intro
             binding.tvTrainerStar.text = data.grade.toString()
             binding.tvUniversityInfo.text = data.school
             binding.tvAverage.text = data.grade.toString()
             binding.tvCategoryPick.text = data.category
+
+
+            costHour= data.cost.toInt()
+            intro=data.intro
+            name=data.name
+            serviceDetail=data.service
+
+
 
 //            when (data.category) {
 //                "다이어트" -> binding.grade.setImageResource(R.drawable.ic_diet)
@@ -80,75 +96,62 @@ class ProfileActivity: AppCompatActivity() {
             }
         })
 
+        fun sendInfo() {
+            intent.putExtra("costHour", costHour)
+            intent.putExtra("intro", intro)
+            intent.putExtra("name",name)
+            intent.putExtra("serviceDetail",serviceDetail)
+        }
 
 
-
-        fun showAboutMe(){
+        moreAboutMe.setOnClickListener{
             val intent = Intent(this, ProfileAboutMeActivity::class.java)
+            sendInfo()
             startActivity(intent)
             finish()
-        }
-        moreAboutMe.setOnClickListener{
-            showAboutMe()
         }
 
         val moreAboutService = findViewById<ImageButton>(R.id.btn_about_service)
-        fun showAboutService(){
-            val intent = Intent(this, ProfileAboutServiceActivity::class.java)
-            startActivity(intent)
-            finish()
 
-        }
         moreAboutService.setOnClickListener{
-            showAboutService()
-        }
-        fun changeCost(){
-            val intent = Intent(this, ProfileModifyCostActivity::class.java)
+            val intent = Intent(this, ProfileAboutServiceActivity::class.java)
+            sendInfo()
             startActivity(intent)
             finish()
-
         }
+
         modifyCost.setOnClickListener{
-            changeCost()
-        }
-
-        fun changeMe(){
-            val intent = Intent(this, ProfileModifyMeActivity::class.java)
+            val intent = Intent(this, ProfileModifyCostActivity::class.java)
+            sendInfo()
             startActivity(intent)
             finish()
-
         }
+
         modifyMe.setOnClickListener{
-            changeMe()
-        }
-
-        fun changeService(){
-            val intent = Intent(this, ProfileModifyServiceActivity::class.java)
+            val intent = Intent(this, ProfileModifyMeActivity::class.java)
+            sendInfo()
             startActivity(intent)
             finish()
-
         }
+
         modifyService.setOnClickListener{
-            changeService()
-        }
-
-        fun changePic(){
-            val intent = Intent(this, ProfileModifyPicActivity::class.java)
+            val intent = Intent(this, ProfileModifyServiceActivity::class.java)
+            sendInfo()
             startActivity(intent)
-            finish()
+            finish()        }
 
-        }
+
         modifyPic.setOnClickListener{
-            changePic()
-        }
-        fun changeCategory(){
-            val intent = Intent(this, ProfileModifyCategoryPickActivity::class.java)
+            val intent = Intent(this, ProfileModifyPicActivity::class.java)
+            sendInfo()
             startActivity(intent)
             finish()
+        }
 
-        }
         modifyCategory.setOnClickListener{
-            changeCategory()
-        }
+            val intent = Intent(this, ProfileModifyCategoryPickActivity::class.java)
+            sendInfo()
+            startActivity(intent)
+            finish()        }
     }
 }

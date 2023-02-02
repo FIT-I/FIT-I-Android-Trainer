@@ -66,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:text="김동현"
+        android:text="userName"
         android:textColor="@color/main"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10dp"
-        android:text="bricksky.soongsil@ac.kr"
+        android:text="email@soongsil.ac.kr"
         app:layout_constraintStart_toStartOf="@+id/tv_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="개인PT"
+        android:text="Category"
         android:textStyle="bold"
         android:textColor="@color/main"
         android:textSize="15dp"

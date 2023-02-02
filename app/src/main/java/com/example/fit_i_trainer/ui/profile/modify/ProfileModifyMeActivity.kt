@@ -45,13 +45,12 @@ class ProfileModifyMeActivity :AppCompatActivity(){
 
         //완료버튼
         done.setOnClickListener{
-//            val intent1 = Intent(this,ProfileAboutMeActivity::class.java)
-//            intent1.putExtra("contextMe",edit.text.toString())
-//            startActivity(intent1)
+
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
             finish()
         }
+
         //뒤로가기
         val goBack = findViewById<ImageButton>(R.id.ib_back_arrow)
         goBack.setOnClickListener {
