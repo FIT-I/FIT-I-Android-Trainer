@@ -128,7 +128,7 @@
         <activity android:name=".ui.profile.ProfileModifyPicActivity"></activity>
         <activity android:name=".ui.profile.ProfileAboutMeActivity"></activity>
         <activity android:name=".ui.profile.ProfileAboutServiceActivity"></activity>
-
+        <activity android:name=".ui.profile.ProfileModifyCategoryPickActivity"></activity>
     </application>
 
 </manifest>

@@ -10,12 +10,12 @@
         android:layout_height="0dp"
         android:layout_marginBottom="5dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/iv_heartbtn_border"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -30,9 +30,9 @@
                 android:id="@+id/tv_about_me"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="15dp"
                 android:background="#F8F8F8"
                 android:gravity="center_vertical|top"
                 android:paddingLeft="20dp"
@@ -47,9 +47,9 @@
                 android:id="@+id/tv_about_service"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="15dp"
                 android:background="#F8F8F8"
                 android:gravity="center_vertical|top"
                 android:paddingLeft="20dp"
@@ -64,9 +64,9 @@
                 android:id="@+id/tv_review1"
                 android:layout_width="match_parent"
                 android:layout_height="134dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="15dp"
                 android:background="#F8F8F8"
                 android:gravity="center_vertical|top"
                 android:paddingLeft="48.08dp"
@@ -300,9 +300,9 @@
                 android:id="@+id/tv_manage_cost"
                 android:layout_width="match_parent"
                 android:layout_height="86dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
                 android:background="#F8F8F8"
                 android:gravity="center_vertical|top"
                 android:paddingLeft="20dp"
@@ -311,7 +311,7 @@
                 android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_profile_info" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_category_pick" />
 
             <TextView
                 android:id="@+id/tv_manage_price"
@@ -607,11 +607,10 @@
                 android:id="@+id/btn_modify_pic"
                 android:layout_width="64dp"
                 android:layout_height="17dp"
-                android:layout_marginStart="152dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:color/transparent"
                 android:scaleType="centerCrop"
-                app:layout_constraintStart_toEndOf="@+id/tv_pic_title"
+                app:layout_constraintStart_toStartOf="@+id/btn_modify_service"
                 app:layout_constraintTop_toBottomOf="@+id/tv_review1"
                 app:srcCompat="@drawable/ic_modify"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -646,9 +645,9 @@
                 android:id="@+id/tv_profile_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="111dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="15dp"
                 android:background="#E2F3FF"
                 android:gravity="center_vertical|top"
                 android:paddingLeft="41dp"
@@ -677,60 +676,73 @@
                 app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/ic_certificate" />
 
+            <TextView
+                android:id="@+id/tv_category_pick"
+                android:layout_width="match_parent"
+                android:layout_height="86dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:background="#F8F8F8"
+                android:gravity="center_vertical|top"
+                android:paddingLeft="20dp"
+                android:paddingTop="58dp"
+                android:text="개인 PT"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_profile_info" />
+
+            <ImageView
+                android:id="@+id/iv_bar7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="47dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="38dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_category_pick"
+                app:layout_constraintEnd_toEndOf="@+id/tv_category_pick"
+                app:layout_constraintStart_toStartOf="@+id/tv_category_pick"
+                app:layout_constraintTop_toTopOf="@+id/tv_category_pick"
+                app:srcCompat="@drawable/ic_longbar" />
+
+            <ImageButton
+                android:id="@+id/btn_category_pick"
+                android:layout_width="64dp"
+                android:layout_height="17dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="@+id/tv_category_pick"
+                app:layout_constraintTop_toTopOf="@+id/tv_category_pick"
+                app:srcCompat="@drawable/ic_modify"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+            <ImageView
+                android:id="@+id/iv_category_pick_ic"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="17dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_category_pick"
+                app:layout_constraintTop_toTopOf="@+id/tv_category_pick"
+                app:srcCompat="@drawable/ic_category_pick" />
+
+            <TextView
+                android:id="@+id/tv_category_pick_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="17dp"
+                android:text="카테고리 선택"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintStart_toEndOf="@+id/iv_category_pick_ic"
+                app:layout_constraintTop_toTopOf="@+id/tv_category_pick" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/iv_heartbtn_border"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="24dp"
-        app:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_match_request"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_button_border" />
-
-    <CheckBox
-        android:id="@+id/btn_heart"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/ic_heart"
-        android:button="@android:color/transparent"
-        android:scaleType="center"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_heartbtn_border"
-        app:layout_constraintEnd_toEndOf="@+id/iv_heartbtn_border"
-        app:layout_constraintStart_toStartOf="@+id/iv_heartbtn_border"
-        app:layout_constraintTop_toTopOf="@+id/iv_heartbtn_border"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <Button
-        android:id="@+id/btn_match_request"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/round_button"
-        android:backgroundTint="@color/main"
-        android:text="@string/match_request"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_heartbtn_border" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
