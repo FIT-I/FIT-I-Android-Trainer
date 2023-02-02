@@ -1,7 +1,9 @@
-package com.example.fit_i_trainer
+package com.example.fit_i_trainer.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.fit_i_trainer.CommunityFragment
+import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.databinding.ActivityMainBinding
 import com.example.fit_i_trainer.ui.main.chat.ChatFragment
 import com.example.fit_i_trainer.ui.main.home.HomeFragment
