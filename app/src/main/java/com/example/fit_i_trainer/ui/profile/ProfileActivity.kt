@@ -7,6 +7,7 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
+import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
 import com.example.fit_i_trainer.data.service.TrainerService
 import com.example.fit_i_trainer.databinding.ActivityProfileBinding
@@ -97,10 +98,7 @@ class ProfileActivity: AppCompatActivity() {
         })
 
         fun sendInfo() {
-            intent.putExtra("costHour", costHour)
-            intent.putExtra("intro", intro)
-            intent.putExtra("name",name)
-            intent.putExtra("serviceDetail",serviceDetail)
+            intent.putExtra("modify",ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail))
         }
 
 
