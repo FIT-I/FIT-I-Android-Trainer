@@ -6,10 +6,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.*
+import com.example.fit_i_trainer.App
 import com.example.fit_i_trainer.ui.login.LoginSplashActivity
 import com.example.fit_i_trainer.R
+import com.example.fit_i_trainer.RetrofitImpl
+import com.example.fit_i_trainer.data.model.request.ChangePWRequest
+import com.example.fit_i_trainer.data.model.response.BaseResponse
+import com.example.fit_i_trainer.data.service.AccountsService
 import com.example.fit_i_trainer.databinding.ActivityMypageChangePwBinding
+import com.example.fit_i_trainer.ui.login.LoginActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 class MypageChangePwActivity : AppCompatActivity() {
@@ -81,10 +91,35 @@ class MypageChangePwActivity : AppCompatActivity() {
 
         //비밀번호 변경 끝!
         //버튼 이벤트
-        btnFinPwChange.setOnClickListener {  val intent = Intent(this, LoginSplashActivity::class.java)
-            startActivity(intent)  // 화면 전환을 시켜줌
-            finish()
-            Toast.makeText(this, pw1 + "findPW", Toast.LENGTH_SHORT).show()
+        btnFinPwChange.setOnClickListener {
+            fun makeToast() {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)  // 화면 전환을 시켜줌
+                finish()
+                Toast.makeText(this,"비밀번호가 변경되었습니다. 다시 로그인해주세요.", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, pw1 + " changePW", Toast.LENGTH_SHORT).show()
+            }
+
+            val service = RetrofitImpl.getApiClient().create(AccountsService::class.java)
+            val changePW = ChangePWRequest(App.token_prefs.accessToken.toString(), pw1, App.token_prefs.refreshToken.toString())
+            service.changePW(changePW).enqueue(object : Callback<BaseResponse> {
+                override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+                    if(response.isSuccessful){
+                        // 정상적으로 통신이 성공된 경우
+                        Log.d("post", "onResponse 성공: " + response.body().toString());
+
+                        makeToast()
+                    }else{
+                        // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                        Log.d("post", "onResponse 실패")
+                    }
+                }
+
+                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                    // 통신 실패 (인터넷 끊킴, 예외 발생 등 시스템적인 이유)
+                    Log.d("post", "onFailure 에러: " + t.message.toString());
+                }
+            })
         }
     }
 
