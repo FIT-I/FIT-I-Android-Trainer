@@ -17,6 +17,7 @@ import com.example.fit_i_trainer.data.service.CommunalService
 import com.example.fit_i_trainer.data.service.TrainerService
 import com.example.fit_i_trainer.databinding.FragmentMypageBinding
 import com.example.fit_i_trainer.ui.main.mypage.notice.MypageNoticeFragment
+import com.example.fit_i_trainer.ui.main.mypage.setting.MypageLogoutFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,12 +40,14 @@ class MypageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val ibsetting = view.findViewById<View>(R.id.ib_setting) as ImageButton
+        val tvgotoprofile = view.findViewById<View>(R.id.tv_go_modifyProfile) as TextView
+
+        val ivlocation = view.findViewById<View>(R.id.iv_next_location) as ImageView
         val ivnextreset = view.findViewById<View>(R.id.iv_next_login_reset) as ImageView
         val ivaddcerti = view.findViewById<View>(R.id.iv_next_update) as ImageView
         val ivnextnotice = view.findViewById<View>(R.id.iv_next_notice) as ImageView
-        val ivlocation = view.findViewById<View>(R.id.iv_next_location) as ImageView
         val ivnextpermisson = view.findViewById<View>(R.id.iv_next_permisson) as ImageView
-        val tvgotoprofile = view.findViewById<View>(R.id.tv_go_modifyProfile) as TextView
+
         val swtmy = view.findViewById<View>(R.id.swt_my) as Switch
 
         fun onBind(data: GetMypageResponse.Result) {
@@ -76,7 +79,7 @@ class MypageFragment : Fragment() {
 
         //설정 -로그아웃, 탈퇴하기
         ibsetting.setOnClickListener {
-            val mypageSettingFragment = MypageSettingFragment()
+            val mypageSettingFragment = MypageLogoutFragment()
             val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
 
             transaction.replace(R.id.fl_container, mypageSettingFragment)
@@ -153,6 +156,7 @@ class MypageFragment : Fragment() {
                     }
                 })
             }
+        }
 
             //위치 설정
             ivlocation.setOnClickListener {
@@ -195,10 +199,5 @@ class MypageFragment : Fragment() {
                 transaction.replace(R.id.fl_container, mypagepermissonFragment)
                 transaction.commit()
             }
-
-
         }
-
-
-    }
 }
