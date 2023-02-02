@@ -9,8 +9,8 @@ import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
 import com.example.fit_i_trainer.data.service.TrainerService
-import com.example.fit_i_trainer.databinding.ActivityLoginBinding
 import com.example.fit_i_trainer.databinding.ActivityProfileBinding
+import com.example.fit_i_trainer.ui.profile.modify.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -142,7 +142,7 @@ class ProfileActivity: AppCompatActivity() {
             changePic()
         }
         fun changeCategory(){
-            val intent = Intent(this,ProfileModifyCategoryPickActivity::class.java)
+            val intent = Intent(this, ProfileModifyCategoryPickActivity::class.java)
             startActivity(intent)
             finish()
 

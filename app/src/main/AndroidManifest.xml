@@ -122,13 +122,13 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".ui.profile.ProfileModifyCostActivity"></activity>
-        <activity android:name=".ui.profile.ProfileModifyMeActivity"></activity>
-        <activity android:name=".ui.profile.ProfileModifyServiceActivity"></activity>
-        <activity android:name=".ui.profile.ProfileModifyPicActivity"></activity>
+        <activity android:name=".ui.profile.modify.ProfileModifyCostActivity"></activity>
+        <activity android:name=".ui.profile.modify.ProfileModifyMeActivity"></activity>
+        <activity android:name=".ui.profile.modify.ProfileModifyServiceActivity"></activity>
+        <activity android:name=".ui.profile.modify.ProfileModifyPicActivity"></activity>
         <activity android:name=".ui.profile.ProfileAboutMeActivity"></activity>
         <activity android:name=".ui.profile.ProfileAboutServiceActivity"></activity>
-        <activity android:name=".ui.profile.ProfileModifyCategoryPickActivity"></activity>
+        <activity android:name=".ui.profile.modify.ProfileModifyCategoryPickActivity"></activity>
     </application>
 
 </manifest>

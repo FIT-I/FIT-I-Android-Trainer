@@ -1,4 +1,4 @@
-package com.example.fit_i_trainer.ui.profile
+package com.example.fit_i_trainer.ui.profile.modify
 
 import android.Manifest
 import android.net.Uri

@@ -1,4 +1,4 @@
-package com.example.fit_i_trainer.ui.profile
+package com.example.fit_i_trainer.ui.profile.modify
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,8 +12,8 @@ import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.request.selectCategoryRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
-import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
 import com.example.fit_i_trainer.data.service.TrainerService
+import com.example.fit_i_trainer.ui.profile.ProfileActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,16 +43,16 @@ class ProfileModifyCategoryPickActivity:AppCompatActivity() {
         checkBtn3.setOnClickListener{onCheckChange(checkBtn3)}
         checkBtn4.setOnClickListener{onCheckChange(checkBtn4)}
         checkBtn5.setOnClickListener{onCheckChange(checkBtn5)}
-        buttonDone.setOnClickListener{
-            val intent = Intent(this,ProfileActivity::class.java)
-        }
+
         //뒤로가기
         val goBack = findViewById<ImageButton>(R.id.ib_back_arrow)
         goBack.setOnClickListener{
-            val intent = Intent(this,ProfileActivity::class.java)
+            val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent) //화면전환
             finish()
         }
+
+        //완료
         buttonDone.setOnClickListener{
             val trainerService = RetrofitImpl.getApiClient().create(TrainerService::class.java)
             trainerService.selectCategory(selectCategoryRequest(category)).enqueue(object :
@@ -78,10 +78,9 @@ class ProfileModifyCategoryPickActivity:AppCompatActivity() {
                 }
             })
 
-            val intent = Intent(this,ProfileActivity::class.java)
+            val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
             finish()
-
         }
 
 

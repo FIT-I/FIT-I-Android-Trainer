@@ -1,13 +1,15 @@
-package com.example.fit_i_trainer.ui.profile
+package com.example.fit_i_trainer.ui.profile.modify
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.CompoundButton
+import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fit_i_trainer.R
+import com.example.fit_i_trainer.ui.profile.ProfileActivity
 
 class ProfileModifyCostActivity:AppCompatActivity() {
 
@@ -18,6 +20,10 @@ class ProfileModifyCostActivity:AppCompatActivity() {
     private lateinit var checkBtn4 : CheckBox
     private lateinit var checkBtn5 : CheckBox
     private lateinit var checkBtn6 : CheckBox
+    private lateinit var etEtc : EditText
+
+    lateinit var cost : String
+    lateinit var etc : String
 
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
@@ -30,6 +36,7 @@ class ProfileModifyCostActivity:AppCompatActivity() {
         checkBtn4 = findViewById(R.id.cb4)
         checkBtn5 = findViewById(R.id.cb5)
         checkBtn6 = findViewById(R.id.cb6)
+        etEtc = findViewById(R.id.et_new_price)
         buttonDone = findViewById(R.id.btn_done)
         buttonDone.isEnabled = false
 
@@ -39,9 +46,6 @@ class ProfileModifyCostActivity:AppCompatActivity() {
         checkBtn4.setOnClickListener{onCheckChange(checkBtn4)}
         checkBtn5.setOnClickListener{onCheckChange(checkBtn5)}
         checkBtn6.setOnClickListener{onCheckChange(checkBtn6)}
-        buttonDone.setOnClickListener{
-            val intent = Intent(this, ProfileActivity::class.java)
-        }
         //뒤로가기
         val goBack = findViewById<ImageButton>(R.id.ib_back_arrow)
         goBack.setOnClickListener{
@@ -60,6 +64,7 @@ class ProfileModifyCostActivity:AppCompatActivity() {
         when(compoundButton.id){
             R.id.cb1 ->{
                 if(checkBtn1.isChecked) {
+                    cost = "₩0원"
                     checkBtn1.isChecked = true
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false
@@ -74,6 +79,7 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb2 ->{
                 if(checkBtn2.isChecked) {
+                    cost = "₩10,000원"
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = true
                     checkBtn3.isChecked = false
@@ -88,6 +94,7 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb3 ->{
                 if(checkBtn3.isChecked) {
+                    cost = "₩15,000원"
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = true
@@ -102,6 +109,7 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb4 ->{
                 if(checkBtn4.isChecked) {
+                    cost = "₩20,000원"
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false
@@ -116,6 +124,7 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb5 ->{
                 if(checkBtn5.isChecked) {
+                    cost = "₩25,000원"
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false
@@ -130,6 +139,8 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb6 ->{
                 if(checkBtn6.isChecked) {
+                    etc = etEtc.text.toString()
+                    cost = etc
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false
