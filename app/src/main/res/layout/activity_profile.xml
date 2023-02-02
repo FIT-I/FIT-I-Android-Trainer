@@ -10,7 +10,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="5dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/iv_heartbtn_border"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -607,11 +607,10 @@
                 android:id="@+id/btn_modify_pic"
                 android:layout_width="64dp"
                 android:layout_height="17dp"
-                android:layout_marginStart="152dp"
                 android:layout_marginTop="15dp"
                 android:background="@android:color/transparent"
                 android:scaleType="centerCrop"
-                app:layout_constraintStart_toEndOf="@+id/tv_pic_title"
+                app:layout_constraintStart_toStartOf="@+id/btn_modify_service"
                 app:layout_constraintTop_toBottomOf="@+id/tv_review1"
                 app:srcCompat="@drawable/ic_modify"
                 tools:ignore="TouchTargetSizeCheck" />
@@ -679,58 +678,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/iv_heartbtn_border"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="24dp"
-        app:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_match_request"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_button_border" />
-
-    <CheckBox
-        android:id="@+id/btn_heart"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/ic_heart"
-        android:button="@android:color/transparent"
-        android:scaleType="center"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_heartbtn_border"
-        app:layout_constraintEnd_toEndOf="@+id/iv_heartbtn_border"
-        app:layout_constraintStart_toStartOf="@+id/iv_heartbtn_border"
-        app:layout_constraintTop_toTopOf="@+id/iv_heartbtn_border"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <Button
-        android:id="@+id/btn_match_request"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/round_button"
-        android:backgroundTint="@color/main"
-        android:text="@string/match_request"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_heartbtn_border" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
