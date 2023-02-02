@@ -1,5 +1,6 @@
 package com.example.fit_i_trainer.data.service
 
+import android.telecom.Call
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerCategoryRequest
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
@@ -12,7 +13,7 @@ interface TrainerService {
     //트레이너 개인정보조회
     @Headers("content-type: application/json")
     @GET("api/trainer/information")
-    fun getTrainerInfo():Call<GetTrainerInfoResponse>
+    fun getTrainerInfo(): Call<GetTrainerInfoResponse>
 
     //트레이너 정보수정
     @Headers("content-type: application/json")
