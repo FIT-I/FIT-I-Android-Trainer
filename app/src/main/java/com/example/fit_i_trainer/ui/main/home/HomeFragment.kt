@@ -28,7 +28,6 @@ class HomeFragment : Fragment() {
         R.drawable.img_rank_bronze,
     )
 
-
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding
         get() = requireNotNull(_binding) { "FragmentHomeBinding" }

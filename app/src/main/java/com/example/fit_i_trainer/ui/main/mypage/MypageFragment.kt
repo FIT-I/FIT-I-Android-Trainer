@@ -23,6 +23,7 @@ class MypageFragment : Fragment() {
         val vv = inflater.inflate(R.layout.fragment_mypage, container, false)
         val ibsetting = vv.findViewById<View>(R.id.ib_setting) as ImageButton
         val ivnextreset = vv.findViewById<View>(R.id.iv_next_login_reset) as ImageView
+        val ivaddcerti= vv.findViewById<View>(R.id.iv_next_update) as ImageView
         val ivnextnotice = vv.findViewById<View>(R.id.iv_next_notice) as ImageView
         val ivnextpermisson = vv.findViewById<View>(R.id.iv_next_permisson) as ImageView
         val tvgotoprofile = vv.findViewById<View>(R.id.tv_go_modifyProfile) as TextView
@@ -64,8 +65,16 @@ class MypageFragment : Fragment() {
             transaction.replace(R.id.fl_container, mypagepermissonFragment)
             transaction.commit()
         }
-        //자격증 업데이트
+        //비밀번호변경
         ivnextreset.setOnClickListener {
+            val mypageCertificateFragment = MypageCertificateFragment()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
+
+            //transaction.replace(R.id.fl_container, )
+            transaction.commit()
+        }
+        //자격증 업데이트
+        ivaddcerti.setOnClickListener {
             val mypageCertificateFragment = MypageCertificateFragment()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
 
