@@ -646,7 +646,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="111dp"
+                android:layout_marginTop="110dp"
                 android:layout_marginEnd="15dp"
                 android:background="#E2F3FF"
                 android:gravity="center_vertical|top"
@@ -654,11 +654,9 @@
                 android:paddingTop="9dp"
                 android:paddingRight="9dp"
                 android:paddingBottom="9dp"
-                android:text="My page내의 자격증 업데이트란을 통해
-
-언제든지 자격증을 심사받고 등록할 수 있습니다.  "
+                android:text="My page내의 자격증 업데이트란을 통해 언제든지 자격증을 심사받고 등록할 수 있습니다.  "
                 android:textColor="@color/main"
-                android:textSize="15dp"
+                android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_background_photo" />
@@ -673,7 +671,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_profile_info"
                 app:layout_constraintStart_toStartOf="@+id/tv_profile_info"
                 app:layout_constraintTop_toTopOf="@+id/tv_profile_info"
-                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/ic_certificate" />
 
             <TextView

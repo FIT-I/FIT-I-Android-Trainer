@@ -7,6 +7,7 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import com.example.fit_i_trainer.ui.profile.ProfileActivity
 
 class ProfileModifyCategoryPickActivity:AppCompatActivity() {
     private lateinit var buttonDone : Button

@@ -1,8 +1,8 @@
 package com.example.fit_i_trainer.data.service
 
-import android.telecom.Call
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerCategoryRequest
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
+import com.example.fit_i_trainer.data.model.request.selectCategoryRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
 import retrofit2.Call
@@ -11,12 +11,10 @@ import retrofit2.http.*
 interface TrainerService {
 
     //트레이너 개인정보조회
-    @Headers("content-type: application/json")
     @GET("api/trainer/information")
     fun getTrainerInfo(): Call<GetTrainerInfoResponse>
 
     //트레이너 정보수정
-    @Headers("content-type: application/json")
     @PUT("api/trainer/information")
     fun modifyTrainerInfo(@Body req : ModifyTrainerInfoRequest) :Call<BaseResponse>
 
@@ -26,33 +24,31 @@ interface TrainerService {
     //fun addTrainerEtcImg(@Body ectImage : Array<String>) : Call<BaseResponse>
 
     //트레이너 프로필 삭제
-    @Headers("content-type: application/json")
     @DELETE("api/trainer/profile")
     fun deleteTrainerProflie() :Call<BaseResponse>
 
     //트레이너 프로필수정
-    @Headers("content-type: application/json")
     @PATCH("api/trainer/profile")
     fun modifyTrainerProfile(@Body profileImage : String) : Call<BaseResponse>
 
     //내 매칭 관리 on/off
-    @Headers("content-type: application/json")
     @PATCH ("api/trainer/mymatching")
     fun controlMatchingOnOff() :Call<BaseResponse>
 
     //트레이너 카테고리 수정
-    @Headers("content-type: application/json")
     @PATCH("api/trainer/category")
     fun modifyTrainerCategory(@Body req : ModifyTrainerCategoryRequest) : Call<BaseResponse>
 
     //트레이너 배경화면수정
-    @Headers("content-type: application/json")
     @PATCH ("api/trainer/bgimg")
     fun modifyTrainerBgImg(@Body backgroundImage : String) : Call<BaseResponse>
 
     //트레이너 사진 및 자격증 삭제
-    @Headers("content-type: application/json")
     @DELETE("api/trainer/etcimg/{etcImgIdx}")
     fun deleteTrainerEtcImg(@Path("etcImgIdx") etcImgIdx : Int) :Call<BaseResponse>
+
+    //트레이너 카테고리 수정
+    @PATCH ("api/trainer/category")
+    fun selectCategory(@Body req : selectCategoryRequest) : Call<BaseResponse>
 
 }
