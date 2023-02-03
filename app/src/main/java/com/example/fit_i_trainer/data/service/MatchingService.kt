@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.Path
 
-interface MatcingService {
+interface MatchingService {
 
     //매칭거절
     @PATCH("api/matching/{matchingIdx}/reject")
