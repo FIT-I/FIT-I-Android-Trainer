@@ -11,15 +11,13 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.response.BaseResponse
-import com.example.fit_i_trainer.data.model.response.GetMypageResponse
 import com.example.fit_i_trainer.data.service.CommunalService
-import com.example.fit_i_trainer.databinding.FragmentMypageBinding
 import com.example.fit_i_trainer.databinding.FragmentMypagePermissonBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MypagepermissonFragment : Fragment() {
+class MypagePermissonFragment : Fragment() {
     private var _binding: FragmentMypagePermissonBinding? = null
     private val binding: FragmentMypagePermissonBinding
         get() = requireNotNull(_binding) { "FragmentMypagepermissonBinding" }
@@ -73,7 +71,5 @@ class MypagepermissonFragment : Fragment() {
                 Log.d("post", "onFailure 에러: " + t.message.toString());
             }
         })
-
-
     }
 }

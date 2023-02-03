@@ -37,12 +37,11 @@ class MypageLogoutFragment :Fragment() {
     ): View? {
         binding = FragmentMypageLogoutBinding.inflate(layoutInflater)
 
-        val view = inflater.inflate(R.layout.fragment_mypage_signout, container, false)
+        val view = inflater.inflate(R.layout.fragment_mypage_logout, container, false)
 
         val ibpre = view.findViewById<View>(R.id.ib_pre1)
         val btnlogout = view.findViewById<View>(R.id.btn_logout) as AppCompatButton
         val btnwithdraw = view.findViewById<View>(R.id.btn_withdraw) as AppCompatButton
-
         //binding.tvLogout.text=App.token_prefs.accessToken.toString()
 
         ibpre.setOnClickListener{

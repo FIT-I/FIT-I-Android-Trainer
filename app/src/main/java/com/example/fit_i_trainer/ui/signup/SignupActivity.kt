@@ -14,6 +14,7 @@ import com.example.fit_i_trainer.data.service.AccountsService
 import com.example.fit_i_trainer.databinding.ActivitySignupBinding
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.data.model.request.SignUpTrainerRequest
+import com.example.fit_i_trainer.ui.login.LoginActivity
 import com.example.fit_i_trainer.ui.login.LoginSplashActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -156,7 +157,7 @@ class SignupActivity : AppCompatActivity() {
         //버튼 이벤트
         btnFinSignUp.setOnClickListener {
 
-            val intent = Intent(this, LoginSplashActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
 
 
             val service= RetrofitImpl.getApiClient().create(AccountsService::class.java)
