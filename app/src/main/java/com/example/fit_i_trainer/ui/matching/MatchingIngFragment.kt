@@ -22,6 +22,7 @@ class MatchingIngFragment : Fragment() {
             val matchingFragment = MatchingFragment()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
 
+
             transaction.replace(R.id.fl_container,matchingFragment)
             transaction.commit()
         }

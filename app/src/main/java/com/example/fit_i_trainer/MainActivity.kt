@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.fit_i_trainer.databinding.ActivityMainBinding
 import com.example.fit_i_trainer.ui.chat.ChatFragment
 import com.example.fit_i_trainer.ui.home.HomeFragment
+import com.example.fit_i_trainer.ui.matching.MatchingFragment
 import com.example.fit_i_trainer.ui.mypage.MypageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -26,9 +27,9 @@ class MainActivity : AppCompatActivity() {
                         .replace(R.id.fl_container, homeFragment).commit()
                 }
                 R.id.item_fragment2 -> {
-                    val communityFragment = CommunityFragment()
+                    val matchingFragment = MatchingFragment()
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.fl_container, communityFragment).commit()
+                        .replace(R.id.fl_container, matchingFragment).commit()
                 }
 
                 R.id.item_fragment3 -> {
