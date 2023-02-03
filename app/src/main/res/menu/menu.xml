@@ -3,21 +3,21 @@
     <item
         android:id="@+id/item_fragment1"
         android:enabled="true"
-        android:icon="@drawable/house_selector"
+        android:icon="@drawable/sel_house"
         android:title="@string/home"/>
     <item
         android:id="@+id/item_fragment2"
         android:enabled="true"
-        android:icon="@drawable/globe_selector"
+        android:icon="@drawable/sel_globe"
         android:title="@string/matching"/>
     <item
         android:id="@+id/item_fragment3"
         android:enabled="true"
-        android:icon="@drawable/chat_selector"
+        android:icon="@drawable/sel_chat"
         android:title="@string/chat"/>
     <item
         android:id="@+id/item_fragment4"
         android:enabled="true"
-        android:icon="@drawable/person_selector"
+        android:icon="@drawable/sel_person"
         android:title="@string/mypage"/>
 </menu>
