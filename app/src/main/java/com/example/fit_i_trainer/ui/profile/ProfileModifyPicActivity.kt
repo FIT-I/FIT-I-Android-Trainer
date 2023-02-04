@@ -1,8 +1,10 @@
 package com.example.fit_i_trainer.ui.profile
 
 import android.Manifest
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -32,6 +34,12 @@ class ProfileModifyPicActivity: AppCompatActivity() {
 //            binding.imagePreview.setImageURI(uri)
         }
         storagePermission.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        val goBack = findViewById<ImageButton>(R.id.ib_back_arrow)
+        goBack.setOnClickListener{
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent) //화면전환
+            finish()
+        }
     }
     fun setViews(){
         binding.btnAlbum.setOnClickListener{
