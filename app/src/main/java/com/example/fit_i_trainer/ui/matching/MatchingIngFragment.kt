@@ -105,6 +105,7 @@ class MatchingIngFragment : Fragment() {
         }
 
         fun onBind( data: GetMatchlistResponse.Result ){
+            binding.tvMatching.text = data.name
             binding.tvMatchingPrice.text = data.pricePerHour
             binding.tvMatchingAllprcie2.text = data.totalPrice
             binding.tvMatchingStart.text = data.matchingStart
