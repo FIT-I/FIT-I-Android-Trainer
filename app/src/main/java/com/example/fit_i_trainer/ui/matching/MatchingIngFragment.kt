@@ -18,7 +18,7 @@ import retrofit2.Response
 
 
 class MatchingIngFragment : Fragment() {
-    private var matchingIdx : Int = -1
+    private var matchingIdx : Int = 1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -80,7 +80,7 @@ class MatchingIngFragment : Fragment() {
                 }
                 else{
                     //통신에 실패한 경우
-                    Log.d("post","매칭 onResponse 실패"+response.body().toString())
+                    Log.d("post","매칭 onResponse 실패")
                 }
                 }
 
