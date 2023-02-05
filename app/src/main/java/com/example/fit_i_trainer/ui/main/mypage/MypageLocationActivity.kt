@@ -1,6 +1,5 @@
 package com.example.fit_i_trainer.ui.main.mypage
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -8,18 +7,13 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.response.BaseResponse
-import com.example.fit_i_trainer.data.service.AccountsService
-//import com.example.fit_i_trainer.data.service.CustomerService
-import com.example.fit_i_trainer.ui.main.MainActivity
-import com.example.fit_i_trainer.ui.signup.SignupActivity
+import com.example.fit_i_trainer.data.service.CommunalService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Path
 
 class MypageLocationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,31 +49,27 @@ class MypageLocationActivity : AppCompatActivity() {
         })
 
         btnOk.setOnClickListener(){
-//            val customerService = RetrofitImpl.getApiClient().create(CustomerService::class.java)
-//
-//            customerService.setLocation(location).enqueue(object :
-//                Callback<BaseResponse> {
-//                //fun setLocation(@Path("location") location:String):Call<BaseResponse>
-//                override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
-//                    if(response.isSuccessful){
-//                        // 정상적으로 통신이 성공된 경우
-//                        Log.d("post", "onResponse 성공: " + response.body().toString());
-//                        //Toast.makeText(this, response.body()?.result.toString(), Toast.LENGTH_SHORT).show()
-//                        finish() //현재 액티비티가 닫힘 굳
-//                    }
-//                    else{
-//                        // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
-//                        Log.d("post", "onResponse 실패")
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
-//                    // 통신 실패 (인터넷 끊킴, 예외 발생 등 시스템적인 이유)
-//                    Log.d("post", "onFailure 에러: " + t.message.toString());
-//                }
-//            })
+            val communalService = RetrofitImpl.getApiClient().create(CommunalService::class.java)
+
+            communalService.setLocation(location).enqueue(object :
+                Callback<BaseResponse> {
+                override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+                    if(response.isSuccessful){
+                        // 정상적으로 통신이 성공된 경우
+                        Log.d("post", "onResponse 성공: " + response.body().toString());
+                        finish() //현재 액티비티가 닫힘 굳
+                    }
+                    else{
+                        // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                        Log.d("post", "onResponse 실패")
+                    }
+                }
+
+                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                    // 통신 실패 (인터넷 끊킴, 예외 발생 등 시스템적인 이유)
+                    Log.d("post", "onFailure 에러: " + t.message.toString());
+                }
+            })
         }
     }
-
-
 }
