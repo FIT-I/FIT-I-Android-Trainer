@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.FragmentTransaction
 import com.example.fit_i_trainer.App
+import com.example.fit_i_trainer.MySharedPreferences
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.request.LogoutRequest
@@ -42,7 +43,6 @@ class MypageLogoutFragment :Fragment() {
         val ibpre = view.findViewById<View>(R.id.ib_pre1)
         val btnlogout = view.findViewById<View>(R.id.btn_logout) as AppCompatButton
         val btnwithdraw = view.findViewById<View>(R.id.btn_withdraw) as AppCompatButton
-        //binding.tvLogout.text=App.token_prefs.accessToken.toString()
 
         ibpre.setOnClickListener{
             val mypageFragment = MypageFragment()
@@ -66,7 +66,9 @@ class MypageLogoutFragment :Fragment() {
             }
             fun logout(){
                 val accountService = RetrofitImpl.getApiClient().create(AccountsService::class.java)
-                val token = LogoutRequest(accessToken = App.token_prefs.accessToken.toString(), refreshToken = App.token_prefs.refreshToken.toString())
+                val token = LogoutRequest(
+                    accessToken = App.token_prefs.accessToken.toString(),
+                    refreshToken = App.token_prefs.refreshToken.toString())
                 accountService.logOut(token).enqueue(object : Callback<BaseResponse> {
                     override fun onResponse(
                         call: Call<BaseResponse>,
@@ -75,6 +77,7 @@ class MypageLogoutFragment :Fragment() {
                         if (response.isSuccessful) {
                             // 정상적으로 통신이 성공된 경우
                             Log.d("post", "onResponse 성공: " + response.body().toString());
+                            MySharedPreferences.clearUser(context!!)
                             makeToast()
                         } else {
                             // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
