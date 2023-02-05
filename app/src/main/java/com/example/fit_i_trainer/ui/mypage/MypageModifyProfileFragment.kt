@@ -32,7 +32,7 @@ class MypageModifyProfileFragment : Fragment() {
 
         }
         btnphoto.setOnClickListener{
-            val photoDialog = PhotoDialog()
+//            val photoDialog = PhotoDialog()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
             transaction.commit()
         }
