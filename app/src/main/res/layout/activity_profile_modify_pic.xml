@@ -41,18 +41,37 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" /><![CDATA[
+
+    />
+
+
+
+
+
+    ]]>
+
     <ImageView
-        android:id="@+id/img_load"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:id="@+id/imageview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".2"
+        app:layout_constraintHorizontal_bias="0.556"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.244"
+        app:layout_constraintWidth_percent=".4" />
 
     <ImageButton
         android:id="@+id/btn_album"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        app:layout_constraintBottom_toBottomOf="@+id/img_load"
+        android:layout_marginStart="12dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_pic_bar"
         app:srcCompat="@drawable/ic_plus_pic"
         tools:ignore="SpeakableTextPresentCheck" />
 

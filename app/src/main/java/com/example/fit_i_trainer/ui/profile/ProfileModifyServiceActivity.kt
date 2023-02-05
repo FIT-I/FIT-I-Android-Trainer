@@ -50,6 +50,7 @@ var serviceDetail:String=""
         //완료버튼
 
         done.setOnClickListener{
+            //401오류,,,ㅜㅜ
             val trainerService = RetrofitImpl.getApiClient().create(TrainerService::class.java)
             trainerService.modifyTrainerInfo(
                 ModifyTrainerInfoRequest(cost,intro
