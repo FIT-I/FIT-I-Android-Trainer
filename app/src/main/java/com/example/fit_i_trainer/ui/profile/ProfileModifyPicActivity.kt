@@ -1,6 +1,7 @@
 package com.example.fit_i_trainer.ui.profile
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
@@ -23,6 +24,7 @@ class ProfileModifyPicActivity: AppCompatActivity() {
         init()
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun init() {
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {

@@ -1,9 +1,16 @@
 package com.example.fit_i_trainer.ui.profile
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.fit_i_trainer.R
 
 class ProfileActivity: AppCompatActivity() {
@@ -23,6 +30,22 @@ class ProfileActivity: AppCompatActivity() {
         }
         moreAboutMe.setOnClickListener{
             showAboutMe()
+        }
+        fun background(){
+            val intent=Intent(this,ProfileModifyBackgroundActivity::class::class.java)
+            startActivity(intent)
+        }
+        modifyBackground.setOnClickListener{
+            AlertDialog.Builder(this)
+            val builder = AlertDialog.Builder(this)
+            val arr = arrayOf("앨범에서 선택","배경사진 삭제","취소")
+            builder.setItems(arr,object: DialogInterface.OnClickListener{
+                override fun onClick(p0: DialogInterface?,pos:Int){
+                    Toast.makeText(baseContext,"${arr[pos]}",Toast.LENGTH_SHORT).show()
+                }
+                        })
+                .create()
+                .show()
         }
 
         val moreAboutService = findViewById<ImageButton>(R.id.btn_about_service)
@@ -72,4 +95,5 @@ class ProfileActivity: AppCompatActivity() {
             changeCategory()
         }
     }
+
 }
