@@ -11,9 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.databinding.ActivitySignupCerti2Binding
-import com.example.fit_i_trainer.ui.login.LoginSplashActivity
 
-class SignupCerti2Activity : AppCompatActivity() {
+class SignupTrainer2Activity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupCerti2Binding
 
     var schoolEmail: String=""
@@ -24,7 +23,7 @@ class SignupCerti2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_certi2)
 
-        val intent = Intent(this, SignupCerti2Activity::class.java)  // 인텐트를 생성해줌,
+        val intent = Intent(this, SignupTrainer2Activity::class.java)  // 인텐트를 생성해줌,
         major = intent.getStringExtra("major").toString()
 
 
@@ -79,6 +78,6 @@ class SignupCerti2Activity : AppCompatActivity() {
         intent.putExtra("major",major)
         startActivity(intent)  // 화면 전환을 시켜줌
         finish()
-        Toast.makeText(this, schoolEmail + "summit", Toast.LENGTH_SHORT).show()
-    }
+        //Toast.makeText(this, schoolEmail + "summit", Toast.LENGTH_SHORT).show()
+    }//이메일 인증 과정이 아직 설계되지 않음
 }

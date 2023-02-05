@@ -39,23 +39,23 @@ class ProfileActivity: AppCompatActivity() {
         val modifyCategory = findViewById<ImageButton>(R.id.btn_category_pick)
         val moreAboutMe = findViewById<ImageButton>(R.id.btn_about_me)
 
-        fun onBind(data: GetTrainerInfoResponse.Result) {
-            binding.tvTrainerName.text = data.name
+        fun onBind(data: GetTrainerInfoResponse.Result?) {
+            binding.tvTrainerName.text = data?.name
             //binding.tvEmail.text=data.
-            binding.tvManagePrice.text= data.cost.toString()
-            binding.tvAboutMe.text = data.intro
-            binding.tvTrainerStar.text = data.grade.toString()
-            binding.tvUniversityInfo.text = data.school
-            binding.tvAverage.text = data.grade.toString()
+            binding.tvManagePrice.text= data?.cost.toString()
+            binding.tvAboutMe.text = data?.intro
+            binding.tvTrainerStar.text = data?.grade.toString()
+            binding.tvUniversityInfo.text = data?.school
+            binding.tvAverage.text = data?.grade.toString()
             //binding.tvCategoryPick.text = data.category
 
 
-            costHour= data.cost.toInt()
-            intro=data.intro
-            name=data.name
-            serviceDetail=data.service
+            //costHour= data?.cost
+            intro= data?.intro.toString()
+            name=data?.name.toString()
+            serviceDetail=data?.service.toString()
 
-            when (data.category) {
+            when (data?.category) {
                 "diet" -> {
                     //binding.ivCategoryPickIc.setImageResource(R.drawable.ic_diet)
                     binding.tvCategoryPick.text="다이어트"
@@ -78,7 +78,7 @@ class ProfileActivity: AppCompatActivity() {
                 }
             }
 
-            when (data.levelName) {
+            when (data?.levelName) {
                 "gold" -> binding.ivTrainerGrade.setImageResource(R.drawable.img_rank_gold)
                 "sliver" -> binding.ivTrainerGrade.setImageResource(R.drawable.img_rank_sliver)
                 "bronze" -> binding.ivTrainerGrade.setImageResource(R.drawable.img_rank_bronze)
@@ -94,7 +94,7 @@ class ProfileActivity: AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     // 정상적으로 통신이 성공된 경우
-                    onBind(response.body()!!.result)
+                    response.body()?.let { onBind(it.result) }
                     Log.d("post", "onResponse 성공: " + response.body().toString());
                     //Toast.makeText(this@ProfileActivity, "비밀번호 찾기 성공!", Toast.LENGTH_SHORT).show()
 

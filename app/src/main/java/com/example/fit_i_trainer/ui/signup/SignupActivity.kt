@@ -15,7 +15,6 @@ import com.example.fit_i_trainer.databinding.ActivitySignupBinding
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.data.model.request.SignUpTrainerRequest
 import com.example.fit_i_trainer.ui.login.LoginActivity
-import com.example.fit_i_trainer.ui.login.LoginSplashActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,7 +30,7 @@ class SignupActivity : AppCompatActivity() {
     var pw: String = ""
     var pw2: String = ""
 
-    var major:String=""
+    var major = intent.getStringExtra("major").toString()
 
 
     val emailPattern =
@@ -46,8 +45,7 @@ class SignupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
 
-        val intent = Intent(this, SignupCerti2Activity::class.java)  // 인텐트를 생성해줌,
-        major = intent.getStringExtra("major").toString()
+        val intent = Intent(this, SignupTrainer2Activity::class.java)  // 인텐트를 생성해줌,
 
 
 
@@ -157,10 +155,9 @@ class SignupActivity : AppCompatActivity() {
         //버튼 이벤트
         btnFinSignUp.setOnClickListener {
 
-            val intent = Intent(this, LoginActivity::class.java)
 
 
-            val service= RetrofitImpl.getApiClient().create(AccountsService::class.java)
+            val service= RetrofitImpl.getApiClientWithOutToken().create(AccountsService::class.java)
             val signUp = SignUpTrainerRequest(name,email,pw,major)
             service.signUpTrainer(signUp).enqueue(object : Callback<BaseResponse> {
                 override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
@@ -179,9 +176,11 @@ class SignupActivity : AppCompatActivity() {
                     Log.d("post", "onFailure 에러: " + t.message.toString());
                 }
             })
+
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)  // 화면 전환을 시켜줌
             finish()
-            Toast.makeText(this, name + "트레이너 님, 환영합니다!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, name + " 트레이너 님, 환영합니다!", Toast.LENGTH_SHORT).show()
             //인텐트가 여기 있으면 예외처리를 못해줌
 
         }

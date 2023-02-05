@@ -11,7 +11,7 @@ import android.widget.Toast
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.databinding.ActivitySignupCertiBinding
 
-class SignupCertiActivity : AppCompatActivity() {
+class SignupTrainerActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupCertiBinding
 
     //메시지 담을 변수
@@ -48,7 +48,7 @@ class SignupCertiActivity : AppCompatActivity() {
         //회원가입하기
         //버튼 이벤트
         btnNext.setOnClickListener {
-            val intent = Intent(this, SignupCerti2Activity::class.java)
+            val intent = Intent(this, SignupTrainer2Activity::class.java)
             intent.putExtra("major",major)
             startActivity(intent)  // 화면 전환을 시켜줌
             finish()

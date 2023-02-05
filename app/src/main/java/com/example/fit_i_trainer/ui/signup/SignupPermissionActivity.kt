@@ -45,13 +45,13 @@ class SignupPermissionActivity : AppCompatActivity() {
 
         btnGoSignIn.setOnClickListener() {
             fun makeToast() {
-                val intent = Intent(this, SignupActivity::class.java)
+                val intent = Intent(this, SignupTrainerActivity::class.java)
                 startActivity(intent)  // 화면 전환을 시켜줌
                 finish()
             }
 
             fun postTerms() {
-                val service = RetrofitImpl.getApiClient().create(AccountsService::class.java)
+                val service = RetrofitImpl.getApiClientWithOutToken().create(AccountsService::class.java)
                 var checked = TermsOkRequest(
                     firstCheckBtn.isChecked,
                     secondCheckBtn.isChecked,
