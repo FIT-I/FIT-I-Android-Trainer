@@ -4,12 +4,16 @@ import com.example.fit_i_trainer.data.model.request.ModifyTrainerCategoryRequest
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
 import com.example.fit_i_trainer.data.model.request.SelectCategoryRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
+import com.example.fit_i_trainer.data.model.response.GetTrainerHomeResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
-import com.example.fit_i_trainer.data.model.response.ModifyTrainerInfoResponse
 import retrofit2.Call
 import retrofit2.http.*
 
 interface TrainerService {
+
+    //트레이너 홈화면
+    @GET("api/trainer/home")
+    fun getTrainerHome() :Call<GetTrainerHomeResponse>
 
     //트레이너 개인정보조회
     @GET("api/trainer/information")
