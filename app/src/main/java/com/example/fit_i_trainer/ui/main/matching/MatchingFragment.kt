@@ -45,6 +45,8 @@ class MatchingFragment : Fragment() {
                 val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
                 transaction.replace(R.id.fl_container,matchingIngFragment)
                 transaction.commit()
+
+
                 dataList.removeAt(position)
                 matchingAdapter.notifyItemRemoved(position)
                 matchingAdapter.notifyItemRangeChanged(position,dataList.size)

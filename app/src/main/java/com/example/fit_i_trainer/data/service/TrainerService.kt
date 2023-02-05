@@ -17,7 +17,7 @@ interface TrainerService {
 
     //트레이너 정보수정
     @PUT("api/trainer/information")
-    fun modifyTrainerInfo(@Body req : ModifyTrainerInfoRequest) :Call<ModifyTrainerInfoResponse>
+    fun modifyTrainerInfo(@Body req : ModifyTrainerInfoRequest) : Call<BaseResponse>
 
     //트레이너 사진 및 자격증 추가
     //@Headers("content-type: application/json")
@@ -26,7 +26,7 @@ interface TrainerService {
 
     //트레이너 프로필 삭제
     @DELETE("api/trainer/profile")
-    fun deleteTrainerProflie() :Call<BaseResponse>
+    fun deleteTrainerProflie() : Call<BaseResponse>
 
     //트레이너 프로필수정
     @PATCH("api/trainer/profile")

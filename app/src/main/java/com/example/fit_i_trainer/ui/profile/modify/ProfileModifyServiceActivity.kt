@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
+import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
 import com.example.fit_i_trainer.data.model.response.ModifyTrainerInfoResponse
 import com.example.fit_i_trainer.data.service.TrainerService
@@ -62,10 +63,10 @@ class ProfileModifyServiceActivity :AppCompatActivity(){
                 ModifyTrainerInfoRequest(costHour,intro
                 ,name,serviceDetail)
             ).enqueue(object :
-                Callback<ModifyTrainerInfoResponse> {
+                Callback<BaseResponse> {
                 override fun onResponse(
-                    call: Call<ModifyTrainerInfoResponse>,
-                    response: Response<ModifyTrainerInfoResponse>
+                    call: Call<BaseResponse>,
+                    response: Response<BaseResponse>
                 ) {
                     if (response.isSuccessful) {
                         // 정상적으로 통신이 성공된 경우
@@ -78,7 +79,7 @@ class ProfileModifyServiceActivity :AppCompatActivity(){
                     }
                 }
 
-                override fun onFailure(call: Call<ModifyTrainerInfoResponse>, t: Throwable) {
+                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
                     // 통신 실패 (인터넷 끊킴, 예외 발생 등 시스템적인 이유)
                     Log.d("post", "onFailure 에러: " + t.message.toString());
                 }
