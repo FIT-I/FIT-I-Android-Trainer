@@ -2,13 +2,19 @@ package com.example.fit_i_trainer.data.service
 
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerCategoryRequest
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
+import com.example.fit_i_trainer.data.model.request.SelectCategoryRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
+import com.example.fit_i_trainer.data.model.response.GetTrainerHomeResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
 import com.example.fit_i_trainer.data.model.response.ModifyTrainerInfoResponse
 import retrofit2.Call
 import retrofit2.http.*
 
 interface TrainerService {
+
+    //트레이너 홈화면
+    @GET("api/trainer/home")
+    fun getTrainerHome() :Call<GetTrainerHomeResponse>
 
     //트레이너 개인정보조회
     @GET("api/trainer/information")
@@ -46,5 +52,9 @@ interface TrainerService {
     //트레이너 사진 및 자격증 삭제
     @DELETE("api/trainer/etcimg/{etcImgIdx}")
     fun deleteTrainerEtcImg(@Path("etcImgIdx") etcImgIdx : Int) : retrofit2.Call<BaseResponse>
+
+    //트레이너 카테고리 수정
+    @PATCH ("api/trainer/category")
+    fun selectCategory(@Body req : SelectCategoryRequest) : Call<BaseResponse>
 
 }

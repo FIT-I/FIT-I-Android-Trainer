@@ -1,9 +1,10 @@
 package com.example.fit_i_trainer.data.model.response
 
-data class ModifyTrainerInfoResponse(val code: Int,
-                                     val isSuccess: Boolean,
-                                     val message: String,
-                                     val result: Result
+data class ModifyTrainerInfoResponse(
+    val code: Int,
+    val isSuccess: Boolean,
+    val message: String,
+    val result: Result
 ){
     data class Result(
         val name: String,
@@ -19,5 +20,5 @@ data class ModifyTrainerInfoResponse(val code: Int,
         val imageList: List<String>,
         val matchingState: Boolean,
         val category: String
-    )
+        )
 }

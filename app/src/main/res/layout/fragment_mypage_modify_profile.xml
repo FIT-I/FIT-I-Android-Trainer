@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.mypage.MypageModifyProfileFragment">
-
+    tools:context=".ui.main.mypage.MypageModifyProfileFragment">
 
     <ImageButton
         android:id="@+id/ib_pre"
@@ -25,7 +24,7 @@
         android:id="@+id/tv_profileModify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="프로필 수정"
+        android:text="마이 프로필"
         android:textColor="@color/main"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/ib_pre"
@@ -41,7 +40,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10dp"
-
             android:src="@drawable/ic_profile"/>
 
     <ImageButton
@@ -53,15 +51,15 @@
         android:background="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_camera"
-        app:layout_constraintBottom_toTopOf="@id/tv_nameP"
+        app:layout_constraintBottom_toTopOf="@id/tv_name"
         app:layout_constraintEnd_toEndOf="@+id/tv_profileModify"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/tv_nameP"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="김동현"
+        android:text="userName"
         android:textSize="15sp"
         android:textColor="@color/main"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +73,7 @@
         android:layout_height="10dp"
         android:layout_marginTop="30dp"
         android:background="#F8F8F8"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nameP"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"/>
 
 
 
@@ -107,14 +105,14 @@ android:id="@+id/tv_email"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:layout_marginTop="5dp"
-android:text="skydh1214@naver.com"
+android:text="user@email.com"
 android:textColor="@color/main"
 app:layout_constraintStart_toStartOf="@+id/tv_info"
 app:layout_constraintTop_toBottomOf="@+id/tv_emailM" />
 
 
 <TextView
-android:id="@+id/tv_address"
+android:id="@+id/tv_addressM"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:layout_marginTop="20dp"
@@ -124,14 +122,14 @@ app:layout_constraintStart_toStartOf="@+id/tv_info"
 app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
 <TextView
-android:id="@+id/tv_addressS"
+android:id="@+id/tv_address"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:layout_marginTop="5dp"
-android:text="서울대학교 기숙사 922동"
+android:text="서울특별시 동작구 상도로 369"
 android:textColor="@color/main"
 app:layout_constraintStart_toStartOf="@+id/tv_info"
-app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+app:layout_constraintTop_toBottomOf="@+id/tv_addressM" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
