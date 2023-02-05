@@ -5,7 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Handler
 import android.os.Looper
-import com.example.fit_i_trainer.MainActivity
+import com.example.fit_i_trainer.ui.main.MainActivity
+
 import com.example.fit_i_trainer.databinding.ActivityLoginSplashBinding
 
 

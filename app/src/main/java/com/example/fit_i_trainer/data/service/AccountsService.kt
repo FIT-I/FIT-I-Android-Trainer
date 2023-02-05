@@ -1,15 +1,16 @@
 package com.example.fit_i_trainer.data.service
 
-import com.example.fit_i_trainer.data.model.request.ChangePWRequest
-import com.example.fit_i_trainer.data.model.request.LoginRequest
-import com.example.fit_i_trainer.data.model.request.LogoutRequest
-import com.example.fit_i_trainer.data.model.request.SignUpTrainerRequest
+import com.example.fit_i_trainer.data.model.request.*
 import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.model.response.LoginResponse
 import retrofit2.Call
 import retrofit2.http.*
 
 interface AccountsService {
+    //이용약관수락
+    @POST("api/accounts/terms")
+    fun termsOk(@Body req : TermsOkRequest) : Call<BaseResponse>
+
     //트레이너 회원가입
     @POST("api/accounts/trainer")
     fun signUpTrainer(@Body req : SignUpTrainerRequest) : Call<BaseResponse>
