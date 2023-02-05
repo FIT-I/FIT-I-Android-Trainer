@@ -41,7 +41,15 @@ class ProfileActivity: AppCompatActivity() {
             val arr = arrayOf("앨범에서 선택","배경사진 삭제","취소")
             builder.setItems(arr,object: DialogInterface.OnClickListener{
                 override fun onClick(p0: DialogInterface?,pos:Int){
-                    Toast.makeText(baseContext,"${arr[pos]}",Toast.LENGTH_SHORT).show()
+                    if(pos == 0){
+                        //앨범에서 선택
+                        background()
+                    }
+                    else if(pos ==1){
+                        //배경사진 삭제
+
+                    }
+                  // Toast.makeText(baseContext,"${arr[pos]}",Toast.LENGTH_SHORT).show()
                 }
                         })
                 .create()
