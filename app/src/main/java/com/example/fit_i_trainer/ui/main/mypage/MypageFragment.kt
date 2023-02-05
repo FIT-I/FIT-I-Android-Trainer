@@ -51,21 +51,24 @@ class MypageFragment : Fragment() {
         val swtmy = view.findViewById<View>(R.id.swt_my) as Switch
 
         fun onBind(data: GetMypageResponse.Result) {
-            binding.tvNameM.text=data.userName
-            binding.tvEmailM.text=data.email
+            binding.tvNameM.text = data.userName
+            binding.tvEmailM.text = data.email
         }
 
         val commmunalService = RetrofitImpl.getApiClient().create(CommunalService::class.java)
         commmunalService.getMypage().enqueue(object :
             Callback<GetMypageResponse> {
-            override fun onResponse(call: Call<GetMypageResponse>, response: Response<GetMypageResponse>) {
-                if(response.isSuccessful){
+            override fun onResponse(
+                call: Call<GetMypageResponse>,
+                response: Response<GetMypageResponse>
+            ) {
+                if (response.isSuccessful) {
                     // 정상적으로 통신이 성공된 경우
                     onBind(response.body()!!.result)
                     Log.d("post", "onResponse 성공: " + response.body().toString());
                     //Toast.makeText(this@ProfileActivity, "비밀번호 찾기 성공!", Toast.LENGTH_SHORT).show()
 
-                }else{
+                } else {
                     // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
                     Log.d("post", "onResponse 실패")
                 }
@@ -158,46 +161,43 @@ class MypageFragment : Fragment() {
             }
         }
 
-            //위치 설정
-            ivlocation.setOnClickListener {
-                val intent = Intent(context, MypageLocationActivity::class.java)  // 인텐트를 생성해줌,
-                startActivity(intent)  // 화면 전환을 시켜줌
-                //finish()
-            }
-
-
-            //비밀번호변경
-            ivnextreset.setOnClickListener {
-                val intent = Intent(context, MypageChangePwActivity::class.java)  // 인텐트를 생성해줌,
-                startActivity(intent)  // 화면 전환을 시켜줌
-                //finish()
-            }
-
-            //자격증 업데이트
-            ivaddcerti.setOnClickListener {
-                val mypageCertificateFragment = MypageCertificateFragment()
-                val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-
-                transaction.replace(R.id.fl_container, mypageCertificateFragment)
-                transaction.commit()
-            }
-
-            // 공지사항
-            ivnextnotice.setOnClickListener {
-                val mypageNoticeFragment = MypageNoticeFragment()
-                val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-
-                transaction.replace(R.id.fl_container, mypageNoticeFragment)
-                transaction.commit()
-            }
-
-            //이용약관
-            ivnextpermisson.setOnClickListener {
-                val mypagepermissonFragment = MypagePermissonFragment()
-                val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-
-                transaction.replace(R.id.fl_container, mypagepermissonFragment)
-                transaction.commit()
-            }
+        //위치 설정
+        ivlocation.setOnClickListener {
+            val intent = Intent(context, MypageLocationActivity::class.java)  // 인텐트를 생성해줌,
+            startActivity(intent)  // 화면 전환을 시켜줌
+            //finish()
         }
+
+
+        //비밀번호변경
+        ivnextreset.setOnClickListener {
+            val intent = Intent(context, MypageChangePwActivity::class.java)  // 인텐트를 생성해줌,
+            startActivity(intent)  // 화면 전환을 시켜줌
+            //finish()
+        }
+
+        //자격증 업데이트
+        ivaddcerti.setOnClickListener {
+            val intent = Intent(context, MypageCerfiActivity::class.java)  // 인텐트를 생성해줌,
+            startActivity(intent)  // 화면 전환을 시켜줌
+        }
+
+        // 공지사항
+        ivnextnotice.setOnClickListener {
+            val mypageNoticeFragment = MypageNoticeFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+
+            transaction.replace(R.id.fl_container, mypageNoticeFragment)
+            transaction.commit()
+        }
+
+        //이용약관
+        ivnextpermisson.setOnClickListener {
+            val mypagepermissonFragment = MypagePermissonFragment()
+            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
+
+            transaction.replace(R.id.fl_container, mypagepermissonFragment)
+            transaction.commit()
+        }
+    }
 }
