@@ -7,6 +7,7 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import com.example.fit_i_trainer.ui.profile.ProfileActivity
 
 class ProfileModifyCategoryPickActivity:AppCompatActivity() {
     private lateinit var buttonDone : Button
@@ -32,7 +33,7 @@ class ProfileModifyCategoryPickActivity:AppCompatActivity() {
         checkBtn4.setOnClickListener{onCheckChange(checkBtn4)}
         checkBtn5.setOnClickListener{onCheckChange(checkBtn5)}
         buttonDone.setOnClickListener{
-            val intent = Intent(this,ProfileActivity::class.java)
+            val intent = Intent(this, ProfileActivity::class.java)
         }
         //뒤로가기
         val goBack = findViewById<ImageButton>(R.id.ib_back_arrow)

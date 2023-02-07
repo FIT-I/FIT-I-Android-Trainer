@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import com.example.fit_i_trainer.PhotoDialog
 import com.example.fit_i_trainer.R
+import com.example.fit_i_trainer.ui.main.mypage.MypageFragment
 
 
 class MypageModifyProfileFragment : Fragment() {
@@ -32,7 +33,7 @@ class MypageModifyProfileFragment : Fragment() {
 
         }
         btnphoto.setOnClickListener{
-            val photoDialog = PhotoDialog()
+//            val photoDialog = PhotoDialog()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
             transaction.commit()
         }
