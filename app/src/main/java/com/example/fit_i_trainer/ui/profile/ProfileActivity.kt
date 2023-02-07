@@ -19,11 +19,10 @@ import retrofit2.Response
 class ProfileActivity: AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
 
-    var costHour : Int =0
-    lateinit var intro : String
-    lateinit var name : String
-    lateinit var serviceDetail : String
-
+    var costHour : String? = null
+    var intro : String? = null
+    var name : String? = null
+    var serviceDetail : String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?){
@@ -48,6 +47,10 @@ class ProfileActivity: AppCompatActivity() {
             binding.tvUniversityInfo.text = data?.school
             //binding.tvReviewNum.text = 리뷰 총 개수
 
+            costHour=data?.cost
+            intro=data?.intro
+            name=data?.name
+            serviceDetail=data?.service
 
 
             when (data?.category) {
@@ -89,8 +92,9 @@ class ProfileActivity: AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     // 정상적으로 통신이 성공된 경우
-                    response.body()?.let { onBind(it.result) }
+                    response.body()?.let { onBind(it?.result) }
                     Log.d("post", "onResponse 성공: " + response.body().toString());
+
                     //Toast.makeText(this@ProfileActivity, "비밀번호 찾기 성공!", Toast.LENGTH_SHORT).show()
 
                 } else {
@@ -106,7 +110,9 @@ class ProfileActivity: AppCompatActivity() {
         })
 
         fun sendInfo() {
-            intent.putExtra("modify",ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail))
+            intent.putExtra("modify",ModifyTrainerInfoRequest(
+                        costHour,intro,name,serviceDetail))
+            //Log.d("post", ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail).toString())
         }
 
 

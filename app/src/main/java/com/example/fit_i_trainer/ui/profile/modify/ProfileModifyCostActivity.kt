@@ -13,7 +13,6 @@ import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
-import com.example.fit_i_trainer.data.model.response.ModifyTrainerInfoResponse
 import com.example.fit_i_trainer.data.service.TrainerService
 import com.example.fit_i_trainer.ui.profile.ProfileActivity
 import retrofit2.Call
@@ -31,7 +30,7 @@ class ProfileModifyCostActivity:AppCompatActivity() {
     private lateinit var checkBtn6 : CheckBox
     private lateinit var etEtc : EditText
 
-    var cost : Int =0
+    lateinit var cost : String
     lateinit var etc : String
 
 
@@ -39,10 +38,12 @@ class ProfileModifyCostActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_modify_cost)
 
-        //val costHour: String = intent.getStringExtra("costHour").toString()
-        val intro: String = intent.getStringExtra("intro").toString()
-        val name: String = intent.getStringExtra("name").toString()
-        val serviceDetail: String = intent.getStringExtra("serviceDetail").toString()
+        var data = intent.getParcelableExtra<ModifyTrainerInfoRequest>("modify")
+        var costHour: String? = data?.costHour
+        var intro: String? = data?.intro
+        var name: String? = data?.name
+        var serviceDetail: String? = data?.serviceDetail
+
 
         checkBtn1 = findViewById(R.id.cb1)
         checkBtn2 = findViewById(R.id.cb2)
@@ -102,8 +103,8 @@ class ProfileModifyCostActivity:AppCompatActivity() {
         when(compoundButton.id){
             R.id.cb1 ->{
                 if(checkBtn1.isChecked) {
-                    //cost = "₩0원"
-                    cost = 0
+                    cost = "₩0원"
+                    //cost = 0
                     checkBtn1.isChecked = true
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false
@@ -118,8 +119,8 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb2 ->{
                 if(checkBtn2.isChecked) {
-                    //cost = "₩10,000원"
-                    cost = 10000
+                    cost = "₩10,000원"
+                    //cost = 10000
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = true
                     checkBtn3.isChecked = false
@@ -134,8 +135,8 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb3 ->{
                 if(checkBtn3.isChecked) {
-                    //cost = "₩15,000원"
-                    cost = 15000
+                    cost = "₩15,000원"
+                    //cost = 15000
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = true
@@ -150,8 +151,8 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb4 ->{
                 if(checkBtn4.isChecked) {
-                    //cost = "₩20,000원"
-                    cost = 20000
+                    cost = "₩20,000원"
+                    //cost = 20000
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false
@@ -166,8 +167,8 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             }
             R.id.cb5 ->{
                 if(checkBtn5.isChecked) {
-                    //cost = "₩25,000원"
-                    cost = 25000
+                    cost = "₩25,000원"
+                    //cost = 25000
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false
@@ -183,7 +184,7 @@ class ProfileModifyCostActivity:AppCompatActivity() {
             R.id.cb6 ->{
                 if(checkBtn6.isChecked) {
                     etc = etEtc.text.toString()
-                    cost = etc.toInt()
+                    cost = etc
                     checkBtn1.isChecked = false
                     checkBtn2.isChecked = false
                     checkBtn3.isChecked = false

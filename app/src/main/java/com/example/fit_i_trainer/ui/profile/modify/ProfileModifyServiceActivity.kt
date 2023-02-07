@@ -13,31 +13,38 @@ import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
-import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
-import com.example.fit_i_trainer.data.model.response.ModifyTrainerInfoResponse
 import com.example.fit_i_trainer.data.service.TrainerService
+import com.example.fit_i_trainer.databinding.ActivityProfileBinding
+import com.example.fit_i_trainer.databinding.ActivityProfileModifyServiceBinding
 import com.example.fit_i_trainer.ui.profile.ProfileActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ProfileModifyServiceActivity :AppCompatActivity(){
+    private lateinit var binding: ActivityProfileModifyServiceBinding
 
-    val data = intent.getParcelableExtra<ModifyTrainerInfoRequest>("modify")
-
-    val costHour : Int = data!!.costHour
-    val intro: String = data!!.intro
-    val name: String = data!!.name
-    var serviceDetail: String = data!!.serviceDetail
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile_modify_service)
+        binding = ActivityProfileModifyServiceBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        var data = intent.getParcelableExtra<ModifyTrainerInfoRequest>("modify")
+        var costHour: String? = data?.costHour
+        var intro: String? = data?.intro
+        var name: String? = data?.name
+        var serviceDetail: String? = data?.serviceDetail
+
+        //이거 안나옴...
+        Log.d("post", ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail).toString())
+
+        var modiServiceDetail : String=""
+
         //객체 생성
         val edit : EditText = findViewById(R.id.tv_about_service_context)
         val done = findViewById<Button>(R.id.btn_done)
         edit.setText(serviceDetail)
-
 
         done.isEnabled = false
 
@@ -48,20 +55,20 @@ class ProfileModifyServiceActivity :AppCompatActivity(){
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                serviceDetail = edit.text.toString()
+                modiServiceDetail = edit.text.toString()
             }
 
             override fun afterTextChanged(p0: Editable?) {
                 done.isEnabled = true
             }
         })
-        //완료버튼
 
+        //완료버튼
         done.setOnClickListener{
             val trainerService = RetrofitImpl.getApiClient().create(TrainerService::class.java)
             trainerService.modifyTrainerInfo(
                 ModifyTrainerInfoRequest(costHour,intro
-                ,name,serviceDetail)
+                ,name,modiServiceDetail)
             ).enqueue(object :
                 Callback<BaseResponse> {
                 override fun onResponse(
