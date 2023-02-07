@@ -21,7 +21,7 @@ interface TrainerService {
 
     //트레이너 정보수정
     @PUT("api/trainer/information")
-    fun modifyTrainerInfo(@Body req : ModifyTrainerInfoRequest) : Call<BaseResponse>
+    fun modifyTrainerInfo(@Body req : ModifyTrainerInfoRequest) : Call<GetTrainerInfoResponse>
 
     //트레이너 사진 및 자격증 추가
     //@Headers("content-type: application/json")

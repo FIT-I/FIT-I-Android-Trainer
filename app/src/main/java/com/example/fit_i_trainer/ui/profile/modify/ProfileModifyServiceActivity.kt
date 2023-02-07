@@ -13,6 +13,7 @@ import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
+import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
 import com.example.fit_i_trainer.data.service.TrainerService
 import com.example.fit_i_trainer.databinding.ActivityProfileBinding
 import com.example.fit_i_trainer.databinding.ActivityProfileModifyServiceBinding
@@ -23,7 +24,6 @@ import retrofit2.Response
 
 class ProfileModifyServiceActivity :AppCompatActivity(){
     private lateinit var binding: ActivityProfileModifyServiceBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +45,6 @@ class ProfileModifyServiceActivity :AppCompatActivity(){
         val edit : EditText = findViewById(R.id.tv_about_service_context)
         val done = findViewById<Button>(R.id.btn_done)
         edit.setText(serviceDetail)
-
         done.isEnabled = false
 
         edit.addTextChangedListener(object:TextWatcher{
@@ -70,10 +69,10 @@ class ProfileModifyServiceActivity :AppCompatActivity(){
                 ModifyTrainerInfoRequest(costHour,intro
                 ,name,modiServiceDetail)
             ).enqueue(object :
-                Callback<BaseResponse> {
+                Callback<GetTrainerInfoResponse> {
                 override fun onResponse(
-                    call: Call<BaseResponse>,
-                    response: Response<BaseResponse>
+                    call: Call<GetTrainerInfoResponse>,
+                    response: Response<GetTrainerInfoResponse>
                 ) {
                     if (response.isSuccessful) {
                         // 정상적으로 통신이 성공된 경우
@@ -86,7 +85,7 @@ class ProfileModifyServiceActivity :AppCompatActivity(){
                     }
                 }
 
-                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                override fun onFailure(call: Call<GetTrainerInfoResponse>, t: Throwable) {
                     // 통신 실패 (인터넷 끊킴, 예외 발생 등 시스템적인 이유)
                     Log.d("post", "onFailure 에러: " + t.message.toString());
                 }

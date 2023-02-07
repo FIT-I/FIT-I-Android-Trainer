@@ -36,6 +36,9 @@ class ProfileActivity: AppCompatActivity() {
         val modifyService= findViewById<ImageButton>(R.id.btn_modify_service)
         val modifyPic= findViewById<ImageButton>(R.id.btn_modify_pic)
         val modifyCategory = findViewById<ImageButton>(R.id.btn_category_pick)
+
+
+        val moreAboutService = findViewById<ImageButton>(R.id.btn_about_service)
         val moreAboutMe = findViewById<ImageButton>(R.id.btn_about_me)
 
         fun onBind(data: GetTrainerInfoResponse.Result?) {
@@ -110,60 +113,47 @@ class ProfileActivity: AppCompatActivity() {
         })
 
         fun sendInfo() {
-            intent.putExtra("modify",ModifyTrainerInfoRequest(
-                        costHour,intro,name,serviceDetail))
             //Log.d("post", ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail).toString())
         }
 
 
-        moreAboutMe.setOnClickListener{
-            val intent = Intent(this, ProfileAboutMeActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
-        val moreAboutService = findViewById<ImageButton>(R.id.btn_about_service)
-
-        moreAboutService.setOnClickListener{
-            val intent = Intent(this, ProfileAboutServiceActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
-        modifyCost.setOnClickListener{
-            val intent = Intent(this, ProfileModifyCostActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
-        modifyMe.setOnClickListener{
-            val intent = Intent(this, ProfileModifyMeActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
-        modifyService.setOnClickListener{
-            val intent = Intent(this, ProfileModifyServiceActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
-
-        modifyPic.setOnClickListener{
-            val intent = Intent(this, ProfileModifyPicActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
+        //카테고리
         modifyCategory.setOnClickListener{
             val intent = Intent(this, ProfileModifyCategoryPickActivity::class.java)
-            sendInfo()
+            startActivity(intent)
+            finish()
+        }
+
+        //관리 비용
+        modifyCost.setOnClickListener{
+            val intent = Intent(this, ProfileModifyCostActivity::class.java)
+            intent.putExtra("modify",ModifyTrainerInfoRequest(
+                costHour,intro,name,serviceDetail))
+            startActivity(intent)
+            finish()
+        }
+
+        //소개 글
+        modifyMe.setOnClickListener{
+            val intent = Intent(this, ProfileModifyMeActivity::class.java)
+            intent.putExtra("modify",ModifyTrainerInfoRequest(
+                costHour,intro,name,serviceDetail))
+            startActivity(intent)
+            finish()
+        }
+
+        //서비스 상세 설명
+        modifyService.setOnClickListener{
+            val intent = Intent(this, ProfileModifyServiceActivity::class.java)
+            intent.putExtra("modify",ModifyTrainerInfoRequest(
+                costHour,intro,name,serviceDetail))
+            startActivity(intent)
+            finish()
+        }
+
+        //사진 및 자격증
+        modifyPic.setOnClickListener{
+            val intent = Intent(this, ProfileModifyPicActivity::class.java)
             startActivity(intent)
             finish()
         }
