@@ -38,6 +38,12 @@ class SignupTrainerActivity : AppCompatActivity() {
                 //입력값 담기
                 major = etMajor.text.toString()
 
+                //stroke 색상변경
+                if(major.isNotEmpty())
+                    etMajor.setBackgroundResource(R.drawable.edittext_border)
+                else
+                    etMajor.setBackgroundResource(R.drawable.edittext_border_not)
+
                 //값 유무에 따른 활성화 여부
                 btnNext.isEnabled = major.isNotEmpty() //있다면 true 없으면 false
             }
@@ -52,7 +58,6 @@ class SignupTrainerActivity : AppCompatActivity() {
             intent.putExtra("major",major)
             startActivity(intent)  // 화면 전환을 시켜줌
             finish()
-            Toast.makeText(this, major + "signUp", Toast.LENGTH_SHORT).show()
         }
     }
 }

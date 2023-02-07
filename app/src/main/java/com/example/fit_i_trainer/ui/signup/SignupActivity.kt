@@ -85,28 +85,9 @@ class SignupActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {}
         })
 
-
-        etEmail.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            //값 변경 시 실행되는 함수
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //입력값 담기
-                email = etEmail.text.toString()
-
-                //stroke 색상변경
-                if (email.isNotEmpty())
-                    etEmail.setBackgroundResource(R.drawable.edittext_border)
-                else
-                    etEmail.setBackgroundResource(R.drawable.edittext_border_not)
-
-                //값 유무에 따른 활성화 여부
-                btnFinSignUp.isEnabled = isTrue() //있다면 true 없으면 false
-            }
-
-            override fun afterTextChanged(p0: Editable?) {}
-        })
-
+        etEmail.isEnabled=false //이메일 수정 불가
+        etEmail.setText(schoolEmail)
+        etEmail.setBackgroundResource(R.drawable.edittext_border)
 
         //(! @ # $ % ^ &amp; + =
         etPW.addTextChangedListener(object : TextWatcher {

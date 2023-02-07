@@ -49,6 +49,12 @@ class SignupTrainer2Activity : AppCompatActivity() {
                 //값 유무에 따른 활성화 여부
                 btnCerti.isEnabled = schoolEmail.isNotEmpty()
 
+                //stroke 색상변경
+                if(schoolEmail.isNotEmpty())
+                    etEmailS.setBackgroundResource(R.drawable.edittext_border)
+                else
+                    etEmailS.setBackgroundResource(R.drawable.edittext_border_not)
+
                 btnCerti.setOnClickListener(){
                     if(btnCerti.isEnabled)
                         etCodeS.visibility= View.VISIBLE}
@@ -63,8 +69,16 @@ class SignupTrainer2Activity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //입력값 담기
                 code = etCodeS.text.toString()
+
+                //stroke 색상변경
+                if(code.isNotEmpty())
+                    etCodeS.setBackgroundResource(R.drawable.edittext_border)
+                else
+                    etCodeS.setBackgroundResource(R.drawable.edittext_border_not)
+
                 if (btnCerti.text=="인증코드 발급")
                     btnCerti.text="다음"
+
                 btnCerti.setOnClickListener {
                     letgo()
                 }
