@@ -43,7 +43,7 @@ class SignupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         val major = intent.getStringExtra("major").toString()
-        Log.d("post","major"+major)
+        Log.d("post",major+" major")
         val schoolEmail = intent.getStringExtra("email").toString()
         Log.d("post",schoolEmail)
 

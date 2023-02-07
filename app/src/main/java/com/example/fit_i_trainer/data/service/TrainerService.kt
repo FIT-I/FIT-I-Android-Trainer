@@ -24,9 +24,8 @@ interface TrainerService {
     fun modifyTrainerInfo(@Body req : ModifyTrainerInfoRequest) : Call<GetTrainerInfoResponse>
 
     //트레이너 사진 및 자격증 추가
-    //@Headers("content-type: application/json")
-    //@POST("api/trainer/etcimg")
-    //fun addTrainerEtcImg(@Body ectImage : Array<String>) : Call<BaseResponse>
+    @POST("api/trainer/etcimg")
+    fun addTrainerEtcImg(@Body ectImage : Array<String>) : Call<BaseResponse>
 
     //트레이너 프로필 삭제
     @DELETE("api/trainer/profile")

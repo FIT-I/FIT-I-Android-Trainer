@@ -12,10 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
-import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
 import com.example.fit_i_trainer.data.service.TrainerService
-import com.example.fit_i_trainer.databinding.ActivityProfileBinding
 import com.example.fit_i_trainer.databinding.ActivityProfileModifyServiceBinding
 import com.example.fit_i_trainer.ui.profile.ProfileActivity
 import retrofit2.Call
@@ -36,8 +34,7 @@ class ProfileModifyServiceActivity :AppCompatActivity(){
         var name: String? = data?.name
         var serviceDetail: String? = data?.serviceDetail
 
-        //이거 안나옴...
-        Log.d("post", ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail).toString())
+        //Log.d("post", ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail).toString())
 
         var modiServiceDetail : String=""
 
