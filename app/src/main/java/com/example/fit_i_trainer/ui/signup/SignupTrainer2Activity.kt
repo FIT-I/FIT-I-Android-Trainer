@@ -23,9 +23,8 @@ class SignupTrainer2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_certi2)
 
-        val intent = Intent(this, SignupTrainer2Activity::class.java)  // 인텐트를 생성해줌,
+        //val intent = Intent(this, SignupTrainer2Activity::class.java)  // 인텐트를 생성해줌,
         major = intent.getStringExtra("major").toString()
-
 
         binding = ActivitySignupCerti2Binding.inflate(layoutInflater)
 
@@ -89,6 +88,7 @@ class SignupTrainer2Activity : AppCompatActivity() {
 
     private fun letgo() {
         val intent = Intent(this, SignupActivity::class.java)
+        intent.putExtra("email",schoolEmail)
         intent.putExtra("major",major)
         startActivity(intent)  // 화면 전환을 시켜줌
         finish()
