@@ -41,19 +41,14 @@ class ProfileActivity: AppCompatActivity() {
 
         fun onBind(data: GetTrainerInfoResponse.Result?) {
             binding.tvTrainerName.text = data?.name
-            //binding.tvEmail.text=data.
             binding.tvManagePrice.text= data?.cost.toString()
             binding.tvAboutMe.text = data?.intro
+            binding.tvAboutService.text =data?.service
             binding.tvTrainerStar.text = data?.grade.toString()
             binding.tvUniversityInfo.text = data?.school
-            binding.tvAverage.text = data?.grade.toString()
-            //binding.tvCategoryPick.text = data.category
+            //binding.tvReviewNum.text = 리뷰 총 개수
 
 
-            //costHour= data?.cost
-            intro= data?.intro.toString()
-            name=data?.name.toString()
-            serviceDetail=data?.service.toString()
 
             when (data?.category) {
                 "diet" -> {
@@ -62,7 +57,7 @@ class ProfileActivity: AppCompatActivity() {
                 }
                 "pt" -> {
                     //binding.ivCategoryPickIc.setImageResource(R.drawable.ic_pt)
-                    binding.tvCategoryPick.text="개인PT"
+                    binding.tvCategoryPick.text="개인 PT"
                 }
                 "friend" -> {
                     //binding.ivCategoryPickIc.setImageResource(R.drawable.ic_friend)
@@ -149,7 +144,8 @@ class ProfileActivity: AppCompatActivity() {
             val intent = Intent(this, ProfileModifyServiceActivity::class.java)
             sendInfo()
             startActivity(intent)
-            finish()        }
+            finish()
+        }
 
 
         modifyPic.setOnClickListener{
@@ -163,6 +159,7 @@ class ProfileActivity: AppCompatActivity() {
             val intent = Intent(this, ProfileModifyCategoryPickActivity::class.java)
             sendInfo()
             startActivity(intent)
-            finish()        }
+            finish()
+        }
     }
 }
