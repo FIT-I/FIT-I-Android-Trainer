@@ -74,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
         findPW.setOnClickListener {
             val intent = Intent(this, LoginFindPwActivity::class.java)
             startActivity(intent)  // 화면 전환을 시켜줌
-            finish()
+            //finish()
         }
 
         //회원가입하기
@@ -82,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
         signIn.setOnClickListener {
             val intent = Intent(this, SignupPermissionActivity::class.java)
             startActivity(intent)  // 화면 전환을 시켜줌
-            finish()
+            //finish()
         }
 
 

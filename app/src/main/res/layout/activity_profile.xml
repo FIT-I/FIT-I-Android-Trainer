@@ -134,15 +134,14 @@
 
             <ImageView
                 android:id="@+id/iv_background_photo"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_background" />
-
+                android:src="@color/main"/>
             <TextView
                 android:id="@+id/tv_university_info"
                 android:layout_width="wrap_content"
@@ -207,10 +206,9 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="262.76dp"
-                android:layout_marginTop="31dp"
-                app:layout_constraintStart_toStartOf="@+id/tv_review1"
-                app:layout_constraintTop_toTopOf="@+id/tv_review1"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_average"
+                app:layout_constraintEnd_toStartOf="@id/tv_average"
+                app:layout_constraintTop_toTopOf="@+id/tv_average"
                 app:srcCompat="@drawable/ic_star" />
 
             <TextView
@@ -223,7 +221,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="3.43dp"
                 android:layout_marginTop="2dp"
-                android:text="4.3"
+                android:text="5.0"
                 android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@+id/iv_barrr"
                 app:layout_constraintTop_toBottomOf="@+id/tv_trainer_name" />
@@ -463,22 +461,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
-                android:layout_marginTop="29dp"
                 android:text="평균"
                 android:textSize="10dp"
                 app:layout_constraintStart_toEndOf="@+id/iv_star1"
-                app:layout_constraintTop_toTopOf="@+id/tv_review1" />
+                app:layout_constraintTop_toTopOf="@+id/tv_average_value" />
 
             <TextView
                 android:id="@+id/tv_average_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
-                android:layout_marginTop="29dp"
                 android:text="4.3"
                 android:textSize="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_modify_service"
                 app:layout_constraintStart_toEndOf="@+id/tv_average"
-                app:layout_constraintTop_toTopOf="@+id/tv_review1" />
+                app:layout_constraintTop_toTopOf="@+id/tv_review2" />
 
             <ImageButton
                 android:id="@+id/btn_about_me"

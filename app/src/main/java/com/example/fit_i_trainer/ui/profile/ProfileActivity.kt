@@ -19,11 +19,10 @@ import retrofit2.Response
 class ProfileActivity: AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
 
-    var costHour : Int =0
-    lateinit var intro : String
-    lateinit var name : String
-    lateinit var serviceDetail : String
-
+    var costHour : String? = null
+    var intro : String? = null
+    var name : String? = null
+    var serviceDetail : String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?){
@@ -37,23 +36,25 @@ class ProfileActivity: AppCompatActivity() {
         val modifyService= findViewById<ImageButton>(R.id.btn_modify_service)
         val modifyPic= findViewById<ImageButton>(R.id.btn_modify_pic)
         val modifyCategory = findViewById<ImageButton>(R.id.btn_category_pick)
+
+
+        val moreAboutService = findViewById<ImageButton>(R.id.btn_about_service)
         val moreAboutMe = findViewById<ImageButton>(R.id.btn_about_me)
 
         fun onBind(data: GetTrainerInfoResponse.Result?) {
             binding.tvTrainerName.text = data?.name
-            //binding.tvEmail.text=data.
             binding.tvManagePrice.text= data?.cost.toString()
             binding.tvAboutMe.text = data?.intro
+            binding.tvAboutService.text =data?.service
             binding.tvTrainerStar.text = data?.grade.toString()
             binding.tvUniversityInfo.text = data?.school
-            binding.tvAverage.text = data?.grade.toString()
-            //binding.tvCategoryPick.text = data.category
+            //binding.tvReviewNum.text = 리뷰 총 개수
 
+            costHour=data?.cost
+            intro=data?.intro
+            name=data?.name
+            serviceDetail=data?.service
 
-            //costHour= data?.cost
-            intro= data?.intro.toString()
-            name=data?.name.toString()
-            serviceDetail=data?.service.toString()
 
             when (data?.category) {
                 "diet" -> {
@@ -62,7 +63,7 @@ class ProfileActivity: AppCompatActivity() {
                 }
                 "pt" -> {
                     //binding.ivCategoryPickIc.setImageResource(R.drawable.ic_pt)
-                    binding.tvCategoryPick.text="개인PT"
+                    binding.tvCategoryPick.text="개인 PT"
                 }
                 "friend" -> {
                     //binding.ivCategoryPickIc.setImageResource(R.drawable.ic_friend)
@@ -94,8 +95,9 @@ class ProfileActivity: AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     // 정상적으로 통신이 성공된 경우
-                    response.body()?.let { onBind(it.result) }
+                    response.body()?.let { onBind(it?.result) }
                     Log.d("post", "onResponse 성공: " + response.body().toString());
+
                     //Toast.makeText(this@ProfileActivity, "비밀번호 찾기 성공!", Toast.LENGTH_SHORT).show()
 
                 } else {
@@ -111,58 +113,49 @@ class ProfileActivity: AppCompatActivity() {
         })
 
         fun sendInfo() {
-            intent.putExtra("modify",ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail))
+            //Log.d("post", ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail).toString())
         }
 
 
-        moreAboutMe.setOnClickListener{
-            val intent = Intent(this, ProfileAboutMeActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
-        val moreAboutService = findViewById<ImageButton>(R.id.btn_about_service)
-
-        moreAboutService.setOnClickListener{
-            val intent = Intent(this, ProfileAboutServiceActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
-        modifyCost.setOnClickListener{
-            val intent = Intent(this, ProfileModifyCostActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
-        modifyMe.setOnClickListener{
-            val intent = Intent(this, ProfileModifyMeActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
-        modifyService.setOnClickListener{
-            val intent = Intent(this, ProfileModifyServiceActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()        }
-
-
-        modifyPic.setOnClickListener{
-            val intent = Intent(this, ProfileModifyPicActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
+        //카테고리
         modifyCategory.setOnClickListener{
             val intent = Intent(this, ProfileModifyCategoryPickActivity::class.java)
-            sendInfo()
             startActivity(intent)
-            finish()        }
+            finish()
+        }
+
+        //관리 비용
+        modifyCost.setOnClickListener{
+            val intent = Intent(this, ProfileModifyCostActivity::class.java)
+            intent.putExtra("modify",ModifyTrainerInfoRequest(
+                costHour,intro,name,serviceDetail))
+            startActivity(intent)
+            finish()
+        }
+
+        //소개 글
+        modifyMe.setOnClickListener{
+            val intent = Intent(this, ProfileModifyMeActivity::class.java)
+            intent.putExtra("modify",ModifyTrainerInfoRequest(
+                costHour,intro,name,serviceDetail))
+            startActivity(intent)
+            finish()
+        }
+
+        //서비스 상세 설명
+        modifyService.setOnClickListener{
+            val intent = Intent(this, ProfileModifyServiceActivity::class.java)
+            intent.putExtra("modify",ModifyTrainerInfoRequest(
+                costHour,intro,name,serviceDetail))
+            startActivity(intent)
+            finish()
+        }
+
+        //사진 및 자격증
+        modifyPic.setOnClickListener{
+            val intent = Intent(this, ProfileModifyPicActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

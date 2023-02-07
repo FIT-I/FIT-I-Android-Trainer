@@ -23,9 +23,8 @@ class SignupTrainer2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_certi2)
 
-        val intent = Intent(this, SignupTrainer2Activity::class.java)  // 인텐트를 생성해줌,
+        //val intent = Intent(this, SignupTrainer2Activity::class.java)  // 인텐트를 생성해줌,
         major = intent.getStringExtra("major").toString()
-
 
         binding = ActivitySignupCerti2Binding.inflate(layoutInflater)
 
@@ -49,6 +48,12 @@ class SignupTrainer2Activity : AppCompatActivity() {
                 //값 유무에 따른 활성화 여부
                 btnCerti.isEnabled = schoolEmail.isNotEmpty()
 
+                //stroke 색상변경
+                if(schoolEmail.isNotEmpty())
+                    etEmailS.setBackgroundResource(R.drawable.edittext_border)
+                else
+                    etEmailS.setBackgroundResource(R.drawable.edittext_border_not)
+
                 btnCerti.setOnClickListener(){
                     if(btnCerti.isEnabled)
                         etCodeS.visibility= View.VISIBLE}
@@ -63,8 +68,16 @@ class SignupTrainer2Activity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //입력값 담기
                 code = etCodeS.text.toString()
+
+                //stroke 색상변경
+                if(code.isNotEmpty())
+                    etCodeS.setBackgroundResource(R.drawable.edittext_border)
+                else
+                    etCodeS.setBackgroundResource(R.drawable.edittext_border_not)
+
                 if (btnCerti.text=="인증코드 발급")
                     btnCerti.text="다음"
+
                 btnCerti.setOnClickListener {
                     letgo()
                 }
@@ -75,6 +88,7 @@ class SignupTrainer2Activity : AppCompatActivity() {
 
     private fun letgo() {
         val intent = Intent(this, SignupActivity::class.java)
+        intent.putExtra("email",schoolEmail)
         intent.putExtra("major",major)
         startActivity(intent)  // 화면 전환을 시켜줌
         finish()
