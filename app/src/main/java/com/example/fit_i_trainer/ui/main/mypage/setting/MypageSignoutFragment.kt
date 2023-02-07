@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.FragmentTransaction
+import com.example.fit_i_trainer.MySharedPreferences
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.response.BaseResponse
@@ -63,6 +64,7 @@ class MypageSiginoutFragment : Fragment() {
                         if (response.isSuccessful) {
                             // 정상적으로 통신이 성공된 경우
                             Log.d("post", "onResponse 성공: " + response.body().toString());
+                            MySharedPreferences.clearUser(context!!)
                             makeToast()
                         } else {
                             // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
