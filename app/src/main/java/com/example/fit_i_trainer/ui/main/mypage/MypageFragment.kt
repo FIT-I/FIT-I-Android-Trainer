@@ -1,5 +1,6 @@
 package com.example.fit_i_trainer.ui.main.mypage
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log

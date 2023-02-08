@@ -34,9 +34,6 @@ import java.lang.System.load
 
 
 class MypageModifyProfileFragment : Fragment() {
-    private val TAG = this.javaClass.simpleName
-    private var pf: ImageView = binding.ivProfileIng
-
     private var _binding: FragmentMypageModifyProfileBinding? = null
     private val binding: FragmentMypageModifyProfileBinding
         get() = requireNotNull(_binding) { "FragmentMypageModifyProfileBinding" }
@@ -149,7 +146,7 @@ class MypageModifyProfileFragment : Fragment() {
                 Glide.with(this)
                     .load(imageUri)
                     .fitCenter()
-                    .into(pf)
+                    .into(binding.ivProfileIng)
             }
         }
     }

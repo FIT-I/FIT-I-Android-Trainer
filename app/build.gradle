@@ -12,6 +12,8 @@ android {
         viewBinding = true
     }
 
+
+
     defaultConfig {
         applicationId "com.example.fit_i_trainer"
         minSdk 21
