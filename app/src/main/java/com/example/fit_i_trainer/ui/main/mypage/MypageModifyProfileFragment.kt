@@ -113,6 +113,7 @@ class MypageModifyProfileFragment : Fragment() {
                 //갤러리 연동 기능 추가하기
                 val pintent = Intent(Intent.ACTION_PICK) //intent를 통해서 뭘 열까? -> 갤러리
                 pintent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                pintent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true) // 여러개 가져오기
                 pintent.action = Intent.ACTION_GET_CONTENT // 갤러리에서 사진 가져오기
                 imageResult.launch(pintent)
 
@@ -135,11 +136,27 @@ class MypageModifyProfileFragment : Fragment() {
 
         }
     }
+
     private val imageResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ){
-        result->
-        if (result.resultCode == RESULT_OK){
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+//            val data: Intent? = null
+//            if (data?.clipData == null) {
+//                val count = data?.clipData!!.itemCount
+//                if (count > 1) {
+//                    Toast.makeText(context, "사진은 최대 1장 선택할 수 있습니다.", Toast.LENGTH_LONG).show()
+//                    return@registerForActivityResult
+//                }
+//                for (i in 1 until 2) {
+//                    val imageUri = data.clipData!!.getItemAt(i).uri
+//                    imageUri?.let {
+//                        Glide.with(this)
+//                            .load(imageUri)
+//                            .fitCenter()
+//                            .into(binding.ivProfileIng)
+//                    }
+//선택한 후 버튼 띄우기를 어떻게 해야할까????!!!1
             //이미지를 받으면 이미지뷰에 적용함
             val imageUri = result.data?.data
             imageUri?.let {
@@ -147,10 +164,14 @@ class MypageModifyProfileFragment : Fragment() {
                     .load(imageUri)
                     .fitCenter()
                     .into(binding.ivProfileIng)
+//                }
             }
         }
     }
 }
+
+
+
 
 
 
