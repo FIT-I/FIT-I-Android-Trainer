@@ -127,6 +127,7 @@ class MypageModifyProfileFragment : Fragment() {
 
                 Toast.makeText(context, "프로필 삭제", Toast.LENGTH_SHORT).show()
                 Log.d("post", "삭제 성공")
+                dialog.dismiss()
             }
 
 
@@ -166,7 +167,6 @@ class MypageModifyProfileFragment : Fragment() {
                     .load(imageUri)
                     .fitCenter()
                     .into(binding.ivProfileIng)
-//                }
             }
         }
     }

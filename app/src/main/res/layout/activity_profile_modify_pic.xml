@@ -42,16 +42,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <ImageView
-        android:id="@+id/img_load"
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rc_profile_pic"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/iv_pic_bar"/>
 
     <ImageButton
         android:id="@+id/btn_album"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        app:layout_constraintBottom_toBottomOf="@+id/img_load"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_plus_pic"
         tools:ignore="SpeakableTextPresentCheck" />
