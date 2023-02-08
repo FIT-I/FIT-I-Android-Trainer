@@ -44,14 +44,16 @@ class ProfileActivity: AppCompatActivity() {
             binding.tvAboutMe.text = data?.intro
             binding.tvAboutService.text =data?.service
             binding.tvTrainerStar.text = data?.grade.toString()
+            binding.tvAverageValue.text = data?.grade.toString()
             binding.tvUniversityInfo.text = data?.school
             binding.tvReviewNum.text = data?.reviewDto?.size.toString() //리뷰 총개수
 
-            Glide.with(this)
-                .load("${data?.profile}")
-                .into(binding.ivTrainerProfile)
-            Log.d("post",data?.profile.toString())
-
+            if (data?.profile != "trainerProfile") {
+                Glide.with(this)
+                    .load("${data?.profile}")
+                    .into(binding.ivTrainerProfile)
+                Log.d("post", data?.profile.toString())
+            }
 
             if (data?.background != null) {
                 Glide.with(this)
