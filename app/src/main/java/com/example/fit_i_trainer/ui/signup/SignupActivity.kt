@@ -30,9 +30,6 @@ class SignupActivity : AppCompatActivity() {
     var pw: String = ""
     var pw2: String = ""
 
-
-    val emailPattern =
-        "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"
     val pwPattern = "^.*(?=^.{5,15}\$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#\$%^&+=]).*$"
 
     private lateinit var confirmPW: TextView
@@ -139,11 +136,38 @@ class SignupActivity : AppCompatActivity() {
             val signUp = SignUpTrainerRequest(name,schoolEmail,pw,major)
             service.signUpTrainer(signUp).enqueue(object : Callback<BaseResponse> {
                 override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
-                    if(response.isSuccessful){
-                        // 정상적으로 통신이 성공된 경우
-                        Log.d("post", "onResponse 성공: " + response.body().toString()+schoolEmail);
-
-                    }else{
+                    if(response.isSuccessful) {
+                        when (response.body()?.code) {// 정상적으로 통신이 성공된 경우
+                            1000 -> {
+//                                Log.d(
+//                                    "post",
+//                                    "onResponse 성공: " + response.body()
+//                                        .toString() + SignupValidationRequest(name, email, pw)
+//                                );
+                                Toast.makeText(
+                                    this@SignupActivity,
+                                    response.body()!!.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+//                                intent.putExtra(
+//                                    "signup",
+//                                    (SignupValidationRequest(email, name, pw))
+//                                )
+//
+                                startActivity(intent)  // 화면 전환을 시켜줌
+                                finish()
+                            }
+                            else -> {
+                                Log.d("post", "onResponse 오류: " + response.body().toString());
+                                Toast.makeText(
+                                    this@SignupActivity,
+                                    response.body()!!.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                    else{
                         // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
                         Log.d("post", "onResponse 실패")
                     }
@@ -172,19 +196,6 @@ class SignupActivity : AppCompatActivity() {
         return name.isNotEmpty() && pw.isNotEmpty() && pw2.isNotEmpty() && pwDoubleCheck() && pwCheck()
     }
 
-    /*
-    //이메일 정규성 검사
-    private fun emailCheck(): Boolean {
-        val pattern1 = Pattern.compile(emailPattern) // 패턴 컴파일
-        val matcher1 = pattern1.matcher(email)
-
-        return if (!matcher1.find()) {
-            //Toast.makeText(this@SignupActivity, "이메일 형식을 확인해주세요", Toast.LENGTH_SHORT).show()
-            false
-        } else {
-            true
-        }
-    }*/
 
     //패스워드 정규성검사
     private fun pwCheck(): Boolean {
