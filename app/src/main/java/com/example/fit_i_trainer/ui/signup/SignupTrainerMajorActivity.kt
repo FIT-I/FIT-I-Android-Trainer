@@ -7,20 +7,18 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import com.example.fit_i_trainer.R
-import com.example.fit_i_trainer.databinding.ActivitySignupCertiBinding
+import com.example.fit_i_trainer.databinding.ActivitySignupMajorBinding
 
-class SignupTrainerActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySignupCertiBinding
+class SignupTrainerMajorActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySignupMajorBinding
 
     //메시지 담을 변수
     var major: String = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup_certi)
+        setContentView(R.layout.activity_signup_major)
 
         //객체 생성
         val etMajor: EditText = findViewById(R.id.et_major)
@@ -54,7 +52,7 @@ class SignupTrainerActivity : AppCompatActivity() {
         //회원가입하기
         //버튼 이벤트
         btnNext.setOnClickListener {
-            val intent = Intent(this, SignupTrainer2Activity::class.java)
+            val intent = Intent(this, SignupTrainerSchoolActivity::class.java)
             intent.putExtra("major",major)
             startActivity(intent)  // 화면 전환을 시켜줌
             finish()

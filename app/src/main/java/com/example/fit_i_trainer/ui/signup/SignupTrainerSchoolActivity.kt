@@ -14,13 +14,13 @@ import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.service.AccountsService
-import com.example.fit_i_trainer.databinding.ActivitySignupCerti2Binding
+import com.example.fit_i_trainer.databinding.ActivitySignupSchoolBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignupTrainer2Activity : AppCompatActivity() {
-    private lateinit var binding: ActivitySignupCerti2Binding
+class SignupTrainerSchoolActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySignupSchoolBinding
 
     var schoolEmail: String = ""
     var code: String = ""
@@ -29,11 +29,11 @@ class SignupTrainer2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup_certi2)
+        setContentView(R.layout.activity_signup_school)
 
         major = intent.getStringExtra("major").toString()
 
-        binding = ActivitySignupCerti2Binding.inflate(layoutInflater)
+        binding = ActivitySignupSchoolBinding.inflate(layoutInflater)
 
         val etEmailS: EditText = findViewById(R.id.et_emailS)
         val etCodeS: EditText = findViewById(R.id.et_codeS)
@@ -51,7 +51,6 @@ class SignupTrainer2Activity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 //입력값 담기
                 schoolEmail = etEmailS.text.toString()
-
 
                 //stroke 색상변경
                 if (schoolEmail.isNotEmpty())
@@ -76,7 +75,7 @@ class SignupTrainer2Activity : AppCompatActivity() {
                             if (response.isSuccessful) {
                                 // 정상적으로 통신이 성공된 경우
                                 Log.d("post", "onResponse 성공: " + response.body().toString());
-                                Toast.makeText(this@SignupTrainer2Activity, "이메일이 전송되었습니다.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@SignupTrainerSchoolActivity, "이메일이 전송되었습니다.", Toast.LENGTH_SHORT).show()
                                 returnCode = response.body()?.result.toString()
                             } else {
                                 // 통신이 실패한 경우(응답코드 3xx, 4xx 등)

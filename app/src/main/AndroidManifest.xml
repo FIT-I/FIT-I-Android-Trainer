@@ -66,14 +66,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.signup.SignupTrainer2Activity"
+            android:name=".ui.signup.SignupTrainerSchoolActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.signup.SignupTrainerActivity"
+            android:name=".ui.signup.SignupTrainerMajorActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
