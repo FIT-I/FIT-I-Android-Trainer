@@ -1,15 +1,26 @@
 package com.example.fit_i_trainer.ui.main.mypage
 
+import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
+import android.content.ContentResolver
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.response.GetMypageResponse
@@ -18,9 +29,14 @@ import com.example.fit_i_trainer.databinding.FragmentMypageModifyProfileBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import java.lang.System.load
 
 
 class MypageModifyProfileFragment : Fragment() {
+    private val TAG = this.javaClass.simpleName
+    private var pf: ImageView = binding.ivProfileIng
+
     private var _binding: FragmentMypageModifyProfileBinding? = null
     private val binding: FragmentMypageModifyProfileBinding
         get() = requireNotNull(_binding) { "FragmentMypageModifyProfileBinding" }
@@ -82,14 +98,14 @@ class MypageModifyProfileFragment : Fragment() {
 
         }
         btnphoto.setOnClickListener {
-//            photo(view)
+
             val dialogphoto = layoutInflater.inflate(R.layout.dialog_photo, null)
             val build = AlertDialog.Builder(view.context).apply {
                 setView(dialogphoto)
             }
             val dialog = build.create()
             dialog.show()
-            Log.d("post ","dialog success")
+            Log.d("post ", "dialog success")
 
             val photo = dialogphoto.findViewById<Button>(R.id.btn_photo)
             val delete = dialogphoto.findViewById<Button>(R.id.btn_photo_delete)
@@ -97,50 +113,57 @@ class MypageModifyProfileFragment : Fragment() {
 
             //프로필 사진 선택
             photo.setOnClickListener {
-                Toast.makeText(context,"갤러리 이동",Toast.LENGTH_SHORT).show()
-                Log.d("post","갤러리 성공")
+                //갤러리 연동 기능 추가하기
+                val pintent = Intent(Intent.ACTION_PICK) //intent를 통해서 뭘 열까? -> 갤러리
+                pintent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                pintent.action = Intent.ACTION_GET_CONTENT // 갤러리에서 사진 가져오기
+                imageResult.launch(pintent)
+
+                Toast.makeText(context, "갤러리 이동", Toast.LENGTH_SHORT).show()
+                Log.d("post", "갤러리 성공")
             }
+
+
             delete.setOnClickListener {
-                Toast.makeText(context,"프로필 삭제",Toast.LENGTH_SHORT).show()
-                Log.d("post","삭제 성공")
+                Toast.makeText(context, "프로필 삭제", Toast.LENGTH_SHORT).show()
+                Log.d("post", "삭제 성공")
             }
+
+
             cancel.setOnClickListener {
                 dialog.dismiss()
-                Log.d("post","취소 성공")
+                Log.d("post", "취소 성공")
             }
 
 
         }
     }
-
-//    fun photo(view: View) {
-//        val dialogphoto = layoutInflater.inflate(R.layout.dialog_photo, null)
-//
-//        val build = AlertDialog.Builder(view.context).apply {
-//            setView(dialogphoto)
-//        }
-//        val dialog = build.create()
-//        dialog.show()
-
-//        //갤러리 사진 추가
-//        btnph.setOnClickListener {
-//            Toast.makeText(view.context, "add photo", Toast.LENGTH_SHORT).show()
-//            dialog.dismiss()
-//        }
-//        //프로필 사진 삭제
-//        btnde.setOnClickListener {
-//            Toast.makeText(view.context, "delete photo", Toast.LENGTH_SHORT).show()
-//            dialog.dismiss()
-//        }
-//        //취소
-//        btnca.setOnClickListener {
-//            Toast.makeText(view.context, "cancel", Toast.LENGTH_SHORT).show()
-//            dialog.dismiss()
-//        }
-//
-//
-//        val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-//        transaction.commit()
-//    }
-
+    private val imageResult = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){
+        result->
+        if (result.resultCode == RESULT_OK){
+            //이미지를 받으면 이미지뷰에 적용함
+            val imageUri = result.data?.data
+            imageUri?.let {
+                Glide.with(this)
+                    .load(imageUri)
+                    .fitCenter()
+                    .into(pf)
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
