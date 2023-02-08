@@ -113,7 +113,7 @@ class MypageModifyProfileFragment : Fragment() {
                 //갤러리 연동 기능 추가하기
                 val pintent = Intent(Intent.ACTION_PICK) //intent를 통해서 뭘 열까? -> 갤러리
                 pintent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                pintent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true) // 여러개 가져오기
+              //pintent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true) // 여러개 가져오기
                 pintent.action = Intent.ACTION_GET_CONTENT // 갤러리에서 사진 가져오기
                 imageResult.launch(pintent)
 
@@ -123,6 +123,8 @@ class MypageModifyProfileFragment : Fragment() {
 
 
             delete.setOnClickListener {
+                val profile = view.findViewById<View>(R.id.iv_profile_ing)
+
                 Toast.makeText(context, "프로필 삭제", Toast.LENGTH_SHORT).show()
                 Log.d("post", "삭제 성공")
             }
