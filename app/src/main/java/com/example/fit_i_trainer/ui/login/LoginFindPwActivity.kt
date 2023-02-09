@@ -118,7 +118,7 @@ class LoginFindPwActivity : AppCompatActivity() {
     }
 
     private fun letgo() {
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this, LoginFindPwAndGoActivity::class.java)
 
         val service = RetrofitImpl.getApiClientWithOutToken().create(AccountsService::class.java)
         service.findPW(emailF).enqueue(object : Callback<BaseResponse> {
@@ -131,6 +131,7 @@ class LoginFindPwActivity : AppCompatActivity() {
                         Toast.makeText(this@LoginFindPwActivity,
                             "비밀번호 찾기 성공!", Toast.LENGTH_SHORT).show()
                         Log.d("post", "onResponse 성공: " + response.body().toString());
+                        intent.putExtra("pw", response.body()?.result)
                         startActivity(intent)  // 화면 전환을 시켜줌
                         finish()
                     }
