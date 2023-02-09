@@ -17,7 +17,7 @@ interface CommunalService {
     @GET("api/communal/trainer/{trainerIdx}")
     fun getTrainerInfo(@Path("trainerIdx") trainerIdx: Int) : Call<GetTrainerInfoResponse>
 
-    //    이용약관조회 - 모든 약관을 하나의 문자열로 리턴, 마이페이지용(Response)
+    //이용약관조회 - 모든 약관을 하나의 문자열로 리턴, 마이페이지용(Response)
     @GET("api/communal/terms/all")
     fun getAllTerms() : Call<BaseResponse>
 
