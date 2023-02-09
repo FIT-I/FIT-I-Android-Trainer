@@ -45,7 +45,7 @@ class SignupPermissionActivity : AppCompatActivity() {
 
         btnGoSignIn.setOnClickListener() {
             fun makeToast() {
-                val intent = Intent(this, SignupTrainerActivity::class.java)
+                val intent = Intent(this, SignupTrainerMajorActivity::class.java)
                 startActivity(intent)  // 화면 전환을 시켜줌
                 finish()
             }

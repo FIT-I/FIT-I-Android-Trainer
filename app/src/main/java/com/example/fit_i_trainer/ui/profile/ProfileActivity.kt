@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
@@ -37,24 +38,33 @@ class ProfileActivity: AppCompatActivity() {
         val modifyPic= findViewById<ImageButton>(R.id.btn_modify_pic)
         val modifyCategory = findViewById<ImageButton>(R.id.btn_category_pick)
 
-
-        val moreAboutService = findViewById<ImageButton>(R.id.btn_about_service)
-        val moreAboutMe = findViewById<ImageButton>(R.id.btn_about_me)
-
         fun onBind(data: GetTrainerInfoResponse.Result?) {
             binding.tvTrainerName.text = data?.name
             binding.tvManagePrice.text= data?.cost.toString()
             binding.tvAboutMe.text = data?.intro
             binding.tvAboutService.text =data?.service
             binding.tvTrainerStar.text = data?.grade.toString()
+            binding.tvAverageValue.text = data?.grade.toString()
             binding.tvUniversityInfo.text = data?.school
-            //binding.tvReviewNum.text = 리뷰 총 개수
+            binding.tvReviewNum.text = data?.reviewDto?.size.toString() //리뷰 총개수
+
+            if (data?.profile != "trainerProfile") {
+                Glide.with(this)
+                    .load("${data?.profile}")
+                    .into(binding.ivTrainerProfile)
+                Log.d("post", data?.profile.toString())
+            }
+
+            if (data?.background != null) {
+                Glide.with(this)
+                    .load("${data.background}")
+                    .into(binding.ivBackgroundPhoto)
+            }
 
             costHour=data?.cost
             intro=data?.intro
             name=data?.name
             serviceDetail=data?.service
-
 
             when (data?.category) {
                 "diet" -> {
@@ -111,11 +121,6 @@ class ProfileActivity: AppCompatActivity() {
                 Log.d("post", "onFailure 에러: " + t.message.toString());
             }
         })
-
-        fun sendInfo() {
-            //Log.d("post", ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail).toString())
-        }
-
 
         //카테고리
         modifyCategory.setOnClickListener{

@@ -84,8 +84,7 @@ class HomeFragment : Fragment() {
             override fun onResponse(
                 call: Call<GetTrainerHomeResponse>,
                 response: Response<GetTrainerHomeResponse>
-            ) {
-                if (response.isSuccessful) {
+            ) { if (response.isSuccessful) {
                     // 정상적으로 통신이 성공된 경우
                     onBind(response.body()!!.result)
                     Log.d("post", "onResponse 성공: " + response.body().toString());

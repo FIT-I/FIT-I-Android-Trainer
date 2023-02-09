@@ -1,6 +1,5 @@
 package com.example.fit_i_trainer.data.service
 
-import com.example.fit_i_trainer.data.model.request.ModifyTrainerCategoryRequest
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
 import com.example.fit_i_trainer.data.model.request.SelectCategoryRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
@@ -39,11 +38,7 @@ interface TrainerService {
     @PATCH ("api/trainer/mymatching")
     fun controlMatchingOnOff() :Call<BaseResponse>
 
-    //트레이너 카테고리 수정
-    @PATCH("api/trainer/category")
-    fun modifyTrainerCategory(@Body req : ModifyTrainerCategoryRequest) : Call<BaseResponse>
-
-    //트레이너 배경화면수정
+     //트레이너 배경화면수정
     @PATCH ("api/trainer/bgimg")
     fun modifyTrainerBgImg(@Body backgroundImage : String) : Call<BaseResponse>
 
