@@ -43,8 +43,7 @@ class HomeFragment : Fragment() {
             binding.tvEmail.text=data.email
             binding.tvCategory.text = data.category
             binding.tvGrade.text = data.grade.toString()
-            //자격증
-            binding.tvCerti.text=data.certificateNum.toString()
+            binding.tvCerti.text=data.certificateNum.toString()//자격증 개수
             binding.tvSchool.text = data.school
             binding.tvIntro.text = data.contents
 
@@ -85,14 +84,14 @@ class HomeFragment : Fragment() {
                 call: Call<GetTrainerHomeResponse>,
                 response: Response<GetTrainerHomeResponse>
             ) { if (response.isSuccessful) {
-                    // 정상적으로 통신이 성공된 경우
-                    onBind(response.body()!!.result)
-                    Log.d("post", "onResponse 성공: " + response.body().toString());
+                // 정상적으로 통신이 성공된 경우
+                onBind(response.body()!!.result)
+                Log.d("post", "onResponse 성공: " + response.body().toString());
 
-                } else {
-                    // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
-                    Log.d("post", "onResponse 실패")
-                }
+            } else {
+                // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                Log.d("post", "onResponse 실패")
+            }
             }
 
             override fun onFailure(call: Call<GetTrainerHomeResponse>, t: Throwable) {
