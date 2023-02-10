@@ -62,32 +62,52 @@ class SignupTrainerSchoolActivity : AppCompatActivity() {
                 btnCerti.isEnabled = schoolEmail.isNotEmpty()
 
                 btnCerti.setOnClickListener() {
-                    if (btnCerti.isEnabled)
-                        etCodeS.visibility = View.VISIBLE
+                    val school = "ac.kr"
+                    val isExist = schoolEmail.contains(school)
 
-                    val accountService =
-                        RetrofitImpl.getApiClientWithOutToken().create(AccountsService::class.java)
-                    accountService.sendEmail(schoolEmail).enqueue(object : Callback<BaseResponse> {
-                        override fun onResponse(
-                            call: Call<BaseResponse>,
-                            response: Response<BaseResponse>
-                        ) {
-                            if (response.isSuccessful) {
-                                // 정상적으로 통신이 성공된 경우
-                                Log.d("post", "onResponse 성공: " + response.body().toString());
-                                Toast.makeText(this@SignupTrainerSchoolActivity, "이메일이 전송되었습니다.", Toast.LENGTH_SHORT).show()
-                                returnCode = response.body()?.result.toString()
-                            } else {
-                                // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
-                                Log.d("post", "onResponse 실패" +schoolEmail +response.body())
-                            }
-                        }
+                    if(!isExist)
+                        Toast.makeText(this@SignupTrainerSchoolActivity, "학교 이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
 
-                        override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
-                            // 통신 실패 (인터넷 끊킴, 예외 발생 등 시스템적인 이유)
-                            Log.d("post", "onFailure 에러: " + t.message.toString());
-                        }
-                    })
+                    else {
+                        if (btnCerti.isEnabled)
+                            etCodeS.visibility = View.VISIBLE
+
+                        val accountService =
+                            RetrofitImpl.getApiClientWithOutToken()
+                                .create(AccountsService::class.java)
+                        accountService.sendEmail(schoolEmail)
+                            .enqueue(object : Callback<BaseResponse> {
+                                override fun onResponse(
+                                    call: Call<BaseResponse>,
+                                    response: Response<BaseResponse>
+                                ) {
+                                    if (response.isSuccessful) {
+                                        // 정상적으로 통신이 성공된 경우
+                                        Log.d(
+                                            "post",
+                                            "onResponse 성공: " + response.body().toString()
+                                        );
+                                        Toast.makeText(
+                                            this@SignupTrainerSchoolActivity,
+                                            "이메일이 전송되었습니다.",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        returnCode = response.body()?.result.toString()
+                                    } else {
+                                        // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                                        Log.d(
+                                            "post",
+                                            "onResponse 실패" + schoolEmail + response.body()
+                                        )
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                                    // 통신 실패 (인터넷 끊킴, 예외 발생 등 시스템적인 이유)
+                                    Log.d("post", "onFailure 에러: " + t.message.toString());
+                                }
+                            })
+                    }
                 }
             }
 
@@ -112,8 +132,15 @@ class SignupTrainerSchoolActivity : AppCompatActivity() {
                     etCodeS.setBackgroundResource(R.drawable.edittext_border_not)
 
                 btnCerti.setOnClickListener {
-                    if(code==returnCode)
+                    val school = "ac.kr"
+                    val isExist = schoolEmail.contains(school)
+
+                    if(isExist&&code==returnCode) //이메일에 ac.kr이 포함되는지 && 리턴코드가 맞는지
                         letgo()
+                    else if(!isExist)
+                        Toast.makeText(this@SignupTrainerSchoolActivity, "학교 이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                    else if(code!=returnCode)
+                        Toast.makeText(this@SignupTrainerSchoolActivity, "인증번호를 다시 확인해주세요", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -123,7 +150,7 @@ class SignupTrainerSchoolActivity : AppCompatActivity() {
 
     private fun letgo() {
         val intent = Intent(this, SignupActivity::class.java)
-        intent.putExtra("email", schoolEmail)
+        intent.putExtra("schoolEmail", schoolEmail)
         intent.putExtra("major", major)
         startActivity(intent)  // 화면 전환을 시켜줌
         finish()

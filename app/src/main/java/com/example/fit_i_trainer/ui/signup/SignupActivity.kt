@@ -41,7 +41,7 @@ class SignupActivity : AppCompatActivity() {
 
         val major = intent.getStringExtra("major").toString()
         Log.d("post",major+" major")
-        val schoolEmail = intent.getStringExtra("email").toString()
+        val schoolEmail = intent.getStringExtra("schoolEmail").toString()
         Log.d("post",schoolEmail)
 
 
@@ -133,7 +133,7 @@ class SignupActivity : AppCompatActivity() {
         btnFinSignUp.setOnClickListener {
 
             val service= RetrofitImpl.getApiClientWithOutToken().create(AccountsService::class.java)
-            val signUp = SignUpTrainerRequest(name,schoolEmail,pw,major)
+            val signUp = SignUpTrainerRequest(name,intent.getStringExtra("schoolEmail").toString(),pw,major)
             service.signUpTrainer(signUp).enqueue(object : Callback<BaseResponse> {
                 override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
                     if(response.isSuccessful) {
