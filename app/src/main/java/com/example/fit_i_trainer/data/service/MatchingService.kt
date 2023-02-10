@@ -16,6 +16,7 @@ interface MatchingService {
     //매칭수락
     @PATCH("api/matching/{matchingIdx}/accept")
     fun matchingaccepat(@Path("matchingIdx") matchingIdx: Int) : Call<BaseResponse>
+
     //매칭정보조회
     @GET("api/matching/{matchingIdx}")
     fun matchinglist(@Path("matchingIdx") matchingIdx: Int) : Call<GetMatchlistResponse>

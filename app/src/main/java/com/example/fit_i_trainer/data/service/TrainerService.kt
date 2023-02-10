@@ -5,6 +5,7 @@ import com.example.fit_i_trainer.data.model.request.SelectCategoryRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerHomeResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -31,8 +32,10 @@ interface TrainerService {
     fun deleteTrainerProflie() : Call<BaseResponse>
 
     //트레이너 프로필수정
+    @Multipart
     @PATCH("api/trainer/profile")
-    fun modifyTrainerProfile(@Body profileImage : String) : Call<BaseResponse>
+    fun modifyTrainerProfile(
+        @Part profileImage : MultipartBody.Part) : Call<BaseResponse>
 
     //내 매칭 관리 on/off
     @PATCH ("api/trainer/mymatching")
@@ -40,7 +43,8 @@ interface TrainerService {
 
      //트레이너 배경화면수정
     @PATCH ("api/trainer/bgimg")
-    fun modifyTrainerBgImg(@Body backgroundImage : String) : Call<BaseResponse>
+    fun modifyTrainerBgImg(
+        @Part backgroundImage : MultipartBody.Part) : Call<BaseResponse>
 
     //트레이너 사진 및 자격증 삭제
     @DELETE("api/trainer/etcimg/{etcImgIdx}")
