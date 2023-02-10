@@ -82,10 +82,6 @@ class ProfileModifyPicActivity: AppCompatActivity() {
 
         }
 
-
-
-
-
         getImage_btn.setOnClickListener{
             var intent = Intent(Intent.ACTION_PICK) // intent 통해서 뭘 할까??-> 갤러리
             intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
