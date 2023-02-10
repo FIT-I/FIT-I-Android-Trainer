@@ -48,16 +48,19 @@
         android:id="@+id/rc_profile_pic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_profile_pic"
-        app:layout_constraintTop_toBottomOf="@id/iv_pic_bar"/>
+        app:layout_constraintTop_toBottomOf="@id/iv_pic_bar" />
 
-    <ImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_album"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_plus"
+        app:backgroundTint="#F8F8F8"
+        app:fabCustomSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_plus_pic"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="10dp"
+        app:tint="@null" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

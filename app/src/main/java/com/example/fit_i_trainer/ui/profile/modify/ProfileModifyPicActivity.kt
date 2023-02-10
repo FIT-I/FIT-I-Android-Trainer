@@ -1,12 +1,15 @@
 package com.example.fit_i_trainer.ui.profile.modify
 
 import android.Manifest
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
@@ -18,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.databinding.ActivityProfileModifyPicBinding
+import com.example.fit_i_trainer.ui.profile.ProfileActivity
 
 class ProfileModifyPicActivity: AppCompatActivity() {
 
@@ -32,6 +36,11 @@ class ProfileModifyPicActivity: AppCompatActivity() {
 
         //갤러리 연결 버튼
         var getImage_btn = findViewById<ImageButton>(R.id.btn_album)
+        //백 버튼
+        var back = findViewById<ImageButton>(R.id.ib_back_arrow)
+        //다이알로그 띄우는 버튼
+        var cancel = findViewById<ImageButton>(R.id.btn_delete_pic)
+
 
 
         //어뎁터 초기화
@@ -42,6 +51,40 @@ class ProfileModifyPicActivity: AppCompatActivity() {
         val gridLayoutManager = GridLayoutManager(applicationContext,3)
         binding.rcProfilePic.layoutManager = gridLayoutManager
         binding.rcProfilePic.adapter = picAdapter
+
+        back.setOnClickListener{
+            val intent = Intent(this,ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        //사진삭제 -> 다이알로그 띄움 // 나중에 딜리트 서버 들어가야함
+        cancel.setOnClickListener {
+            val dialog = layoutInflater.inflate(R.layout.dialog_delete,null)
+            val build = AlertDialog.Builder(this).apply {
+                setView(dialog)
+            }
+            val dialogdd = build.create()
+            dialogdd.show()
+            Log.d("post", "dialog success")
+
+            val cancel = dialogdd.findViewById<Button>(R.id.btn_cancel_dd)
+            val delete = dialogdd.findViewById<Button>(R.id.btn_delete_dd)
+
+            //취소
+            cancel.setOnClickListener{
+                dialogdd.dismiss()
+            }
+            delete.setOnClickListener{
+                dialogdd.dismiss()
+
+            }
+
+
+        }
+
+
+
+
 
         getImage_btn.setOnClickListener{
             var intent = Intent(Intent.ACTION_PICK) // intent 통해서 뭘 할까??-> 갤러리

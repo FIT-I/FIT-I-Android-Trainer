@@ -166,8 +166,8 @@ class ProfileActivity: AppCompatActivity() {
         //사진수정
         modifyPic.setOnClickListener{
             val intent = Intent(this, ProfileModifyPicActivity::class.java)
-//            sendInfo()
             startActivity(intent)
+//            sendInfo()
             Log.d("post","사진 수정 success")
 //            finish()
         }

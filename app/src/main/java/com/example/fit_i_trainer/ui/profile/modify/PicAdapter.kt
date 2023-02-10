@@ -5,6 +5,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -32,6 +33,10 @@ class PicAdapter(): RecyclerView.Adapter<PicAdapter.ViewHolder>() {
         Glide.with(context)
             .load(imageList[position])//이미지 위치
             .into(holder.galleryView)//보여줄 위치
+
+        holder.btn_delete.setOnClickListener{
+
+        }
     }
     //아이템 갯수
     override fun getItemCount(): Int{
@@ -41,5 +46,6 @@ class PicAdapter(): RecyclerView.Adapter<PicAdapter.ViewHolder>() {
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
 
         val galleryView : ImageView = view.findViewById(R.id.iv_picture_item)
+        val btn_delete : ImageButton = view.findViewById(R.id.btn_delete_pic)
     }
 }
