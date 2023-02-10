@@ -45,6 +45,7 @@ class ProfileModifyMeActivity :AppCompatActivity(){
         val done = findViewById<Button>(R.id.btn_done)
         //val countText = findViewById<TextView>(R.id.tv_char_num)
         edit.setText(intro)
+        binding.tvCharNum.text=edit.length().toString()
         done.isEnabled = false
 
         edit.addTextChangedListener(object:TextWatcher{

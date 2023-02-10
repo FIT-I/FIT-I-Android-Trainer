@@ -163,7 +163,7 @@ class MypageFragment : Fragment() {
         }
 
         //위치 설정
-        ivlocation.setOnClickListener {
+        binding.clLocation.setOnClickListener {
             val intent = Intent(context, MypageLocationActivity::class.java)  // 인텐트를 생성해줌,
             startActivity(intent)  // 화면 전환을 시켜줌
             //finish()
@@ -171,20 +171,20 @@ class MypageFragment : Fragment() {
 
 
         //비밀번호변경
-        ivnextreset.setOnClickListener {
+        binding.clPwchange.setOnClickListener {
             val intent = Intent(context, MypageChangePwActivity::class.java)  // 인텐트를 생성해줌,
             startActivity(intent)  // 화면 전환을 시켜줌
             //finish()
         }
 
         //자격증 업데이트
-        ivaddcerti.setOnClickListener {
+        binding.clCertiUp.setOnClickListener {
             val intent = Intent(context, MypageCerfiActivity::class.java)  // 인텐트를 생성해줌,
             startActivity(intent)  // 화면 전환을 시켜줌
         }
 
         // 공지사항
-        ivnextnotice.setOnClickListener {
+        binding.clNotice.setOnClickListener {
             val mypageNoticeFragment = MypageNoticeFragment()
             val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
 
@@ -193,7 +193,7 @@ class MypageFragment : Fragment() {
         }
 
         //이용약관
-        ivnextpermisson.setOnClickListener {
+        binding.clPermission.setOnClickListener {
             val mypagepermissonFragment = MypagePermissonFragment()
             val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
 
