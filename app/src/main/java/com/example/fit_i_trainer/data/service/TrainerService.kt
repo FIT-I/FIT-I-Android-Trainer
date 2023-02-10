@@ -1,6 +1,5 @@
 package com.example.fit_i_trainer.data.service
 
-import com.example.fit_i_trainer.data.model.request.ModifyTrainerCategoryRequest
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
 import com.example.fit_i_trainer.data.model.request.SelectCategoryRequest
 import com.example.fit_i_trainer.data.model.response.BaseResponse
@@ -22,12 +21,11 @@ interface TrainerService {
 
     //트레이너 정보수정
     @PUT("api/trainer/information")
-    fun modifyTrainerInfo(@Body req : ModifyTrainerInfoRequest) : Call<BaseResponse>
+    fun modifyTrainerInfo(@Body req : ModifyTrainerInfoRequest) : Call<GetTrainerInfoResponse>
 
     //트레이너 사진 및 자격증 추가
-    //@Headers("content-type: application/json")
-    //@POST("api/trainer/etcimg")
-    //fun addTrainerEtcImg(@Body ectImage : Array<String>) : Call<BaseResponse>
+    @POST("api/trainer/etcimg")
+    fun addTrainerEtcImg(@Body ectImage : Array<String>) : Call<BaseResponse>
 
     //트레이너 프로필 삭제
     @DELETE("api/trainer/profile")
@@ -43,11 +41,7 @@ interface TrainerService {
     @PATCH ("api/trainer/mymatching")
     fun controlMatchingOnOff() :Call<BaseResponse>
 
-    //트레이너 카테고리 수정
-    @PATCH("api/trainer/category")
-    fun modifyTrainerCategory(@Body req : ModifyTrainerCategoryRequest) : Call<BaseResponse>
-
-    //트레이너 배경화면수정
+     //트레이너 배경화면수정
     @PATCH ("api/trainer/bgimg")
     fun modifyTrainerBgImg(
         @Part backgroundImage : MultipartBody.Part) : Call<BaseResponse>

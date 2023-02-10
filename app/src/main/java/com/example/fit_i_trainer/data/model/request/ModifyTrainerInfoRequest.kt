@@ -5,8 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ModifyTrainerInfoRequest(
-    val costHour: Int,
-    val intro: String,
-    val name: String,
-    val serviceDetail: String
+    val costHour: String?,
+    val intro: String?,
+    val name: String?,
+    val serviceDetail: String?
 ): Parcelable

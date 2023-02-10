@@ -30,11 +30,6 @@ class SignupActivity : AppCompatActivity() {
     var pw: String = ""
     var pw2: String = ""
 
-    var major = intent.getStringExtra("major").toString()
-
-
-    val emailPattern =
-        "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"
     val pwPattern = "^.*(?=^.{5,15}\$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#\$%^&+=]).*$"
 
     private lateinit var confirmPW: TextView
@@ -44,9 +39,10 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-
-        val intent = Intent(this, SignupTrainer2Activity::class.java)  // 인텐트를 생성해줌,
-
+        val major = intent.getStringExtra("major").toString()
+        Log.d("post",major+" major")
+        val schoolEmail = intent.getStringExtra("email").toString()
+        Log.d("post",schoolEmail)
 
 
         //객체 생성
@@ -85,28 +81,9 @@ class SignupActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {}
         })
 
-
-        etEmail.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            //값 변경 시 실행되는 함수
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //입력값 담기
-                email = etEmail.text.toString()
-
-                //stroke 색상변경
-                if (email.isNotEmpty())
-                    etEmail.setBackgroundResource(R.drawable.edittext_border)
-                else
-                    etEmail.setBackgroundResource(R.drawable.edittext_border_not)
-
-                //값 유무에 따른 활성화 여부
-                btnFinSignUp.isEnabled = isTrue() //있다면 true 없으면 false
-            }
-
-            override fun afterTextChanged(p0: Editable?) {}
-        })
-
+        etEmail.isEnabled=false //이메일 수정 불가
+        etEmail.setText(schoolEmail)
+        etEmail.setBackgroundResource(R.drawable.edittext_border)
 
         //(! @ # $ % ^ &amp; + =
         etPW.addTextChangedListener(object : TextWatcher {
@@ -155,17 +132,42 @@ class SignupActivity : AppCompatActivity() {
         //버튼 이벤트
         btnFinSignUp.setOnClickListener {
 
-
-
             val service= RetrofitImpl.getApiClientWithOutToken().create(AccountsService::class.java)
-            val signUp = SignUpTrainerRequest(name,email,pw,major)
+            val signUp = SignUpTrainerRequest(name,schoolEmail,pw,major)
             service.signUpTrainer(signUp).enqueue(object : Callback<BaseResponse> {
                 override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
-                    if(response.isSuccessful){
-                        // 정상적으로 통신이 성공된 경우
-                        Log.d("post", "onResponse 성공: " + response.body().toString());
-
-                    }else{
+                    if(response.isSuccessful) {
+                        when (response.body()?.code) {// 정상적으로 통신이 성공된 경우
+                            1000 -> {
+//                                Log.d(
+//                                    "post",
+//                                    "onResponse 성공: " + response.body()
+//                                        .toString() + SignupValidationRequest(name, email, pw)
+//                                );
+                                Toast.makeText(
+                                    this@SignupActivity,
+                                    response.body()!!.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+//                                intent.putExtra(
+//                                    "signup",
+//                                    (SignupValidationRequest(email, name, pw))
+//                                )
+//
+                                startActivity(intent)  // 화면 전환을 시켜줌
+                                finish()
+                            }
+                            else -> {
+                                Log.d("post", "onResponse 오류: " + response.body().toString());
+                                Toast.makeText(
+                                    this@SignupActivity,
+                                    response.body()!!.message,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                    else{
                         // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
                         Log.d("post", "onResponse 실패")
                     }
@@ -190,22 +192,10 @@ class SignupActivity : AppCompatActivity() {
     private fun isTrue(): Boolean {
         pwDoubleCheck()
         pwCheck()
-        emailCheck()
-        return name.isNotEmpty() && email.isNotEmpty() && pw.isNotEmpty() && pw2.isNotEmpty() && emailCheck() && pwDoubleCheck() && pwCheck()
+        //emailCheck()
+        return name.isNotEmpty() && pw.isNotEmpty() && pw2.isNotEmpty() && pwDoubleCheck() && pwCheck()
     }
 
-    //이메일 정규성 검사
-    private fun emailCheck(): Boolean {
-        val pattern1 = Pattern.compile(emailPattern) // 패턴 컴파일
-        val matcher1 = pattern1.matcher(email)
-
-        return if (!matcher1.find()) {
-            //Toast.makeText(this@SignupActivity, "이메일 형식을 확인해주세요", Toast.LENGTH_SHORT).show()
-            false
-        } else {
-            true
-        }
-    }
 
     //패스워드 정규성검사
     private fun pwCheck(): Boolean {

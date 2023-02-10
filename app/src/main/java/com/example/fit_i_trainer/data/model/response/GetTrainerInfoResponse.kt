@@ -13,7 +13,7 @@ data class GetTrainerInfoResponse(
         val levelName: String,
         val school: String,
         val grade: Double,
-        val cost: Long,
+        val cost: String,
         val intro: String,
         val service: String,
         val reviewDto: List<String>,
