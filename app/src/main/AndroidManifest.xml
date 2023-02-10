@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,6 +18,20 @@
         android:theme="@style/Theme.FITITrainer"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.login.LoginFindPwAndGoActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.main.mypage.MypageCerfiActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -30,7 +46,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.mypage.MypageChangePwActivity"
+            android:name=".ui.main.mypage.notice.MypageNoticeMoreActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.main.mypage.MypageLocationActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.main.mypage.MypageChangePwActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,14 +73,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.signup.SignupCerti2Activity"
+            android:name=".ui.signup.SignupTrainerSchoolActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.signup.SignupCertiActivity"
+            android:name=".ui.signup.SignupTrainerMajorActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -64,11 +94,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".ui.signup.SignupPermissionActivity"
             android:exported="false">
@@ -97,9 +127,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -111,22 +140,22 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-        <activity android:name=".ui.profile.ProfileActivity"
+        <activity
+            android:name=".ui.profile.ProfileActivity"
             android:exported="true">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".ui.profile.ProfileModifyCostActivity"></activity>
-        <activity android:name=".ui.profile.ProfileModifyMeActivity"></activity>
-        <activity android:name=".ui.profile.ProfileModifyServiceActivity"></activity>
-        <activity android:name=".ui.profile.ProfileModifyPicActivity"></activity>
-        <activity android:name=".ui.profile.ProfileAboutMeActivity"></activity>
-        <activity android:name=".ui.profile.ProfileAboutServiceActivity"></activity>
-        <activity android:name=".ui.profile.ProfileModifyCategoryPickActivity"></activity>
+        <activity android:name=".ui.profile.modify.ProfileModifyCostActivity" />
+        <activity android:name=".ui.profile.modify.ProfileModifyMeActivity" />
+        <activity android:name=".ui.profile.modify.ProfileModifyServiceActivity" />
+        <activity android:name=".ui.profile.modify.ProfileModifyPicActivity" />
+        <activity android:name=".ui.profile.ProfileAboutMeActivity" />
+        <activity android:name=".ui.profile.ProfileAboutServiceActivity" />
+        <activity android:name=".ui.profile.modify.ProfileModifyCategoryPickActivity" />
     </application>
 
 </manifest>

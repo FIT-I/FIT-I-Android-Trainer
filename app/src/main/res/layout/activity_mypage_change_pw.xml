@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.mypage.MypageChangePwActivity">
+    tools:context=".ui.main.mypage.MypageChangePwActivity">
 
     <ImageButton
         android:id="@+id/iv_back"
@@ -63,7 +63,7 @@
                 android:id="@+id/et_newPw1"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/custom_edittext_border"
+                android:background="@drawable/edittext_border"
                 android:hint="변경할 비밀번호를 입력하세요"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -98,7 +98,7 @@
                 android:id="@+id/et_newPw2"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/custom_edittext_border"
+                android:background="@drawable/edittext_border"
                 android:ems="10"
                 android:hint="변경할 비밀번호를 확인하세요"
                 android:inputType="textPassword"
@@ -123,7 +123,6 @@
         android:layout_margin="30dp"
         android:text="비밀번호 변경"
         android:textSize="15dp"
-        android:backgroundTint="@color/main"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

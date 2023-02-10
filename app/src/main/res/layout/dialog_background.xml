@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/layout_background"
+    android:backgroundTint="@color/white">
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <Button
+            android:id="@+id/btn_album_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:text="앨범에서 선택"
+            android:background="#00ff0000"
+            android:backgroundTint="@color/white"/>
+        <Button
+            android:id="@+id/btn_delete_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:text="배경화면 삭제"
+            android:background="#00ff0000"
+            android:backgroundTint="@color/white"/>
+        <Button
+            android:id="@+id/btn_cancel_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:text="취소"
+            android:background="#00ff0000"
+            android:backgroundTint="@color/white"/>
+    </LinearLayout>
+</LinearLayout>
