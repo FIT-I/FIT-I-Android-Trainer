@@ -128,29 +128,11 @@ class ProfileActivity: AppCompatActivity() {
             }
         })
 
-
-        fun sendInfo() {
-            intent.putExtra("modify",ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail))
-        }
-
         // xml onclick 실행시켜줌 -> 오류발생하지 않는감...?
 //        modifyBackground.setOnClickListener{
 //            dialogbackground(View)
 //        }
 
-
-        moreAboutMe.setOnClickListener{
-            val intent = Intent(this, ProfileAboutMeActivity::class.java)
-            sendInfo()
-            startActivity(intent)
-            finish()
-        }
-
-        val moreAboutService = findViewById<ImageButton>(R.id.btn_about_service)
-
-        moreAboutService.setOnClickListener{
-            val intent = Intent(this, ProfileAboutServiceActivity::class.java)
-            sendInfo()
 
 
         //관리 비용
