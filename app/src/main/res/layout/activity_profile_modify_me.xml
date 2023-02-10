@@ -4,20 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageButton
-        android:id="@+id/ib_back_arrow"
-        android:layout_width="12dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="70dp"
-        android:background="@android:color/transparent"
-        android:padding="0sp"
-        android:scaleType="fitCenter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-    <ImageView
+   <ImageView
         android:id="@+id/iv_me_bar"
         android:layout_width="match_parent"
         android:layout_height="5dp"
@@ -41,7 +28,7 @@
 
     <EditText
         android:id="@+id/tv_about_me_context"
-        android:layout_width="369dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="33dp"
