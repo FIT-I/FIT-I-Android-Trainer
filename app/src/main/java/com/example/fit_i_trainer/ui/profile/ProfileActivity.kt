@@ -1,9 +1,15 @@
 package com.example.fit_i_trainer.ui.profile
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.fit_i_trainer.R
@@ -35,7 +41,7 @@ class ProfileActivity: AppCompatActivity() {
         val modifyCost = findViewById<ImageButton>(R.id.btn_modify_cost)
         val modifyMe= findViewById<ImageButton>(R.id.btn_modify_me)
         val modifyService= findViewById<ImageButton>(R.id.btn_modify_service)
-        val modifyPic= findViewById<ImageButton>(R.id.btn_modify_pic)
+        val modifyPic= findViewById<ImageButton>(R.id.btn_modify_pic) // 사진수정
         val modifyCategory = findViewById<ImageButton>(R.id.btn_category_pick)
 
         fun onBind(data: GetTrainerInfoResponse.Result?) {
@@ -122,12 +128,30 @@ class ProfileActivity: AppCompatActivity() {
             }
         })
 
-        //카테고리
-        modifyCategory.setOnClickListener{
-            val intent = Intent(this, ProfileModifyCategoryPickActivity::class.java)
+
+        fun sendInfo() {
+            intent.putExtra("modify",ModifyTrainerInfoRequest(costHour,intro,name,serviceDetail))
+        }
+
+        // xml onclick 실행시켜줌 -> 오류발생하지 않는감...?
+//        modifyBackground.setOnClickListener{
+//            dialogbackground(View)
+//        }
+
+
+        moreAboutMe.setOnClickListener{
+            val intent = Intent(this, ProfileAboutMeActivity::class.java)
+            sendInfo()
             startActivity(intent)
             finish()
         }
+
+        val moreAboutService = findViewById<ImageButton>(R.id.btn_about_service)
+
+        moreAboutService.setOnClickListener{
+            val intent = Intent(this, ProfileAboutServiceActivity::class.java)
+            sendInfo()
+
 
         //관리 비용
         modifyCost.setOnClickListener{
@@ -160,7 +184,63 @@ class ProfileActivity: AppCompatActivity() {
         modifyPic.setOnClickListener{
             val intent = Intent(this, ProfileModifyPicActivity::class.java)
             startActivity(intent)
-            finish()
+//            sendInfo()
+            Log.d("post","사진 수정 success")
+//            finish()
+        }
+    }
+    fun dialogbackground(view: View) {
+
+        val dialog = layoutInflater.inflate(R.layout.dialog_background,null)
+        val build = AlertDialog.Builder(view.context).apply {
+            setView(dialog)
+        }
+        val dialogbg = build.create()
+        dialogbg.show()
+        Log.d("post", "dialogbackground success")
+
+        val background = dialog.findViewById<Button>(R.id.btn_album_bg)
+        val delete = dialog.findViewById<Button>(R.id.btn_delete_bg)
+        val cancel = dialog.findViewById<Button>(R.id.btn_cancel_bg)
+
+        //배경화면 사진 선택
+        background.setOnClickListener {
+            //갤러리 연동하기
+            val intent = Intent(Intent.ACTION_PICK) // intent를 통해 뭘 열까? -> 갤러리
+            intent.data = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            intent.action = Intent.ACTION_GET_CONTENT // 갤러리에서 사진 가져오기
+            //나중에 사진 선택 후 가져와서의 액션 넣기
+            imageResult.launch(intent)
+            Toast.makeText(this,"갤러리 이동",Toast.LENGTH_SHORT).show()
+            Log.d("post","갤러리 성공")
+        }
+
+        //사진 삭제에 대한 코드
+        delete.setOnClickListener {
+            Toast.makeText(this, "프로필 삭제", Toast.LENGTH_SHORT).show()
+            Log.d("post", "삭제 성공")
+            dialogbg.dismiss()
+        }
+        // 취소에 대한 실행
+        cancel.setOnClickListener {
+            dialogbg.dismiss()
+            Log.d("post", "취소 성공")
+        }
+
+    }
+    private val imageResult = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){
+        result ->
+        if (result.resultCode == RESULT_OK){
+            //이미지를 받아서 이미지뷰에 적용함
+            val imageUri = result.data?.data
+            imageUri?.let {
+                Glide.with(this)
+                    .load(imageUri)
+                    .centerCrop()
+                    .into(binding.ivBackgroundPhoto)
+            }
         }
     }
 }
