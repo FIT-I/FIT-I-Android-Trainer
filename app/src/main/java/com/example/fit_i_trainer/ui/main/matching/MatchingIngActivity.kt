@@ -1,11 +1,10 @@
 package com.example.fit_i_trainer.ui.main.matching
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.example.fit_i_trainer.R
@@ -13,46 +12,50 @@ import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.model.response.GetMatchlistResponse
 import com.example.fit_i_trainer.data.service.MatchingService
-import com.example.fit_i_trainer.databinding.FragmentMatchingIngBinding
+import com.example.fit_i_trainer.databinding.ActivityChatIngBinding
+import com.example.fit_i_trainer.databinding.ActivityMatchingIngBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+class MatchingIngActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMatchingIngBinding
 
-class MatchingIngFragment : Fragment() {
-    private var _binding : FragmentMatchingIngBinding? = null
-    private val binding : FragmentMatchingIngBinding
-    get() = requireNotNull(_binding) {"FragmentMatchingIngBinding"}
+    fun onBind(data: GetMatchlistResponse.Result?){
+        binding.tvMatching.text = data?.name
+        binding.tvMatchingPrice.text = data?.pricePerHour
+        binding.tvMatchingAllprcie2.text = data?.totalPrice
+        binding.tvMatchingStart.text = data?.matchingStart
+        binding.tvMatchingEnd.text= data?.matchingFinish
+        binding.tvMatchingAlldate.text = data?.matchingPeriod.toString()
 
-
-    private var matchingIdx : Int = 1
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentMatchingIngBinding.inflate(inflater,container,false)
-        return binding.root
+        if (data?.pickUpType=="TRAINER_GO"){
+            binding.tvMatchingPickup2.text = "트레이너님이 와주세요"
+        }else if (data?.pickUpType=="CUSTOMER_GO"){
+            binding.tvMatchingPickup2.text = "제가 직접 갈게요"
+        }
+        binding.tvMatchingPlace2.text = data?.location
     }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMatchingIngBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        val matchingId = intent.getLongExtra("matchingId",-1)//고객
+        val trainerId = intent.getLongExtra("trainerId",-1)//트레이너
 
-        val btnaccept = view.findViewById<View>(R.id.btn_matching_accept)
-        val btndecline = view.findViewById<View>(R.id.btn_matching_decline)
+        val btnaccept = findViewById<View>(R.id.btn_matching_accept)
+        val btndecline = findViewById<View>(R.id.btn_matching_decline)
         val matchingService = RetrofitImpl.getApiClient().create(MatchingService::class.java)
 
-
+        //수락한 경우
         btnaccept.setOnClickListener{
-            val matchingFragment = MatchingFragment()
-            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
-
-            transaction.replace(R.id.fl_container,matchingFragment)
-            transaction.commit()
-
-
+            val intent = Intent(this, MatchingFragment::class.java)
+            startActivity(intent)
+            finish()
             //api 연결
 
-            matchingService.matchingaccepat(matchingIdx).enqueue(object : Callback<BaseResponse>{
+            matchingService.matchingaccepat(matchingId).enqueue(object : Callback<BaseResponse>{
                 override fun onResponse(
                     call: Call<BaseResponse>,
                     response: Response<BaseResponse>
@@ -75,21 +78,17 @@ class MatchingIngFragment : Fragment() {
         }
 
         btndecline.setOnClickListener{
-            val matchingFragment = MatchingFragment()
-            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
-
-            transaction.replace(R.id.fl_container,matchingFragment)
-            transaction.commit()
+            //이동
 
             //api 연결
-            matchingService.matchingreject(matchingIdx).enqueue(object : Callback<BaseResponse>{
+            matchingService.matchingreject(matchingId).enqueue(object : Callback<BaseResponse>{
                 override fun onResponse(
                     call: Call<BaseResponse>,
                     response: Response<BaseResponse>
                 ) {if (response.isSuccessful){
                     //정상적으로 통신이 된 경우
                     Log.d("post","매칭 onResponse 성공" + response.body().toString())
-                    Toast.makeText(getActivity(),"매칭 목록에서 제거",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MatchingIngActivity,"매칭 목록에서 제거",Toast.LENGTH_SHORT).show()
                 }
                 else{
                     //통신에 실패한 경우
@@ -104,18 +103,8 @@ class MatchingIngFragment : Fragment() {
             })
         }
 
-        fun onBind( data: GetMatchlistResponse.Result ){
-            binding.tvMatching.text = data.name
-            binding.tvMatchingPrice.text = data.pricePerHour
-            binding.tvMatchingAllprcie2.text = data.totalPrice
-            binding.tvMatchingStart.text = data.matchingStart
-            binding.tvMatchingEnd.text= data.matchingFinish
-            binding.tvMatchingAlldate.text = data.matchingPeriod.toString()
-            binding.tvMatchingPickup2.text = data.pickUpType
-            binding.tvMatchingPlace2.text = data.location
-        }
-        matchingService.matchinglist(matchingIdx).enqueue(object :
-        Callback<GetMatchlistResponse>{
+        matchingService.matchinglist(matchingId).enqueue(object :
+            Callback<GetMatchlistResponse>{
             override fun onResponse(
                 call: Call<GetMatchlistResponse>,
                 response: Response<GetMatchlistResponse>
@@ -133,8 +122,5 @@ class MatchingIngFragment : Fragment() {
                 Log.d("post","onFailure 에러 : "+ t.message.toString());
             }
         })
-
     }
-
-
 }

@@ -38,7 +38,6 @@ class ChatFragment : Fragment(){
     private fun setAdapter(chatList : List<GetChatResponse.Result>){
         val chatRoomAdpater = ChatAdapter(chatList)
         binding.rcChat.adapter = chatRoomAdpater
-
         val linearLayoutManager = LinearLayoutManager(context)
         binding.rcChat.layoutManager = linearLayoutManager
         binding.rcChat.setHasFixedSize(true)
