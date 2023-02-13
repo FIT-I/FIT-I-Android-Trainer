@@ -1,11 +1,13 @@
 package com.example.fit_i_trainer.ui.main.matching
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.fit_i_trainer.data.model.response.GettrainerResponse
 import com.example.fit_i_trainer.databinding.ItemmatchingBinding
 
@@ -43,7 +45,19 @@ RecyclerView.Adapter<MatchingAdapter.ViewHolder>() {
         fun onBind(position: Int) {
             binding.matchingIm.text = dataList[position].name
             binding.matchingDate.text = dataList[position].orderDate
-            binding.matchingMent.text = dataList[position].pickUpType
+//            binding.matchingMent.text = dataList[position].pickUpType
+            if(dataList[position].pickUpType == "TRAINER_GO"){
+                binding.matchingMent.text = "트레이너님이 와주세요"
+            }else if (dataList[position].pickUpType == "CUSTOMER_GO"){
+                binding.matchingMent.text = "제가 직접 갈게요"
+            }
+
+            if (dataList[position].profile == "customerProfile"|| dataList[position].profile != null){
+                Glide.with(itemView)
+                    .load("${dataList[position].profile}")
+                    .into(binding.matchingProfile)
+                Log.d("post",dataList[position].profile)
+            }
 
 
             }
@@ -53,9 +67,13 @@ RecyclerView.Adapter<MatchingAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(position)
 
-//        holder.itemView.setOnClickListener{
-//            val matchlistIntent = Intent(holder.itemView.context, MatchingFragment::class.java)
-//            startActivity(holder.itemView.context,matchlistIntent,null)
+        //아이템 클릭시 매칭명세표로 이동
+        holder.itemView.setOnClickListener{
+            val intent = Intent(holder.itemView.context, MatchingIngActivity::class.java)
+            intent.putExtra("matchingId", dataList[position].matchingId)
+
+            startActivity(holder.itemView.context, intent,null)
+        }
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

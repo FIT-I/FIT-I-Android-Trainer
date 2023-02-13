@@ -55,6 +55,11 @@ class ChatFragment : Fragment(){
                     //정상 통신
                     Log.d("post","채팅 onResponse 성공 :" + response.body().toString())
 
+                    if(response.body()?.result?.size == 0){
+                        binding.clChatNo.visibility = View.VISIBLE
+                    } else
+                        binding.clChatNo.visibility = View.INVISIBLE
+
                     val body = response.body()
                     body?.let {
                         setAdapter(it.result)

@@ -5,6 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.chat.ChatFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_chat_no"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+        <ImageView
+            android:id="@+id/iv_chat"
+            android:layout_width="173dp"
+            android:layout_height="201dp"
+            android:src="@drawable/img_matching"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/iv_chat"
+            android:textSize="15sp"
+            android:text="매칭한 내역이 없습니다\n프로필 꾸미기를 통해\n요청을 받아보세요"
+            android:gravity="center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="3dp"
+            android:textColor="@color/main"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tv_chat"
