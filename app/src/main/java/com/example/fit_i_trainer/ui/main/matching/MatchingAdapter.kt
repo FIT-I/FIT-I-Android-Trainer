@@ -48,8 +48,13 @@ class MatchingAdapter(private val dataList: List<GettrainerResponse.Result>) :
             binding.matchingDate.text = dataList[position].orderDate
             binding.matchingMent.text = dataList[position].pickUpType
 
-            //캐릭터 아이콘
-            when (dataList[position].profile) {
+            if (dataList[position].pickUpType == "TRAINER_GO") {
+                binding.matchingMent.text = "트레이너님이 와주세요"
+            } else if (dataList[position].pickUpType == "CUSTOMER_GO") {
+                binding.matchingMent.text = "제가 직접 갈게요"
+            }
+
+            when (dataList[position].profile) {//캐릭터 아이콘
                 "customerProfile1" -> binding.matchingProfile.setImageResource(R.drawable.img_char1)
                 "customerProfile2" -> binding.matchingProfile.setImageResource(R.drawable.img_char2)
                 "customerProfile3" -> binding.matchingProfile.setImageResource(R.drawable.img_char3)
