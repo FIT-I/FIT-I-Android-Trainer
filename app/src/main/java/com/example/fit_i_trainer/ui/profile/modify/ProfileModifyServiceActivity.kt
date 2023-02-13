@@ -91,12 +91,5 @@ class ProfileModifyServiceActivity :AppCompatActivity(){
             startActivity(intent)
             finish()
         }
-        //뒤로가기
-        val goBack = findViewById<ImageButton>(R.id.ib_back_arrow)
-        goBack.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
 }

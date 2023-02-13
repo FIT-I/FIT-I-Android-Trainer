@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.example.fit_i_trainer.CommunityFragment
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.databinding.ActivityMainBinding
 import com.example.fit_i_trainer.ui.main.chat.ChatFragment
@@ -13,7 +12,6 @@ import com.example.fit_i_trainer.ui.main.home.HomeFragment
 import com.example.fit_i_trainer.ui.main.matching.MatchingFragment
 import com.example.fit_i_trainer.ui.main.mypage.MypageFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
