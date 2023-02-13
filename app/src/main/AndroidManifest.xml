@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".OpenChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".MatchingIngActivity"
             android:exported="false" />
         <activity
@@ -127,7 +130,7 @@
         </activity>
         <activity
             android:name=".ui.profile.ProfileActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity android:name=".ui.profile.modify.ProfileModifyCostActivity" />
         <activity android:name=".ui.profile.modify.ProfileModifyMeActivity" />
         <activity android:name=".ui.profile.modify.ProfileModifyServiceActivity" />

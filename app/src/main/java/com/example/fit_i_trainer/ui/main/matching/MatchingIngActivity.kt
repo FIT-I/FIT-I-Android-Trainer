@@ -1,10 +1,13 @@
 package com.example.fit_i_trainer.ui.main.matching
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.example.fit_i_trainer.R
@@ -20,6 +23,7 @@ import retrofit2.Response
 
 class MatchingIngActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMatchingIngBinding
+
 
     fun onBind(data: GetMatchlistResponse.Result?){
         binding.tvMatching.text = data?.name
@@ -43,19 +47,43 @@ class MatchingIngActivity : AppCompatActivity() {
 
         val matchingId = intent.getLongExtra("matchingId",-1)//고객
         val trainerId = intent.getLongExtra("trainerId",-1)//트레이너
+        val openchatlink = intent.getLongExtra("openChatLink",-1) // 오픈채팅링크
 
         val btnaccept = findViewById<View>(R.id.btn_matching_accept)
         val btndecline = findViewById<View>(R.id.btn_matching_decline)
         val matchingService = RetrofitImpl.getApiClient().create(MatchingService::class.java)
 
+
+
+
+
         //수락한 경우
         btnaccept.setOnClickListener{
-            val intent = Intent(this, MatchingFragment::class.java)
-            startActivity(intent)
-            finish()
+//            val intent = Intent(this, MatchingFragment::class.java)
+//            startActivity(intent)
+//            finish()
+
+            //오픈채팅방링크 작성하도록 수정
+            val dialog = layoutInflater.inflate(R.layout.dialog_openchatlink,null)
+            val build = AlertDialog.Builder(this).apply {
+                setView(dialog)
+            }
+            val dialogChat = build.create()
+            dialogChat.show()
+            Log.d("post ", "dialog success")
+
+            val cancel = dialog.findViewById<Button>(R.id.btn_cancel)
+            val go = dialog.findViewById<Button>(R.id.btn_go)
+
+            cancel.setOnClickListener{
+                dialogChat.dismiss()
+            }
+            go.setOnClickListener{
+
+            }
             //api 연결
 
-            matchingService.matchingaccepat(matchingId).enqueue(object : Callback<BaseResponse>{
+            matchingService.matchingaccepat(matchingId,openchatlink).enqueue(object : Callback<BaseResponse>{
                 override fun onResponse(
                     call: Call<BaseResponse>,
                     response: Response<BaseResponse>

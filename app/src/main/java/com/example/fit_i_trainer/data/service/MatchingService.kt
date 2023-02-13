@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MatchingService {
 
@@ -15,7 +16,8 @@ interface MatchingService {
     fun matchingreject(@Path ("matchingIdx") matchingIdx : Long) : Call<BaseResponse>
     //매칭수락
     @PATCH("api/matching/{matchingIdx}/accept")
-    fun matchingaccepat(@Path("matchingIdx") matchingIdx: Long) : Call<BaseResponse>
+    fun matchingaccepat(@Path("matchingIdx") matchingIdx: Long ,
+                        @Query("openChatLink") openChatLink : Long) : Call<BaseResponse>
 
     //매칭정보조회
     @GET("api/matching/{matchingIdx}")
