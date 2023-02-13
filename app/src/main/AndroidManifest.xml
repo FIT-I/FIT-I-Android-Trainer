@@ -131,8 +131,6 @@
         <activity android:name=".ui.profile.modify.ProfileModifyMeActivity" />
         <activity android:name=".ui.profile.modify.ProfileModifyServiceActivity" />
         <activity android:name=".ui.profile.modify.ProfileModifyPicActivity" />
-        <activity android:name=".ui.profile.ProfileAboutMeActivity" />
-        <activity android:name=".ui.profile.ProfileAboutServiceActivity" />
         <activity android:name=".ui.profile.modify.ProfileModifyCategoryPickActivity" />
     </application>
 

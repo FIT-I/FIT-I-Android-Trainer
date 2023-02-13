@@ -6,19 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.data.model.response.GettrainerResponse
 import com.example.fit_i_trainer.databinding.ItemmatchingBinding
 
-class MatchingAdapter(private val dataList: List<GettrainerResponse.Result>):
-RecyclerView.Adapter<MatchingAdapter.ViewHolder>() {
+class MatchingAdapter(private val dataList: List<GettrainerResponse.Result>) :
+    RecyclerView.Adapter<MatchingAdapter.ViewHolder>() {
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
         super.onBindViewHolder(holder, position, payloads)
-        holder.itemView.setOnClickListener{
-            itemClickListener.onClick(it,position)
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
         }
     }
+
     // 2 리스너 인터페이스
     interface OnItemClickListener {
         fun onClick(v: View, position: Int)
@@ -45,10 +48,22 @@ RecyclerView.Adapter<MatchingAdapter.ViewHolder>() {
             binding.matchingDate.text = dataList[position].orderDate
             binding.matchingMent.text = dataList[position].pickUpType
 
-
+            if (dataList[position].pickUpType == "TRAINER_GO") {
+                binding.matchingMent.text = "트레이너님이 와주세요"
+            } else if (dataList[position].pickUpType == "CUSTOMER_GO") {
+                binding.matchingMent.text = "제가 직접 갈게요"
             }
 
+            when (dataList[position].profile) {//캐릭터 아이콘
+                "customerProfile1" -> binding.matchingProfile.setImageResource(R.drawable.img_char1)
+                "customerProfile2" -> binding.matchingProfile.setImageResource(R.drawable.img_char2)
+                "customerProfile3" -> binding.matchingProfile.setImageResource(R.drawable.img_char3)
+                "customerProfile4" -> binding.matchingProfile.setImageResource(R.drawable.img_char4)
+                "customerProfile5" -> binding.matchingProfile.setImageResource(R.drawable.img_char5)
+                "customerProfile6" -> binding.matchingProfile.setImageResource(R.drawable.img_char6)
+            }
         }
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(position)
@@ -56,11 +71,11 @@ RecyclerView.Adapter<MatchingAdapter.ViewHolder>() {
 //        holder.itemView.setOnClickListener{
 //            val matchlistIntent = Intent(holder.itemView.context, MatchingFragment::class.java)
 //            startActivity(holder.itemView.context,matchlistIntent,null)
-        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-       val viewBinding =
-           ItemmatchingBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val viewBinding =
+            ItemmatchingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(viewBinding)
     }
 
