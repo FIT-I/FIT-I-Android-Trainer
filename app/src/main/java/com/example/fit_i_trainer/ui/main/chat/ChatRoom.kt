@@ -16,6 +16,8 @@ data class ChatRoom(
     val customerLocation : String,
     val createdAt : String,
     val matchingId : Int,
-    val trainerProfile : String
+    val trainerProfile : String,
+    val trainerLocation : String,
+    val customerProfile : String
 
 ): Parcelable

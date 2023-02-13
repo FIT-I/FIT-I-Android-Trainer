@@ -1,11 +1,13 @@
 package com.example.fit_i_trainer.ui.main.chat
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.fit_i_trainer.data.model.response.GetChatResponse
 import com.example.fit_i_trainer.databinding.ItemChatBinding
 
@@ -15,10 +17,22 @@ class ChatAdapter(private val dataList: List<GetChatResponse.Result>) :
             RecyclerView.ViewHolder(binding.root){
 
                 fun onBind(position: Int){
-                    binding.ivChatProfile.imageAlpha = dataList[position].trainerProfile.toInt()
+                    if (dataList[position].customerProfile == "customerProfile"|| dataList[position].customerProfile != null){
+                        Glide.with(itemView)
+                            .load("${dataList[position].customerProfile}")
+                            .into(binding.ivChatProfile)
+                        Log.d("post",dataList[position].customerProfile)
+                    }
                     binding.tvChatIm.text = dataList[position].trainerName
-                    binding.tvChatMent.text = dataList[position].pickUp
-                    binding.tvChatLocation.text = dataList[position].customerLocation
+//                    binding.tvChatMent.text = dataList[position].pickUp
+//                    binding.tvChatLocation.text = dataList[position].customerLocation
+                    if(dataList[position].pickUp == "TRAINER_GO"){
+                        binding.tvChatMent.text = "트레이너님이 와주세요"
+                        binding.tvChatLocation.text = dataList[position].customerLocation
+                    }else if (dataList[position].pickUp == "CUSTOMER_GO"){
+                        binding.tvChatMent.text = "제가 직접 갈게요"
+                        binding.tvChatLocation.text = dataList[position].trainerLocation
+                    }
                 }
             }
 
@@ -47,7 +61,10 @@ class ChatAdapter(private val dataList: List<GetChatResponse.Result>) :
                     dataList[position].customerLocation,
                     dataList[position].createdAt,
                     dataList[position].matchingId,
-                    dataList[position].trainerProfile))
+                    dataList[position].trainerProfile,
+                    dataList[position].trainerLocation,
+                    dataList[position].customerProfile
+                ))
             startActivity(holder.itemView.context, intent,null)
 
         }
