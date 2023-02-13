@@ -79,6 +79,10 @@ class MatchingIngActivity : AppCompatActivity() {
                 dialogChat.dismiss()
             }
             go.setOnClickListener{
+                val intent = Intent(this,OpenChatActivity::class.java)
+                startActivity(intent)
+                dialogChat.dismiss()
+                finish()
 
             }
             //api 연결
