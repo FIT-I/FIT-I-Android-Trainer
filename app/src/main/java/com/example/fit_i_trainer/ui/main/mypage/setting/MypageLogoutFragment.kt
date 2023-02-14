@@ -99,7 +99,7 @@ class MypageLogoutFragment :Fragment() {
 
 
         btnwithdraw.setOnClickListener {
-            val mypageSiginoutFragment = MypageSiginoutFragment()
+            val mypageSiginoutFragment = MypageSignoutFragment()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
 
             transaction.replace(R.id.fl_container,mypageSiginoutFragment)
