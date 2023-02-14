@@ -37,7 +37,6 @@ class ProfileModifyPicActivity: AppCompatActivity() {
         //갤러리 연결 버튼
         var getImage_btn = findViewById<ImageButton>(R.id.btn_album)
         //백 버튼
-        var back = findViewById<ImageButton>(R.id.ib_back_arrow)
         //다이알로그 띄우는 버튼
         var cancel = findViewById<ImageButton>(R.id.btn_delete_pic)
 
@@ -52,10 +51,6 @@ class ProfileModifyPicActivity: AppCompatActivity() {
         binding.rcProfilePic.layoutManager = gridLayoutManager
         binding.rcProfilePic.adapter = picAdapter
 
-        back.setOnClickListener{
-            val intent = Intent(this,ProfileActivity::class.java)
-            startActivity(intent)
-        }
 
         //사진삭제 -> 다이알로그 띄움 // 나중에 딜리트 서버 들어가야함
         cancel.setOnClickListener {

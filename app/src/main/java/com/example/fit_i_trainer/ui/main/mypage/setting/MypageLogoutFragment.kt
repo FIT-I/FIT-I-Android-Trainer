@@ -40,18 +40,9 @@ class MypageLogoutFragment :Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_mypage_logout, container, false)
 
-        val ibpre = view.findViewById<View>(R.id.ib_pre1)
         val btnlogout = view.findViewById<View>(R.id.btn_logout) as AppCompatButton
         val btnwithdraw = view.findViewById<View>(R.id.btn_withdraw) as AppCompatButton
 
-        ibpre.setOnClickListener{
-            val mypageFragment = MypageFragment()
-            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
-
-            //이전 화면으로 이동
-            transaction.replace(R.id.fl_container,mypageFragment)
-            transaction.commit()
-        }
 
         btnlogout.setOnClickListener {
             val dialog = AlertDialog.Builder(context)
@@ -108,7 +99,7 @@ class MypageLogoutFragment :Fragment() {
 
 
         btnwithdraw.setOnClickListener {
-            val mypageSiginoutFragment = MypageSiginoutFragment()
+            val mypageSiginoutFragment = MypageSignoutFragment()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
 
             transaction.replace(R.id.fl_container,mypageSiginoutFragment)

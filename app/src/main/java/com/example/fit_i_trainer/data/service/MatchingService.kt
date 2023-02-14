@@ -7,19 +7,21 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MatchingService {
 
     //매칭거절
     @PATCH("api/matching/{matchingIdx}/reject")
-    fun matchingreject(@Path ("matchingIdx") matchingIdx : Int) : Call<BaseResponse>
+    fun matchingreject(@Path ("matchingIdx") matchingIdx : Long) : Call<BaseResponse>
     //매칭수락
     @PATCH("api/matching/{matchingIdx}/accept")
-    fun matchingaccepat(@Path("matchingIdx") matchingIdx: Int) : Call<BaseResponse>
+    fun matchingaccepat(@Path("matchingIdx") matchingIdx: Long ,
+                        @Query("openChatLink") openChatLink : Long) : Call<BaseResponse>
 
     //매칭정보조회
     @GET("api/matching/{matchingIdx}")
-    fun matchinglist(@Path("matchingIdx") matchingIdx: Int) : Call<GetMatchlistResponse>
+    fun matchinglist(@Path("matchingIdx") matchingIdx: Long) : Call<GetMatchlistResponse>
     //트레이너의 매칭목록조회
     @GET("api/matching/trainer")
     fun matchingtrainer() : Call<GettrainerResponse>

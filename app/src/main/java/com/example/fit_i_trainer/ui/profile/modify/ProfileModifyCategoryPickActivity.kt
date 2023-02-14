@@ -44,13 +44,6 @@ class ProfileModifyCategoryPickActivity:AppCompatActivity() {
         checkBtn4.setOnClickListener{onCheckChange(checkBtn4)}
         checkBtn5.setOnClickListener{onCheckChange(checkBtn5)}
 
-        //뒤로가기
-        val goBack = findViewById<ImageButton>(R.id.ib_back_arrow)
-        goBack.setOnClickListener{
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent) //화면전환
-            finish()
-        }
 
         //완료
         buttonDone.setOnClickListener{
