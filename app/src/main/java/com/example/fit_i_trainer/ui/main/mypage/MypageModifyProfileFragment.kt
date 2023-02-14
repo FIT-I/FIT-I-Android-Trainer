@@ -18,8 +18,10 @@ import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
+import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.model.response.GetMypageResponse
 import com.example.fit_i_trainer.data.service.CommunalService
+import com.example.fit_i_trainer.data.service.TrainerService
 import com.example.fit_i_trainer.databinding.FragmentMypageModifyProfileBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,6 +46,7 @@ class MypageModifyProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val btnphoto = view.findViewById<View>(R.id.btn_click_photo)
+        val ibpre  = view.findViewById<View>(R.id.ib_pre1)
 
         fun onBind(data: GetMypageResponse.Result) {
             binding.tvName.text = data.userName
@@ -118,6 +121,26 @@ class MypageModifyProfileFragment : Fragment() {
             //사진 삭제
             delete.setOnClickListener {
 //                val profile = view.findViewById<View>(R.id.iv_profile_ing)
+                binding.ivProfileIng.setImageResource(R.drawable.ic_profile)
+
+                val DeleteService = RetrofitImpl.getApiClient().create(TrainerService::class.java)
+                DeleteService.deleteTrainerProflie().enqueue(object : Callback<BaseResponse>{
+                    override fun onResponse(
+                        call: Call<BaseResponse>,
+                        response: Response<BaseResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            Log.d("post", "delete onResponse 성공:" +response.body().toString())
+                        }else{
+                            Log.d("post","delete onResponse 실패:"+response.errorBody().toString())
+                        }
+                    }
+
+                    override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                        Log.d("post","delete onFailure :"+t.message.toString())
+                    }
+
+                })
 
                 Toast.makeText(context, "프로필 삭제", Toast.LENGTH_SHORT).show()
                 Log.d("post", "삭제 성공")
