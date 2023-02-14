@@ -5,18 +5,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.fit_i_trainer.R
+import com.example.fit_i_trainer.RetrofitImpl
+import com.example.fit_i_trainer.data.model.response.BaseResponse
+import com.example.fit_i_trainer.data.service.ChatService
 import com.example.fit_i_trainer.databinding.ActivityOpenChatBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 class OpenChatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOpenChatBinding
 
-    var opnelink: String = ""
+    var openlink: String = ""
 
     val openchatPattern =
         "^(https?):\\/\\/([^:\\/\\s]+)(:([^\\/]*))?((\\/[^\\s/\\/]+)*)?\\/?([^#\\s\\?]*)(\\?([^#\\s]*))?(#(\\w*))?\$"
@@ -42,10 +49,10 @@ class OpenChatActivity : AppCompatActivity() {
 
             //값 변경 시 실행되는 함수
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                opnelink = etopenChat.text.toString()
+                openlink = etopenChat.text.toString()
 
                 //색상 변경
-                if (opnelink.isNotEmpty())
+                if (openlink.isNotEmpty())
                     etopenChat.setBackgroundResource(R.drawable.edittext_border)
                 else
                     etopenChat.setBackgroundResource(R.drawable.edittext_border_not)
@@ -59,11 +66,9 @@ class OpenChatActivity : AppCompatActivity() {
 
         })
 
+        //버튼 이벤트
         btnend.setOnClickListener {
-            val intent = Intent(this, MatchingIngActivity::class.java)
-            intent.putExtra("openChatLink", opnelink)
-            startActivity(intent) //화면전환
-            finish()
+
 
         }
 
@@ -72,13 +77,13 @@ class OpenChatActivity : AppCompatActivity() {
 
     private fun isTrue(): Boolean {
         linkcheck()
-        return opnelink.isNotEmpty()
+        return openlink.isNotEmpty()
     }
 
     //오픈채팅 정규성 검사
     private fun linkcheck(): Boolean {
         val pattern = Pattern.compile(openchatPattern)
-        val matcher = pattern.matcher(opnelink)
+        val matcher = pattern.matcher(openlink)
 
         if (!matcher.find()) {
             Toast.makeText(this, "오픈채팅 형식이 일치하지 않습니다.", Toast.LENGTH_LONG).show()
@@ -87,4 +92,32 @@ class OpenChatActivity : AppCompatActivity() {
             return true
     }
 
+    private fun loadData(){
+        val service = RetrofitImpl.getApiClient().create(ChatService::class.java)
+        service.openchat(openlink).enqueue(object :Callback<BaseResponse>{
+            override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+                if (response.isSuccessful){
+                    makeToast()
+                    Log.d("post","chat opnResponse 성공:" + response.body().toString() )
+                }else{
+                    Log.d("post","chat opnResponse 실패")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                Log.d("post", "onFailure 에러: " + t.message.toString());
+            }
+
+        })
+    }
+    private fun makeToast(){
+        val intent = Intent(this, MatchingIngActivity::class.java)
+        intent.putExtra("openChatLink", openlink)
+        startActivity(intent) //화면전환
+        finish()
+    }
+
 }
+
+
+
