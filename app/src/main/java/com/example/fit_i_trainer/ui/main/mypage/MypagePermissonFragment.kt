@@ -33,18 +33,6 @@ class MypagePermissonFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val ibpre = view.findViewById<View>(R.id.ib_pre3) as ImageButton
-
-        ibpre.setOnClickListener {
-            val mypageFragment = MypageFragment()
-            val transaction: FragmentTransaction = requireFragmentManager().beginTransaction()
-
-            //이전 화면으로 이동
-            transaction.replace(R.id.fl_container, mypageFragment)
-            transaction.commit()
-
-        }
-
 
         fun onBind(data: BaseResponse) {
             binding.tvPermisson.text = data.result

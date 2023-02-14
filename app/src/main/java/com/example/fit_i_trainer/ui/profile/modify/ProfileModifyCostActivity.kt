@@ -64,14 +64,6 @@ class ProfileModifyCostActivity:AppCompatActivity() {
         checkBtn3.setOnClickListener{onCheckChange(checkBtn3)}
         checkBtn4.setOnClickListener{onCheckChange(checkBtn4)}
         checkBtn5.setOnClickListener{onCheckChange(checkBtn5)}
-        checkBtn6.setOnClickListener{onCheckChange(checkBtn6)}
-        //뒤로가기
-        val goBack = findViewById<ImageButton>(R.id.ib_back_arrow)
-        goBack.setOnClickListener{
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent) //화면전환
-            finish()
-        }
 
         buttonDone.setOnClickListener{
             val trainerService = RetrofitImpl.getApiClient().create(TrainerService::class.java)

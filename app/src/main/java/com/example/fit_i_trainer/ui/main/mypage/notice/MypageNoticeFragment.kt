@@ -42,25 +42,10 @@ class MypageNoticeFragment : Fragment() {
 
         lodeData()
 
-
         val noticeList : ArrayList<NoticeData> = arrayListOf()
 
         noticeList.apply {
             add(NoticeData("앱 업데이트 안내2",",","2023-02-01"))
-        }
-
-
-
-        val ibpre = view.findViewById<View>(R.id.ib_pre) as ImageButton
-
-        ibpre.setOnClickListener{
-            val mypageFragment = MypageFragment()
-            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
-
-            //이전 화면으로 이동
-            transaction.replace(R.id.fl_container,mypageFragment)
-            transaction.commit()
-
         }
     }
 
