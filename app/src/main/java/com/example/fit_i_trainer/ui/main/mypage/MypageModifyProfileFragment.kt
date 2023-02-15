@@ -70,7 +70,7 @@ class MypageModifyProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val btnphoto = view.findViewById<View>(R.id.btn_click_photo)
-        val ibpre = view.findViewById<View>(R.id.ib_pre1)
+        val ibpre = view.findViewById<View>(R.id.ib_back)
 
         fun onBind(data: GetMypageResponse.Result) {
             binding.tvName.text = data.userName
@@ -194,7 +194,9 @@ class MypageModifyProfileFragment : Fragment() {
             }
 
             val path = optimizeBitmap(requireContext(),imageUri!!)
-            val filePart = addImageFileToRequestBody(path!!,"file")
+            val imageFile = File(path)
+            val fileRequestBody = imageFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val filePart = MultipartBody.Part.createFormData("profile",imageFile.name,fileRequestBody)
 
             sendImage(filePart)
         }
@@ -218,13 +220,13 @@ class MypageModifyProfileFragment : Fragment() {
 
         })
     }
-    //이미지 'FormData'에 담기
-  fun addImageFileToRequestBody(path: String, name: String): MultipartBody.Part{
-        val imageFile = File(path)
-
-        val fileRequestBody = imageFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
-        return MultipartBody.Part.createFormData(name,imageFile.name,fileRequestBody)
-    }
+//    //이미지 'FormData'에 담기
+//  fun addImageFileToRequestBody(path: String, name: String): MultipartBody.Part{
+//        val imageFile = File(path)
+//
+//        val fileRequestBody = imageFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
+//        return MultipartBody.Part.createFormData(name,imageFile.name,fileRequestBody)
+//    }
 
     fun optimizeBitmap(context: Context, uri: Uri): String? {
         try {
