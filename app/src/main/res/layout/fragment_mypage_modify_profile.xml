@@ -5,18 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.mypage.MypageModifyProfileFragment">
+    
+    <ImageButton
+        android:id="@+id/ib_back"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"/>
 
     <TextView
         android:id="@+id/tv_profileModify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="마이 프로필"
+        android:layout_marginTop="10dp"
+        android:text="프로필 수정"
         android:textColor="@color/main"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/ib_back" />
 
     <ImageView
         android:id="@+id/iv_profile_ing"

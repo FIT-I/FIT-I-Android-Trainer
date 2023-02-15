@@ -1,30 +1,48 @@
 package com.example.fit_i_trainer.ui.profile
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.OpenableColumns
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.bumptech.glide.Glide
 import com.example.fit_i_trainer.R
 import com.example.fit_i_trainer.RetrofitImpl
 import com.example.fit_i_trainer.data.model.request.ModifyTrainerInfoRequest
+import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
 import com.example.fit_i_trainer.data.service.TrainerService
 import com.example.fit_i_trainer.databinding.ActivityProfileBinding
 import com.example.fit_i_trainer.ui.profile.modify.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 
-class ProfileActivity: AppCompatActivity() {
+public class ProfileActivity(context: Context): AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
+    private val applicationContext = context.applicationContext
+
+    private val imageUri : Uri? = null
 
     var costHour : String? = null
     var intro : String? = null
@@ -199,6 +217,7 @@ class ProfileActivity: AppCompatActivity() {
 
         //사진 삭제에 대한 코드
         delete.setOnClickListener {
+            binding.ivBackgroundPhoto.setImageResource(R.color.main)
             Toast.makeText(this, "프로필 삭제", Toast.LENGTH_SHORT).show()
             Log.d("post", "삭제 성공")
             dialogbg.dismiss()
@@ -210,6 +229,8 @@ class ProfileActivity: AppCompatActivity() {
         }
 
     }
+    //
+
     private val imageResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ){
@@ -223,6 +244,46 @@ class ProfileActivity: AppCompatActivity() {
                     .centerCrop()
                     .into(binding.ivBackgroundPhoto)
             }
+            Log.d("post","사진 서버 연결 성공")
+
         }
     }
+
+    fun sendImage(image: MultipartBody.Part){
+        val service = RetrofitImpl.getApiClient().create(TrainerService::class.java)
+        val call = service.modifyTrainerBackground(image)
+
+        call.enqueue(object : Callback<BaseResponse>{
+            override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+                if (response.isSuccessful){
+                    Log.d("post","background onResponse 성공:"+response.body().toString())
+                }else{
+                    Log.d("post","background onResponse 실패:"+response.errorBody().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                Log.d("post","background onFailure:"+t.message.toString())
+            }
+
+        })
+    }
 }
+
+
+//calling api
+//    @NonNull
+//    private fun updateUserProfile() {
+//        val file = ProfileActivity(requireContext()).getImageBody(imageUri!!)
+//        val requestFile : RequestBody = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+//        val builder : MultipartBody.Builder = MultipartBody.Builder().setType(MultipartBody.FORM)
+//
+//        builder//whatever data you will pass to the request body
+//            .addFormDataPart("profile_photo",file.name,requestFile) // the profile photo
+//        //make sure the name (ie profile_photo), matches your api, that is name of key
+//
+//        val requestBody: RequestBody = builder.build()
+//
+//        //pass the request body to make your retrofit call
+//        updateUserProfile(requestBody)
+//    }

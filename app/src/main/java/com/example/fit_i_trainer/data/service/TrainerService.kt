@@ -6,6 +6,7 @@ import com.example.fit_i_trainer.data.model.response.BaseResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerHomeResponse
 import com.example.fit_i_trainer.data.model.response.GetTrainerInfoResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -13,7 +14,7 @@ interface TrainerService {
 
     //트레이너 홈화면
     @GET("api/trainer/home")
-    fun getTrainerHome() :Call<GetTrainerHomeResponse>
+    fun getTrainerHome(): Call<GetTrainerHomeResponse>
 
     //트레이너 개인정보조회
     @GET("api/trainer/information")
@@ -21,37 +22,41 @@ interface TrainerService {
 
     //트레이너 정보수정
     @PUT("api/trainer/information")
-    fun modifyTrainerInfo(@Body req : ModifyTrainerInfoRequest) : Call<GetTrainerInfoResponse>
+    fun modifyTrainerInfo(@Body req: ModifyTrainerInfoRequest): Call<GetTrainerInfoResponse>
 
     //트레이너 사진 및 자격증 추가
     @POST("api/trainer/etcimg")
-    fun addTrainerEtcImg(@Body ectImage : Array<String>) : Call<BaseResponse>
+    fun addTrainerEtcImg(@Body ectImage: Array<String>): Call<BaseResponse>
 
     //트레이너 프로필 삭제
     @DELETE("api/trainer/profile")
-    fun deleteTrainerProflie() : Call<BaseResponse>
+    fun deleteTrainerProflie(): Call<BaseResponse>
 
     //트레이너 프로필수정
     @Multipart
     @PATCH("api/trainer/profile")
     fun modifyTrainerProfile(
-        @Part profileImage : MultipartBody.Part) : Call<BaseResponse>
+        @Part profileImage: MultipartBody.Part
+    ): Call<BaseResponse>
 
     //내 매칭 관리 on/off
-    @PATCH ("api/trainer/mymatching")
-    fun controlMatchingOnOff() :Call<BaseResponse>
+    @PATCH("api/trainer/mymatching")
+    fun controlMatchingOnOff(): Call<BaseResponse>
 
-     //트레이너 배경화면수정
-    @PATCH ("api/trainer/bgimg")
-    fun modifyTrainerBgImg(
-        @Part backgroundImage : MultipartBody.Part) : Call<BaseResponse>
+    //트레이너 배경화면수정
+    @Multipart
+    @PATCH("api/trainer/bgimg")
+    fun modifyTrainerBackground(
+//        @Part("backgroundImage") backgroundImage: RequestBody,
+        @Part images: MultipartBody.Part
+    ): Call<BaseResponse>
 
     //트레이너 사진 및 자격증 삭제
     @DELETE("api/trainer/etcimg/{etcImgIdx}")
-    fun deleteTrainerEtcImg(@Path("etcImgIdx") etcImgIdx : Int) :Call<BaseResponse>
+    fun deleteTrainerEtcImg(@Path("etcImgIdx") etcImgIdx: Int): Call<BaseResponse>
 
     //트레이너 카테고리 수정
-    @PATCH ("api/trainer/category")
-    fun selectCategory(@Body req : SelectCategoryRequest) : Call<BaseResponse>
+    @PATCH("api/trainer/category")
+    fun selectCategory(@Body req: SelectCategoryRequest): Call<BaseResponse>
 
 }
