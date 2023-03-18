@@ -1,5 +1,6 @@
 package com.example.fit_i_trainer.ui.main.mypage
 
+import android.app.Activity.RESULT_CANCELED
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
@@ -185,20 +186,20 @@ class MypageModifyProfileFragment : Fragment() {
         if (result.resultCode == RESULT_OK) {
             //이미지를 받으면 이미지뷰에 적용함
             val imageUri = result.data?.data
-            val bitmap: Bitmap? = null;
+            val file = imageUri.let {}
+
             imageUri.let {
-                Glide.with(this)
-                    .load(imageUri)
-                    .fitCenter()
-                    .into(binding.ivProfileIng)
+                if (imageUri == null)
+                    R.drawable.ic_profile
+                else
+                    Glide.with(this)
+                        .load(imageUri)
+                        .fitCenter()
+                        .into(binding.ivProfileIng)
+
             }
-
-            val path = optimizeBitmap(requireContext(),imageUri!!)
-            val imageFile = File(path)
-            val fileRequestBody = imageFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
-            val filePart = MultipartBody.Part.createFormData("profile",imageFile.name,fileRequestBody)
-
-            sendImage(filePart)
+        } else if (result.resultCode == RESULT_CANCELED){
+            Log.d("post","Image Upload fail")
         }
     }
 
